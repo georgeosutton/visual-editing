@@ -12,7 +12,7 @@ export default defineType({
       type: "string",
       name: "title",
       title: "Title",
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       type: "slug",
@@ -20,11 +20,11 @@ export default defineType({
       title: "Slug",
       options: {
         source: "title",
-        slugify: (input) => {
+        slugify: input => {
           return "/" + input.toLowerCase().replace(/\s+/g, "-").slice(0, 200);
         },
       },
-      validation: (rule) =>
+      validation: rule =>
         rule.required().custom((param: any) => {
           if (param?.current) {
             if (!param.current.startsWith("/")) {
@@ -38,7 +38,7 @@ export default defineType({
       name: "blocks",
       type: "array",
       title: "Page Blocks",
-      validation: (Rule) => Rule.min(1).error("The page has no content."),
+      validation: Rule => Rule.min(1).error("The page has no content."),
       of: [...blocks],
     },
   ],
