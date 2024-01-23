@@ -1,8 +1,11 @@
+import { SettingsPayload } from "@/types";
 import {
+  QueryResponseInitial,
   type QueryParams,
   type UseQueryOptionsDefinedInitial,
 } from "@sanity/react-loader";
 import * as queryStore from "@sanity/react-loader";
+import { settingsQuery } from "../lib/queries";
 
 /**
  * Exports to be used in client-only or components that render both server and client
@@ -28,3 +31,7 @@ export const useQuery = <
 
   return snapshot;
 };
+
+export function useSettings(initial: QueryResponseInitial<SettingsPayload>) {
+  return useQuery<SettingsPayload>(settingsQuery, {}, { initial });
+}

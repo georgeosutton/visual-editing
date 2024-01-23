@@ -38,7 +38,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
                 },
               ],
               tone: "positive",
-              message: "This document is used to render the front page",
+              message: "Visual Editing Preview",
             } satisfies DocumentLocationsState;
 
           case "page":

@@ -1,5 +1,5 @@
 import { CogIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
+import { defineType } from "sanity";
 
 export default defineType({
   name: "settings",
@@ -7,12 +7,12 @@ export default defineType({
   type: "document",
   icon: CogIcon,
   fields: [
-    defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      validation: (rule) => rule.required(),
-    }),
+    {
+      title: "Menu Items",
+      name: "menuItems",
+      type: "array",
+      of: [{ type: "internalLink" }],
+    },
   ],
   preview: {
     prepare() {
