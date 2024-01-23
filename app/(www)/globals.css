@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply bg-black text-white h-screen;
+  }
+
   * {
     @apply box-border min-w-0;
   }
