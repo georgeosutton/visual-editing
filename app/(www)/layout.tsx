@@ -3,7 +3,7 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
-import { Header } from "../components/global/Header";
+import { Header } from "../components/global/header";
 import { ftPolar, ivar } from "./fonts";
 
 const VisualEditing = dynamic(() => import("@/sanity/loader/VisualEditing"));
