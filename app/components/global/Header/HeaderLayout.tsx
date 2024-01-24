@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { MenuItem, SettingsPayload } from "@/types";
+import SanityLink from "../../sanityLink/SanityLink";
 
 interface HeaderProps {
   data: SettingsPayload;
@@ -28,18 +29,12 @@ export default function HeaderLayout(props: HeaderProps) {
           <nav className="flex gap-10">
             {menuItems &&
               menuItems.map(menuItem => {
-                const href = menuItem?.slug;
-                if (!href) {
-                  return null;
-                }
                 return (
-                  <Link
+                  <SanityLink
+                    link={menuItem}
                     key={menuItem._key}
                     className="whitespace-nowrap text-[1.3125rem] text-primary md:text-[1.875rem] font-ivar font-light"
-                    href={href}
-                  >
-                    {menuItem.text}
-                  </Link>
+                  />
                 );
               })}
           </nav>

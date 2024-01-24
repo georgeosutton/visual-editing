@@ -11,7 +11,7 @@ export default defineType({
       title: "Menu Items",
       name: "menuItems",
       type: "array",
-      of: [{ type: "internalLink" }],
+      of: [{ type: "internalLink" }, { type: "externalLink" }],
     },
   ],
   preview: {

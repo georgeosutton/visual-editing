@@ -5,7 +5,7 @@ export interface PagePayload {
 }
 
 export interface MenuItem {
-  _type: string;
+  _type: "internalLink" | "externalLink";
   _key: string;
   slug?: string;
   text?: string;
