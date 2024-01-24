@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-
 import type { MenuItem, SettingsPayload } from "@/types";
 
 interface HeaderProps {
@@ -9,21 +9,42 @@ export default function HeaderLayout(props: HeaderProps) {
   const { data } = props;
   const menuItems = data?.menuItems || ([] as MenuItem[]);
   return (
-    <div className="sticky top-0">
-      <nav className="container">
-        {menuItems &&
-          menuItems.map(menuItem => {
-            const href = menuItem?.slug;
-            if (!href) {
-              return null;
-            }
-            return (
-              <Link key={menuItem._key} className="text-white" href={href}>
-                {menuItem.text}
-              </Link>
-            );
-          })}
-      </nav>
-    </div>
+    <header>
+      <div className="container mx-auto h-16 px-8 lg:h-24">
+        <div className="flex h-full items-center justify-between gap-6 f">
+          <Link
+            aria-label="Sloaneclub Home"
+            href="/"
+            className="mb-0.5 flex-shrink md:mb-1 "
+          >
+            <Image
+              src="/header-logo.svg"
+              alt="The Sloaneclub Logo"
+              className="h-5 w-auto lg:h-8"
+              width={282}
+              height={34}
+            />
+          </Link>
+          <nav className="flex gap-10">
+            {menuItems &&
+              menuItems.map(menuItem => {
+                const href = menuItem?.slug;
+                if (!href) {
+                  return null;
+                }
+                return (
+                  <Link
+                    key={menuItem._key}
+                    className="whitespace-nowrap text-[1.3125rem] text-primary md:text-[1.875rem] font-ivar font-light"
+                    href={href}
+                  >
+                    {menuItem.text}
+                  </Link>
+                );
+              })}
+          </nav>
+        </div>
+      </div>
+    </header>
   );
 }
