@@ -14,3 +14,12 @@ export interface MenuItem {
 export interface SettingsPayload {
   menuItems?: MenuItem[];
 }
+
+export interface SanityImageProps {
+  _key?: string;
+  id?: string;
+  hotspot?: any;
+  crop?: any;
+  lqip?: string;
+  alt?: string;
+}

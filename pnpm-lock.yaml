@@ -47,6 +47,9 @@ dependencies:
   sanity:
     specifier: ^3.24.1
     version: 3.25.0(@types/node@20.11.5)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)
+  sanity-image:
+    specifier: ^0.1.7
+    version: 0.1.7(react@18.2.0)
   styled-components:
     specifier: ^6.1.8
     version: 6.1.8(react-dom@18.2.0)(react@18.2.0)
@@ -5425,6 +5428,14 @@ packages:
     engines: {node: '>=14.18'}
     dependencies:
       '@sanity/diff-match-patch': 3.1.1
+    dev: false
+
+  /sanity-image@0.1.7(react@18.2.0):
+    resolution: {integrity: sha512-4HRRWGIJPHvJBpezG22gHRVdTWG4R+Xk4Pj0W1utftgpYvBn6O0dekGEP/3B6rPWhGSKcZrWDbu9zNaAl0lBPQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /sanity@3.25.0(@types/node@20.11.5)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8):

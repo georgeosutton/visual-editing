@@ -1,4 +1,5 @@
 import type { PagePayload } from "@/types";
+import PageBuilder from "../PageBuilder";
 
 export interface PageProps {
   data: PagePayload | null;
@@ -6,9 +7,11 @@ export interface PageProps {
 
 export function Page({ data }: PageProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { title, slug } = data ?? {};
+  const { blocks } = data ?? {};
 
-  return <div>{title}</div>;
+  return blocks?.map((block: any) => {
+    return <PageBuilder key={block._key} block={block} />;
+  });
 }
 
 export default Page;

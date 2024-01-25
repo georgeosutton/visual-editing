@@ -18,7 +18,9 @@ export default async function CatchAllRoute({
       <Suspense>
         <Header />
       </Suspense>
-      <Suspense>{children}</Suspense>
+      <Suspense>
+        <main>{children}</main>
+      </Suspense>
       {draftMode().isEnabled && <VisualEditing />}
     </div>
   );

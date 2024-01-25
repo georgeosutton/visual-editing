@@ -22,6 +22,7 @@ export default function HeaderLayout(props: HeaderProps) {
               src="/header-logo.svg"
               alt="The Sloaneclub Logo"
               className="h-5 w-auto lg:h-8"
+              priority
               width={282}
               height={34}
             />

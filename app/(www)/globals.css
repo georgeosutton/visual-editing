@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply h-screen;
-  }
-
   * {
     @apply box-border min-w-0;
+  }
+
+  body {
+    @apply bg-offWhite text-primary;
   }
 
   h1,
@@ -16,10 +16,30 @@
   h3,
   h4,
   h6 {
-    @apply text-balance;
+    @apply ivar-light text-balance;
   }
 
   p {
-    @apply text-pretty;
+    @apply text-pretty text-body font-light;
+  }
+
+  a,
+  p {
+    @apply font-polar;
+  }
+
+  input,
+  textarea {
+    @apply font-polar text-sm uppercase;
+  }
+
+  select {
+    @apply font-polar text-sm;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      @apply px-4;
+    }
   }
 }

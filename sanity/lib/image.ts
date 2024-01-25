@@ -10,3 +10,5 @@ const imageBuilder = createImageUrlBuilder({
 export const urlForImage = (source: Image) => {
   return imageBuilder?.image(source).auto("format").fit("max").url();
 };
+
+export const baseUrl = `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/production/`;
