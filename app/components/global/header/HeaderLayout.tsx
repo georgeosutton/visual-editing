@@ -12,7 +12,7 @@ export default function HeaderLayout(props: HeaderProps) {
   return (
     <header>
       <div className="container mx-auto h-16 px-8 lg:h-24">
-        <div className="flex h-full items-center justify-between gap-6 f">
+        <div className="flex h-full items-center justify-between gap-6">
           <Link
             aria-label="Sloaneclub Home"
             href="/"
@@ -33,7 +33,7 @@ export default function HeaderLayout(props: HeaderProps) {
                 <SanityLink
                   link={menuItem}
                   key={menuItem._key}
-                  className="whitespace-nowrap text-[1.3125rem] text-primary md:text-[1.875rem] font-ivar font-light"
+                  className="whitespace-nowrap font-ivar text-[1.3125rem] font-light text-primary md:text-[1.875rem]"
                 />
               );
             })}

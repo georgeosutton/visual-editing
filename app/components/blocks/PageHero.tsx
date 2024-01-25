@@ -44,7 +44,7 @@ export default function PageHero(props: {
                 preview={image.lqip}
                 hotspot={image.hotspot}
                 crop={image.crop}
-                className="w-full object-cover relative md:h-[70vh] h-[40vh]"
+                className="relative h-[40vh] w-full object-cover md:h-[70vh]"
                 sizes="(min-width: 768px) 50vw, 100vw"
                 alt=""
                 mode="cover"
