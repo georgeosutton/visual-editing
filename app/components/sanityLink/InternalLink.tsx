@@ -1,11 +1,6 @@
+import { InternalLinkProps } from "@/types";
 import Link from "next/link";
 import React from "react";
-
-export type InternalLinkProps = {
-  text?: string;
-  slug?: string;
-  _type: "internalLink";
-};
 
 const InternalLink = React.forwardRef<
   HTMLAnchorElement,

@@ -4,12 +4,22 @@ export interface PagePayload {
   blocks?: any;
 }
 
-export interface MenuItem {
-  _type: "internalLink" | "externalLink";
-  _key: string;
-  slug?: string;
+export type InternalLinkProps = {
   text?: string;
-}
+  slug?: string;
+  _type: "internalLink";
+  _key?: string;
+};
+
+export type ExternalLinkProps = {
+  text?: string;
+  url?: string;
+  newWindow?: boolean;
+  _key?: string;
+  _type: "externalLink";
+};
+
+export type MenuItem = InternalLinkProps | ExternalLinkProps;
 
 export interface SettingsPayload {
   menuItems?: MenuItem[];

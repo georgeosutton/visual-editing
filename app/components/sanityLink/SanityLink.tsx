@@ -1,7 +1,7 @@
 import React from "react";
-
-import InternalLink, { InternalLinkProps } from "./InternalLink";
-import ExternalLink, { ExternalLinkProps } from "./ExternalLink";
+import { ExternalLinkProps, InternalLinkProps } from "@/types";
+import ExternalLink from "./ExternalLink";
+import InternalLink from "./InternalLink";
 
 type SanityLinkType = InternalLinkProps | ExternalLinkProps;
 

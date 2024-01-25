@@ -1,12 +1,5 @@
+import { ExternalLinkProps } from "@/types";
 import React from "react";
-
-export type ExternalLinkProps = {
-  text?: string;
-  url?: string;
-  newWindow?: boolean;
-  _key?: string;
-  _type: "externalLink";
-};
 
 const ExternalLink = React.forwardRef<
   HTMLAnchorElement,
