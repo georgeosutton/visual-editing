@@ -14,7 +14,7 @@ const InternalLink = React.forwardRef<
   const { text, slug, ...rest } = props;
 
   if (!slug) {
-    return <a href="#">Missing Page</a>;
+    return <div>Missing Page</div>;
   }
 
   return (

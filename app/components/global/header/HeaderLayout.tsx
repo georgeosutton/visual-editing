@@ -28,16 +28,15 @@ export default function HeaderLayout(props: HeaderProps) {
             />
           </Link>
           <nav className="flex gap-10">
-            {menuItems &&
-              menuItems.map(menuItem => {
-                return (
-                  <SanityLink
-                    link={menuItem}
-                    key={menuItem._key}
-                    className="whitespace-nowrap text-[1.3125rem] text-primary md:text-[1.875rem] font-ivar font-light"
-                  />
-                );
-              })}
+            {menuItems?.map((menuItem) => {
+              return (
+                <SanityLink
+                  link={menuItem}
+                  key={menuItem._key}
+                  className="whitespace-nowrap text-[1.3125rem] text-primary md:text-[1.875rem] font-ivar font-light"
+                />
+              );
+            })}
           </nav>
         </div>
       </div>

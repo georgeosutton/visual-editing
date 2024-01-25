@@ -1,10 +1,9 @@
-import { baseUrl, urlForImage } from "@/sanity/lib/image";
+import { baseUrl } from "@/sanity/lib/image";
 import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import { Image as ImageType, PortableTextBlock } from "sanity";
-import Image from "next/image";
 import { SanityImage } from "sanity-image";
 import { SanityImageProps } from "@/types";
+import { PortableTextBlock } from "sanity";
 
 const components: PortableTextComponents = {
   block: {
@@ -21,6 +20,7 @@ const components: PortableTextComponents = {
 export default function PageHero(props: {
   images: SanityImageProps[];
   text: PortableTextBlock[];
+  _type: "pageHero";
 }) {
   const { images, text } = props;
   return (
@@ -31,7 +31,7 @@ export default function PageHero(props: {
       <div className="relative z-10 col-start-1 row-start-1 h-full w-full bg-darkGradientHorizonal md:bg-darkGradientVertical " />
       {images && (
         <div className="col-start-1 row-start-1 grid md:grid-cols-2">
-          {images.map((image, index) => {
+          {images.map((image) => {
             if (!image?.id) {
               return null;
             }
@@ -40,10 +40,14 @@ export default function PageHero(props: {
               <SanityImage
                 baseUrl={baseUrl}
                 id={image.id}
-                key={index}
+                key={image._key}
+                preview={image.lqip}
+                hotspot={image.hotspot}
+                crop={image.crop}
                 className="w-full object-cover relative md:h-[70vh] h-[40vh]"
                 sizes="(min-width: 768px) 50vw, 100vw"
                 alt=""
+                mode="cover"
               />
             );
           })}

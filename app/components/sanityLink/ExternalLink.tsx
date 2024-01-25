@@ -12,14 +12,20 @@ const ExternalLink = React.forwardRef<
   HTMLAnchorElement,
   ExternalLinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >(function LinkComponent(props, forwardedRef) {
-  const { text, url, newWindow, children, ...rest } = props;
+  const { text, url, newWindow, ...rest } = props;
 
   if (!url) {
-    return <a href="#">Missing URL</a>;
+    return <div>Missing URL</div>;
   }
 
   return (
-    <a ref={forwardedRef} href={url} {...rest}>
+    <a
+      ref={forwardedRef}
+      href={url}
+      target={newWindow ? "_blank" : undefined}
+      rel={newWindow ? "noopener noreferrer" : undefined}
+      {...rest}
+    >
       {text}
     </a>
   );

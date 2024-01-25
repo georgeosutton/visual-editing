@@ -15,11 +15,21 @@ export interface SettingsPayload {
   menuItems?: MenuItem[];
 }
 
+type CropData = {
+  bottom: number;
+  left: number;
+  right: number;
+  top: number;
+};
+
 export interface SanityImageProps {
   _key?: string;
   id?: string;
-  hotspot?: any;
-  crop?: any;
+  hotspot?: {
+    x: number;
+    y: number;
+  };
+  crop?: CropData;
   lqip?: string;
   alt?: string;
 }

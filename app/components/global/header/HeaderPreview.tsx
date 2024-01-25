@@ -11,5 +11,5 @@ type Props = {
 export default function NavbarPreview(props: Props) {
   const { data } = useSettings(props.initial);
 
-  return <HeaderLayout data={data!} />;
+  return <HeaderLayout data={data} />;
 }

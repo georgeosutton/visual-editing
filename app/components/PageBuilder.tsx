@@ -4,7 +4,7 @@ const blocks: Record<string, React.ComponentType<any>> = {
   pageHero: PageHero,
 };
 
-const PageBuilder = (props: { block: { _type: string } }) => {
+const PageBuilder = (props: { block: any }) => {
   const { block } = props;
   const type = block?._type;
 

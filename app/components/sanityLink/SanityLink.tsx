@@ -23,7 +23,7 @@ const SanityLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
       return <Link ref={forwardedRef} {...link} {...rest} />;
     }
 
-    return <a href="#">Link type {type} missing</a>;
+    return <div>Link type {type} missing</div>;
   }
 );
 
