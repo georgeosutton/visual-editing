@@ -20,3 +20,7 @@ export const settingsQuery = groq`
     },
   }
 `;
+
+export const homePageQuery = groq`
+  *[_type == "home"][0]{..., blocks[]{${BLOCKS}}}
+`;

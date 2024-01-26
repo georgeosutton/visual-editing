@@ -1,5 +1,5 @@
 import { PagePayload, SettingsPayload } from "@/types";
-import { pageQuery, settingsQuery } from "../lib/queries";
+import { homePageQuery, pageQuery, settingsQuery } from "../lib/queries";
 import { client } from "@/sanity/lib/client";
 import * as queryStore from "@sanity/react-loader";
 import { token } from "@/sanity/lib/token";
@@ -49,14 +49,9 @@ export const loadQuery = ((query, params = {}, options = {}) => {
 
 export function loadPage(slug: string[]) {
   const queryParams = { slug: `/${slug.join("/")}` };
-  let tags;
-  if (queryParams.slug === "/") {
-    tags = ["home"];
-  } else {
-    tags = [`page:${queryParams.slug}`];
-  }
+
   return loadQuery<PagePayload | null>(pageQuery, queryParams, {
-    next: { tags },
+    next: { tags: [`page:${queryParams.slug}`] },
   });
 }
 
@@ -65,5 +60,13 @@ export function loadSettings() {
     settingsQuery,
     {},
     { next: { tags: ["settings", "home", "page"] } },
+  );
+}
+
+export function loadHomePage() {
+  return loadQuery<PagePayload | null>(
+    homePageQuery,
+    {},
+    { next: { tags: ["home"] } },
   );
 }

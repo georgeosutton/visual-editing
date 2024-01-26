@@ -1,5 +1,5 @@
 import type { PagePayload } from "@/types";
-import PageBuilder from "../PageBuilder";
+import PageBuilder from "../../PageBuilder";
 
 export interface PageProps {
   data: PagePayload | null;
