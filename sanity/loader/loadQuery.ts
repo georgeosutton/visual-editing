@@ -50,7 +50,7 @@ export const loadQuery = ((query, params = {}, options = {}) => {
 export function loadPage(slug: string[]) {
   const queryParams = { slug: `/${slug.join("/")}` };
   return loadQuery<PagePayload | null>(pageQuery, queryParams, {
-    next: { tags: [`page:${slug.join("/")}`] },
+    next: { tags: [`page:/${slug.join("/")}`] },
   });
 }
 
@@ -58,6 +58,6 @@ export function loadSettings() {
   return loadQuery<SettingsPayload>(
     settingsQuery,
     {},
-    { next: { tags: ["settings", "home", "page"] } }
+    { next: { tags: ["settings", "home", "page"] } },
   );
 }
