@@ -1,12 +1,12 @@
 import dynamic from "next/dynamic";
 import { draftMode } from "next/headers";
 import Link from "next/link";
-
 import { studioUrl } from "@/sanity/lib/api";
 import { loadHomePage } from "@/sanity/loader/loadQuery";
-import Page from "../components/pages/page/Page";
+import Page from "@/components/pages/page/Page";
+
 const HomePagePreview = dynamic(
-  () => import("@/app/components/pages/home/HomePreview"),
+  () => import("@/components/pages/home/HomePreview"),
 );
 
 export default async function IndexRoute() {
@@ -23,7 +23,6 @@ export default async function IndexRoute() {
         <Link href={`${studioUrl}/desk/home`} className="underline">
           create one now
         </Link>
-        !
       </div>
     );
   }

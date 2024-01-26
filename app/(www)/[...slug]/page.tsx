@@ -1,11 +1,11 @@
 import { loadPage } from "@/sanity/loader/loadQuery";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
-import Page from "@/app/components/pages/page/Page";
+import Page from "@/components/pages/page/Page";
 import dynamic from "next/dynamic";
 
 const PagePreview = dynamic(
-  () => import("@/app/components/pages/page/PagePreview"),
+  () => import("@/components/pages/page/PagePreview"),
 );
 
 export default async function PageRoute({
