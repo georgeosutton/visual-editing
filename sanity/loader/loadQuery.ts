@@ -49,8 +49,14 @@ export const loadQuery = ((query, params = {}, options = {}) => {
 
 export function loadPage(slug: string[]) {
   const queryParams = { slug: `/${slug.join("/")}` };
+  let tags;
+  if (queryParams.slug === "/") {
+    tags = ["home"];
+  } else {
+    tags = [`page:${queryParams.slug}`];
+  }
   return loadQuery<PagePayload | null>(pageQuery, queryParams, {
-    next: { tags: [`page:/${slug.join("/")}`] },
+    next: { tags },
   });
 }
 
