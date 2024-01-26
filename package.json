@@ -10,38 +10,38 @@
   },
   "dependencies": {
     "@portabletext/react": "^3.0.11",
-    "@sanity/client": "^6.11.1",
+    "@sanity/client": "^6.11.3",
     "@sanity/icons": "^2.8.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/overlays": "^2.3.7",
     "@sanity/preview-url-secret": "^1.5.3",
-    "@sanity/react-loader": "^1.7.5",
-    "@sanity/vision": "^3.25.0",
+    "@sanity/react-loader": "^1.7.6",
+    "@sanity/vision": "^3.26.0",
     "next": "14.1.0",
-    "next-sanity": "^7.0.10",
+    "next-sanity": "^7.0.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rxjs": "^7.8.1",
-    "sanity": "^3.24.1",
+    "sanity": "^3.26.0",
     "sanity-image": "^0.1.7",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
-    "@types/node": "^20.11.5",
+    "@types/node": "^20.11.7",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.1.0",
+    "postcss": "^8.4.33",
     "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "0.5.11",
-    "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   },
-    "prettier": {
-      "plugins": [
-        "prettier-plugin-tailwindcss"
-      ]
-    }
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
+  }
 }
