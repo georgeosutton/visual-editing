@@ -1,8 +1,12 @@
 import { loadPage } from "@/sanity/loader/loadQuery";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
-import PagePreview from "@/app/components/pages/page/PreviewPage";
 import Page from "@/app/components/pages/page/Page";
+import dynamic from "next/dynamic";
+
+const PagePreview = dynamic(
+  () => import("@/app/components/pages/page/PagePreview"),
+);
 
 export default async function PageRoute({
   params,
