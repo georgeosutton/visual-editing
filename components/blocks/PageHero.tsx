@@ -2,8 +2,7 @@ import { baseUrl } from "@/sanity/lib/image";
 import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { SanityImage } from "sanity-image";
-import { SanityImageProps } from "@/types";
-import { PortableTextBlock } from "sanity";
+import { PageHeroProps } from "@/types";
 
 const components: PortableTextComponents = {
   block: {
@@ -17,17 +16,15 @@ const components: PortableTextComponents = {
   },
 };
 
-export default function PageHero(props: {
-  images: SanityImageProps[];
-  text: PortableTextBlock[];
-  _type: "pageHero";
-}) {
+export default function PageHero(props: PageHeroProps) {
   const { images, text } = props;
   return (
     <div className="grid overflow-hidden">
-      <div className="relative z-20 col-start-1 row-start-1 flex h-full items-center justify-center text-5xl">
-        <PortableText value={text} components={components} />
-      </div>
+      {text && (
+        <div className="relative z-20 col-start-1 row-start-1 flex h-full items-center justify-center text-5xl">
+          <PortableText value={text} components={components} />
+        </div>
+      )}
       <div className="relative z-10 col-start-1 row-start-1 h-full w-full bg-darkGradientHorizonal md:bg-darkGradientVertical " />
       {images && (
         <div className="col-start-1 row-start-1 grid md:grid-cols-2">

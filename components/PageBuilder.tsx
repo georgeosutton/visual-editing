@@ -1,15 +1,17 @@
+import { ComponentType } from "react";
 import PageHero from "./blocks/PageHero";
+import { PageBlocks } from "@/types";
 
-const blocks: Record<string, React.ComponentType<any>> = {
+const blocks = {
   pageHero: PageHero,
 };
 
-const PageBuilder = (props: { block: any }) => {
+const PageBuilder = (props: { block: PageBlocks }) => {
   const { block } = props;
   const type = block?._type;
 
   if (typeof blocks[type] !== "undefined") {
-    const Block = blocks[type];
+    const Block = blocks[type] as ComponentType<PageBlocks>;
     return <Block {...block} />;
   }
 
