@@ -1,10 +1,12 @@
 import { InternalLinkProps } from "@/types";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import React from "react";
 
 const InternalLink = React.forwardRef<
   HTMLAnchorElement,
-  InternalLinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
+  InternalLinkProps &
+    Omit<LinkProps, "href"> &
+    React.AnchorHTMLAttributes<HTMLAnchorElement>
 >(function LinkComponent(props, forwardedRef) {
   const { text, slug, ...rest } = props;
 

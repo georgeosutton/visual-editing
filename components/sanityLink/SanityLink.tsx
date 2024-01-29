@@ -1,11 +1,11 @@
-import React from "react";
+import React, { ForwardRefExoticComponent, PropsWithRef } from "react";
 import { ExternalLinkProps, InternalLinkProps } from "@/types";
 import ExternalLink from "./ExternalLink";
 import InternalLink from "./InternalLink";
 
 type SanityLinkType = InternalLinkProps | ExternalLinkProps;
 
-const links: Record<string, React.ComponentType<any>> = {
+const links = {
   internalLink: InternalLink,
   externalLink: ExternalLink,
 };
@@ -19,12 +19,15 @@ const SanityLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
     const { link, ...rest } = props;
     const type = link?._type;
     if (typeof links[type] !== "undefined") {
-      const Link = links[type];
+      const Link = links[type] as ForwardRefExoticComponent<
+        SanityLinkType & React.RefAttributes<HTMLAnchorElement>
+      >;
+
       return <Link ref={forwardedRef} {...link} {...rest} />;
     }
 
     return <div>Link type {type} missing</div>;
-  }
+  },
 );
 
 export default SanityLink;
