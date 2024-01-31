@@ -4,10 +4,11 @@
 
 import { visionTool } from "@sanity/vision";
 import { presentationTool } from "sanity/presentation";
+import { media } from "sanity-plugin-media";
+
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
-// Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { schema } from "./sanity/schema";
 import { pageStructure, singletonPlugin } from "./sanity/plugins/settings";
 import settings from "./sanity/schemas/singletons/settings";
@@ -35,5 +36,6 @@ export default defineConfig({
     visionTool({ defaultApiVersion: apiVersion }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([home.name, settings.name]),
+    media(),
   ],
 });
