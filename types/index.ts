@@ -1,8 +1,8 @@
 import { PortableTextBlock } from "sanity";
 
 export type PageHeroProps = {
-  images: SanityImageProps[];
-  text: PortableTextBlock[];
+  images?: SanityImageProps[];
+  text?: PortableTextBlock[];
   _type: "pageHero";
   _key: string;
 };
@@ -52,5 +52,7 @@ export interface SanityImageProps {
   };
   crop?: CropData;
   lqip?: string;
-  alt?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
 }

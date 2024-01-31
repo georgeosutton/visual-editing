@@ -10,5 +10,9 @@ crop {
   left,
   right,
   top,
-}
+},
+"alt":asset->altText,
+"tags": asset->opt.media.tags[]->name.current,
+"description": asset->description,
+"title": asset->title,
 `;

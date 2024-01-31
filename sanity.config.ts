@@ -17,6 +17,7 @@ import { apiVersion, dataset, projectId } from "./sanity/lib/api";
 import { locate } from "./sanity/plugins/locate";
 
 export default defineConfig({
+  title: "Visual Editing Demo",
   basePath: "/studio",
   projectId,
   dataset,
