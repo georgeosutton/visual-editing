@@ -1,4 +1,4 @@
-import { PortableTextBlock } from "sanity";
+import { PortableTextBlock, Image } from "sanity";
 
 export type PageHeroProps = {
   images?: SanityImageProps[];
@@ -13,6 +13,11 @@ export interface PagePayload {
   title?: string;
   slug?: { current?: string };
   blocks?: PageBlocks[];
+  seo?: {
+    title?: string;
+    description?: string;
+    image?: SanityImageProps;
+  };
 }
 
 export type InternalLinkProps = {
@@ -55,4 +60,7 @@ export interface SanityImageProps {
   title?: string;
   description?: string;
   altText?: string;
+  height: number;
+  url: string;
+  width: number;
 }

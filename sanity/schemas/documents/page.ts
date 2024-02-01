@@ -7,24 +7,37 @@ export default defineType({
   name: "page",
   title: "Page",
   icon: DocumentIcon,
+  groups: [
+    {
+      default: true,
+      name: "editorial",
+      title: "Editorial",
+    },
+    {
+      name: "seo",
+      title: "SEO",
+    },
+  ],
   fields: [
+    // Title
     defineField({
       type: "string",
       name: "title",
       title: "Title",
-      validation: rule => rule.required(),
+      validation: (rule) => rule.required(),
     }),
+    // Slug
     defineField({
       type: "slug",
       name: "slug",
       title: "Slug",
       options: {
         source: "title",
-        slugify: input => {
+        slugify: (input) => {
           return "/" + input.toLowerCase().replace(/\s+/g, "-").slice(0, 200);
         },
       },
-      validation: rule =>
+      validation: (rule) =>
         rule.required().custom((param: any) => {
           if (param?.current) {
             if (!param.current.startsWith("/")) {
@@ -34,21 +47,33 @@ export default defineType({
           return true;
         }),
     }),
+    // Page Blocks
     {
       name: "blocks",
       type: "array",
       title: "Page Blocks",
-      validation: Rule => Rule.min(1).error("The page has no content."),
+      validation: (Rule) => Rule.min(1).error("The page has no content."),
       of: [...blocks],
+      group: "editorial",
     },
+    // SEO
+    defineField({
+      name: "seo",
+      title: "SEO",
+      type: "seo.page",
+      group: "seo",
+    }),
   ],
   preview: {
     select: {
+      seoImage: "seo.image",
       title: "title",
     },
-    prepare({ title }) {
+    prepare(selection) {
+      const { seoImage, title } = selection;
+
       return {
-        subtitle: "Page",
+        media: seoImage,
         title,
       };
     },

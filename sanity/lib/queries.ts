@@ -2,6 +2,7 @@ import { groq } from "next-sanity";
 import { INTERNAL_LINK } from "./fragments/internalLink";
 import { EXTERNAL_LINK } from "./fragments/externalLink";
 import { PAGE_HERO } from "./fragments/pageHero";
+import { SEO } from "./fragments/seo";
 
 const BLOCKS = groq`
     ...,
@@ -10,7 +11,7 @@ const BLOCKS = groq`
     }
 `;
 
-export const pageQuery = groq`*[slug.current == $slug][0]{..., blocks[]{${BLOCKS}}}`;
+export const pageQuery = groq`*[slug.current == $slug][0]{..., blocks[]{${BLOCKS}}, ${SEO}}`;
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
@@ -22,5 +23,5 @@ export const settingsQuery = groq`
 `;
 
 export const homePageQuery = groq`
-  *[_type == "home"][0]{..., blocks[]{${BLOCKS}}}
+  *[_type == "home"][0]{..., blocks[]{${BLOCKS}}, ${SEO}}
 `;

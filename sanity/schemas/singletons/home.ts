@@ -7,13 +7,19 @@ export default defineType({
   title: "Home",
   type: "document",
   icon: HomeIcon,
+  groups: [
+    {
+      default: true,
+      name: "editorial",
+      title: "Editorial",
+    },
+    {
+      name: "seo",
+      title: "SEO",
+    },
+  ],
   fields: [
-    defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      validation: (rule) => rule.required(),
-    }),
+    // Slug - Hidden field used when resolving internal links.
     defineField({
       type: "slug",
       name: "slug",
@@ -24,22 +30,33 @@ export default defineType({
       readOnly: true,
       hidden: true,
     }),
+    // Page Blocks
     {
       name: "blocks",
       type: "array",
       title: "Page Blocks",
       validation: (Rule) => Rule.min(1).error("The page has no content."),
       of: [...blocks],
+      group: "editorial",
     },
+    // SEO
+    defineField({
+      name: "seo",
+      title: "SEO",
+      type: "seo.home",
+      group: "seo",
+    }),
   ],
   preview: {
     select: {
-      title: "title",
+      seoImage: "seo.image",
     },
-    prepare({ title }) {
+    prepare(selection) {
+      const { seoImage } = selection;
+
       return {
-        subtitle: "Home",
-        title,
+        media: seoImage,
+        title: "Home",
       };
     },
   },

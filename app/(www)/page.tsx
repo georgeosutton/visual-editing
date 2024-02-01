@@ -4,10 +4,32 @@ import Link from "next/link";
 import { studioUrl } from "@/sanity/lib/api";
 import { loadHomePage } from "@/sanity/loader/loadQuery";
 import Page from "@/components/pages/page/Page";
+import { Metadata } from "next";
 
 const HomePagePreview = dynamic(
   () => import("@/components/pages/home/HomePreview"),
 );
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: page } = await loadHomePage();
+  const { seo = {} } = page ?? {};
+  const { title, description, image } = seo;
+
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      images: image?.url
+        ? {
+            url: image?.url,
+            width: image?.width,
+            height: image?.height,
+            alt: image?.altText,
+          }
+        : undefined,
+    },
+  };
+}
 
 export default async function IndexRoute() {
   const initial = await loadHomePage();

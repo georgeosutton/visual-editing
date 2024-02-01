@@ -15,4 +15,7 @@ crop {
 "tags": asset->opt.media.tags[]->name.current,
 "description": asset->description,
 "title": asset->title,
+'height': asset->metadata.dimensions.height,
+'url': asset->url,
+'width': asset->metadata.dimensions.width,
 `;
