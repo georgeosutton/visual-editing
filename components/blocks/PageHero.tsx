@@ -1,8 +1,8 @@
 import { baseUrl } from "@/sanity/lib/image";
 import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import { SanityImage } from "sanity-image";
 import { PageHeroProps } from "@/types";
+import SanityImage from "../SanityImage";
 
 const components: PortableTextComponents = {
   block: {
@@ -38,13 +38,14 @@ export default function PageHero(props: PageHeroProps) {
                 baseUrl={baseUrl}
                 id={image.id}
                 key={image._key}
-                preview={image.lqip}
+                preview={image.preview}
                 hotspot={image.hotspot}
                 crop={image.crop}
                 alt={image.altText}
                 className="relative h-[40vh] w-full object-cover md:h-[70vh]"
                 sizes="(min-width: 768px) 50vw, 100vw"
                 mode="cover"
+                loading="eager"
               />
             );
           })}

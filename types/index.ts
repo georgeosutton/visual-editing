@@ -56,7 +56,7 @@ export interface SanityImageProps {
     y: number;
   };
   crop?: CropData;
-  lqip?: string;
+  preview?: string;
   title?: string;
   description?: string;
   altText?: string;
