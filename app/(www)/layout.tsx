@@ -8,6 +8,14 @@ import { ftPolar, ivar } from "./fonts";
 
 const VisualEditing = dynamic(() => import("@/sanity/loader/VisualEditing"));
 
+export const metadata = {
+  metadataBase: new URL(
+    process.env.SITE_URL ||
+      `https://${process.env.VERCEL_URL}` ||
+      `http://localhost:${process.env.PORT || 3000}`,
+  ),
+};
+
 export default async function CatchAllRoute({
   children,
 }: {
