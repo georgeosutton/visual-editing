@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "next dev",
+    "dev": "next dev",
     "build": "next build",
-    "serve": "next start",
+    "start": "next start",
     "lint:js": "eslint --ext .js,.jsx,.mjs,.ts,.tsx . --color",
     "lint:types": "tsc --noEmit"
   },

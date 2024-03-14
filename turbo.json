@@ -1,19 +1,27 @@
 {
-    "$schema": "https://turborepo.org/schema.json",
-    "pipeline": {
-      "build": {
-        "dependsOn": ["^build"],
-        "env": ["ANALYZE", "APP_ENV"],
-        "outputs": ["dist/**", ".next/**"]
-      },
-      "lint:js": {
-        "inputs": ["**/*.js", "**/*.jsx", "**/*.mjs", "**/*.ts", "**/*.tsx"]
-      },
-      "lint:types": {
-        "inputs": ["**/*.ts", "**/*.tsx"]
-      },
-      "dev": {
-        "cache": false
-      }
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "env": ["ANALYZE", "APP_ENV"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "lint:js": {
+      "inputs": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.cjs",
+        "**/*.mjs",
+        "**/*.ts",
+        "**/*.tsx"
+      ]
+    },
+    "lint:types": {
+      "inputs": ["**/*.ts", "**/*.tsx"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
     }
   }
+}
