@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  app:
+    extends:
+      file: .devcontainer/docker-compose.yml
+      service: app
+    working_dir: /workspace/${COMPOSE_PROJECT_NAME}
+    ports:
+      - 3000:3000
+    environment:
+      APP_ENV: development
+      GITHUB_ACCESS_TOKEN: ${PROPCOM_GITHUB_ACCESS_TOKEN}
+    command: sh -c "printf \"always-auth=true\\n@propcom:registry=https://npm.pkg.github.com\\n//npm.pkg.github.com/:_authToken=${PROPCOM_GITHUB_ACCESS_TOKEN}\\n\" | tee ~/.npmrc && cat ~/.npmrc && pnpm install && pnpm start"
+    networks:
+      - default
+      - propeller_dev

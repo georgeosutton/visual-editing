@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+      args:
+        COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
+        VARIANT: 21-bullseye
+    environment:
+      APP_ENV: development
+    networks:
+      - default
+      - propeller_dev
+    volumes:
+      - ..:/workspace/${COMPOSE_PROJECT_NAME}:cached
+      - node_modules:/workspace/${COMPOSE_PROJECT_NAME}/node_modules/.pnpm
+      - pnpm_store:/home/node/.pnpm-store
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+networks:
+  propeller_dev:
+    external: true
+
+volumes:
+  node_modules:
+  pnpm_store:
+    external: true

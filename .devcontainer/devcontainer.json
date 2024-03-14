@@ -1,0 +1,55 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+  "name": "Node.js",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "dockerComposeFile": ["./docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+  "remoteEnv": {
+    "GITHUB_ACCESS_TOKEN": "${localEnv:PROPCOM_GITHUB_ACCESS_TOKEN}"
+  },
+  "initializeCommand": "printf \"COMPOSE_PROJECT_NAME=${localWorkspaceFolderBasename}\" > .devcontainer/.env",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "yarn install",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        "tailwindCSS.experimental.classRegex": [
+          ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+          ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+        ],
+        "files.associations": {
+          "*.css": "tailwindcss"
+        }
+      },
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-rename-tag",
+        "mutantdino.resourcemonitor",
+        "patbenatar.advanced-new-file",
+        "bradlc.vscode-tailwindcss",
+        "wix.vscode-import-cost"
+      ]
+    }
+  },
+  "postCreateCommand": "printf \"always-auth=true\n@propcom:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=${GITHUB_ACCESS_TOKEN}\" >> ~/.npmrc && pnpm install",
+
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "node"
+}

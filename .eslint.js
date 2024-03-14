@@ -1,0 +1,1 @@
+module.exports = require("@propcom/eslint-config/react-typescript");

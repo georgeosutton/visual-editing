@@ -1,50 +1,26 @@
 {
-  "name": "visual-editing",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@portabletext/react": "^3.0.11",
-    "@sanity/client": "^6.11.3",
-    "@sanity/icons": "^2.8.0",
-    "@sanity/image-url": "^1.0.2",
-    "@sanity/overlays": "^2.3.7",
-    "@sanity/preview-url-secret": "^1.5.3",
-    "@sanity/react-loader": "^1.7.6",
-    "@sanity/vision": "^3.26.0",
-    "lodash.get": "^4.4.2",
-    "next": "14.1.0",
-    "next-sanity": "^7.0.14",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rxjs": "^7.8.1",
-    "sanity": "^3.26.0",
-    "sanity-image": "^0.1.7",
-    "sanity-plugin-media": "^2.2.5",
-    "styled-components": "^6.1.8"
-  },
-  "devDependencies": {
-    "@types/lodash.get": "^4.4.9",
-    "@types/node": "^20.11.7",
-    "@types/react": "^18.2.48",
-    "@types/react-dom": "^18.2.18",
-    "autoprefixer": "^10.4.17",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "14.1.0",
-    "postcss": "^8.4.33",
-    "prettier": "^3.2.4",
-    "prettier-plugin-tailwindcss": "0.5.11",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
-  },
-  "prettier": {
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ]
+    "name": "visual-editing",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "start": "func() { pnpm -F ${1:-next-app} run start; }; func",
+      "build": "pnpm turbo run build",
+      "serve": "func() { pnpm -F ${1:-next-app} run serve; }; func",
+      "lint": "pnpm turbo run lint:js lint:types --continue"
+    },
+    "devDependencies": {
+      "@propcom/editorconfig": "^1.1.0",
+      "@propcom/eslint-config": "^1.14.0",
+      "@propcom/typescript-config": "^1.10.0",
+      "@propcom/vscode-config": "^1.4.0",
+      "eslint": "^8.57.0",
+      "postcss": "^8.4.35",
+      "prettier": "^3.2.5",
+      "turbo": "^1.12.4",
+      "typescript": "^5.3.3"
+    },
+    "engines": {
+      "node": ">=21.1.0"
+    },
+    "packageManager": "pnpm@8.9.2"
   }
-}
