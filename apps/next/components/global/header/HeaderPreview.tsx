@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import { useSettings } from "@/sanity/loader/useQuery";
 
 import HeaderLayout from "./HeaderLayout";
@@ -9,7 +11,8 @@ type Props = {
 };
 
 export default function NavbarPreview(props: Props) {
-  const { data } = useSettings(props.initial);
+  const { initial } = props;
+  const { data } = useSettings(initial);
 
   return <HeaderLayout data={data} />;
 }

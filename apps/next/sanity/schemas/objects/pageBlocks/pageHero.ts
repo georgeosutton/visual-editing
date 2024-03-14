@@ -1,8 +1,8 @@
 import { BlockContentIcon } from "@sanity/icons";
 import {
+  defineArrayMember,
   defineField,
   defineType,
-  defineArrayMember,
   PortableTextBlock,
   PortableTextChild,
 } from "sanity";
@@ -17,19 +17,19 @@ export default defineType({
       name: "text",
       type: "array",
       icon: BlockContentIcon,
-      validation: Rule =>
-        Rule.custom(blocks => {
+      validation: (Rule) =>
+        Rule.custom((blocks) => {
           const emptyBlocks = ((blocks as PortableTextBlock[]) || []).filter(
-            block =>
+            (block) =>
               block._type === "block" &&
               (block.children as PortableTextChild[]).every(
-                span =>
-                  span._type === "span" && (span.text as string).trim() === ""
-              )
+                (span) =>
+                  span._type === "span" && (span.text as string).trim() === "",
+              ),
           );
 
           const emptyPaths = emptyBlocks.map(
-            (block, index) => [{ _key: block._key }] || [index]
+            (block, index) => [{ _key: block._key }] || [index],
           );
 
           return emptyPaths.length === 0

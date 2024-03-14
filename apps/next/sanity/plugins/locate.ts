@@ -16,7 +16,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
     const doc$ = context.documentStore.listenQuery(
       `*[_id==$id || references($id)]{_type,slug,title}`,
       params,
-      { perspective: "previewDrafts" }
+      { perspective: "previewDrafts" },
     ) as Observable<
       | {
           _type: string;
@@ -26,14 +26,14 @@ export const locate: DocumentLocationResolver = (params, context) => {
       | null
     >;
     return doc$.pipe(
-      map(docs => {
+      map((docs) => {
         switch (params.type) {
           case "home":
             return {
               locations: [
                 {
                   title:
-                    docs?.find(doc => doc._type === "home")?.title || "Home",
+                    docs?.find((doc) => doc._type === "home")?.title || "Home",
                   href: "/",
                 },
               ],
@@ -44,14 +44,14 @@ export const locate: DocumentLocationResolver = (params, context) => {
           case "page":
             return {
               locations: docs
-                ?.map(doc => {
+                ?.map((doc) => {
                   const href = doc?.slug?.current;
                   return {
                     title: doc?.title || "Untitled",
                     href: href!,
                   };
                 })
-                .filter(doc => doc.href !== undefined),
+                .filter((doc) => doc.href !== undefined),
               tone: "positive",
               message: "Visual Editing Preview",
             } satisfies DocumentLocationsState;
@@ -61,7 +61,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
               tone: "critical",
             } satisfies DocumentLocationsState;
         }
-      })
+      }),
     );
   }
 

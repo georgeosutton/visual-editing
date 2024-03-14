@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { MenuItem, SettingsPayload } from "@/types";
+import React from "react";
+
 import SanityLink from "../../sanityLink/SanityLink";
+
+import type { MenuItem, SettingsPayload } from "@/types";
 
 interface HeaderProps {
   data: SettingsPayload;

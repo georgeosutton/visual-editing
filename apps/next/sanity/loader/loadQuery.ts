@@ -1,9 +1,11 @@
-import { PagePayload, SettingsPayload } from "@/types";
-import { homePageQuery, pageQuery, settingsQuery } from "../lib/queries";
-import { client } from "@/sanity/lib/client";
 import * as queryStore from "@sanity/react-loader";
-import { token } from "@/sanity/lib/token";
 import { draftMode } from "next/headers";
+
+import { client } from "@/sanity/lib/client";
+import { token } from "@/sanity/lib/token";
+import { PagePayload, SettingsPayload } from "@/types";
+
+import { homePageQuery, pageQuery, settingsQuery } from "../lib/queries";
 
 const serverClient = client.withConfig({
   token,

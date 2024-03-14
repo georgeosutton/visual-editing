@@ -1,6 +1,7 @@
 import { groq } from "next-sanity";
-import { INTERNAL_LINK } from "./fragments/internalLink";
+
 import { EXTERNAL_LINK } from "./fragments/externalLink";
+import { INTERNAL_LINK } from "./fragments/internalLink";
 import { PAGE_HERO } from "./fragments/pageHero";
 import { SEO } from "./fragments/seo";
 

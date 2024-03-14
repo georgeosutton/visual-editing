@@ -1,10 +1,12 @@
-import { SettingsPayload } from "@/types";
 import {
-  QueryResponseInitial,
   type QueryParams,
+  QueryResponseInitial,
   type UseQueryOptionsDefinedInitial,
 } from "@sanity/react-loader";
 import * as queryStore from "@sanity/react-loader";
+
+import { SettingsPayload } from "@/types";
+
 import { settingsQuery } from "../lib/queries";
 
 /**
@@ -12,16 +14,16 @@ import { settingsQuery } from "../lib/queries";
  */
 export const useQuery = <
   QueryResponseResult = unknown,
-  QueryResponseError = unknown
+  QueryResponseError = unknown,
 >(
   query: string,
   params?: QueryParams,
-  options?: UseQueryOptionsDefinedInitial<QueryResponseResult>
+  options?: UseQueryOptionsDefinedInitial<QueryResponseResult>,
 ) => {
   const snapshot = queryStore.useQuery<QueryResponseResult, QueryResponseError>(
     query,
     params,
-    options
+    options,
   );
 
   // Always throw errors if there are any

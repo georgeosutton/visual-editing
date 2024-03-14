@@ -1,9 +1,11 @@
-import { loadPage } from "@/sanity/loader/loadQuery";
-import { notFound } from "next/navigation";
-import { draftMode } from "next/headers";
-import Page from "@/components/pages/page/Page";
-import dynamic from "next/dynamic";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { draftMode } from "next/headers";
+import { notFound } from "next/navigation";
+import React from "react";
+
+import Page from "@/components/pages/page/Page";
+import { loadPage } from "@/sanity/loader/loadQuery";
 
 const PagePreview = dynamic(
   () => import("@/components/pages/page/PagePreview"),
@@ -20,8 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { title, description, image } = seo;
 
   return {
-    title: title,
-    description: description,
+    title,
+    description,
     alternates: {
       canonical: `/${slug.join("/")}`,
     },

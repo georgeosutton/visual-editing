@@ -1,6 +1,8 @@
-import { ComponentType } from "react";
-import PageHero from "./blocks/PageHero";
+import React, { ComponentType } from "react";
+
 import { PageBlocks } from "@/types";
+
+import PageHero from "./blocks/PageHero";
 
 const blocks = {
   pageHero: PageHero,

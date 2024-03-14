@@ -1,10 +1,12 @@
+import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { draftMode } from "next/headers";
 import Link from "next/link";
+import React from "react";
+
+import Page from "@/components/pages/page/Page";
 import { studioUrl } from "@/sanity/lib/api";
 import { loadHomePage } from "@/sanity/loader/loadQuery";
-import Page from "@/components/pages/page/Page";
-import { Metadata } from "next";
 
 const HomePagePreview = dynamic(
   () => import("@/components/pages/home/HomePreview"),
@@ -16,8 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const { title, description, image } = seo;
 
   return {
-    title: title,
-    description: description,
+    title,
+    description,
     alternates: {
       canonical: "/",
     },

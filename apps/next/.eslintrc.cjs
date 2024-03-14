@@ -11,4 +11,12 @@ module.exports = {
   settings: {
     linkComponents: ["Hyperlink", { name: "Link", linkAttribute: "href" }],
   },
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      rules: {
+        "react/jsx-props-no-spreading": "off",
+      },
+    },
+  ],
 };

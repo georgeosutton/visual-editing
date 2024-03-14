@@ -1,5 +1,6 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+
 import { blocks } from "../constant";
 
 export default defineType({
@@ -38,7 +39,7 @@ export default defineType({
         },
       },
       validation: (rule) =>
-        rule.required().custom((param: any) => {
+        rule.required().custom((param) => {
           if (param?.current) {
             if (!param.current.startsWith("/")) {
               return `Slug must begin with / click "Generate" to reset.`;

@@ -10,14 +10,14 @@ export default defineType({
     {
       name: "text",
       type: "string",
-      validation: Rule => Rule.required().error("Please add link text."),
+      validation: (Rule) => Rule.required().error("Please add link text."),
       title: "Link Text",
     },
     {
       name: "url",
       title: "URL",
       type: "url",
-      validation: Rule => Rule.required().uri({ scheme: ["http", "https"] }),
+      validation: (Rule) => Rule.required().uri({ scheme: ["http", "https"] }),
     },
     {
       title: "Open in a new window?",

@@ -1,4 +1,5 @@
 import { groq } from "next-sanity";
+
 import { IMAGE } from "./image";
 
 export const SEO = groq`

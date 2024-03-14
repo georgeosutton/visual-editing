@@ -1,7 +1,9 @@
-import { baseUrl } from "@/sanity/lib/image";
-import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
+import React from "react";
+
+import { baseUrl } from "@/sanity/lib/image";
 import { PageHeroProps } from "@/types";
+
 import SanityImage from "../SanityImage";
 
 const components: PortableTextComponents = {

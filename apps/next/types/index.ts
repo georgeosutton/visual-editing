@@ -1,4 +1,4 @@
-import { PortableTextBlock, Image } from "sanity";
+import { PortableTextBlock } from "sanity";
 
 export type PageHeroProps = {
   images?: SanityImageProps[];

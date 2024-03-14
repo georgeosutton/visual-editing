@@ -1,6 +1,7 @@
 "use client";
 
 import { type QueryResponseInitial } from "@sanity/react-loader";
+import React from "react";
 
 import { pageQuery } from "@/sanity/lib/queries";
 import { useQuery } from "@/sanity/loader/useQuery";

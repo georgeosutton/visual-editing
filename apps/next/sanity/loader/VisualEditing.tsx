@@ -23,11 +23,11 @@ export default function VisualEditing() {
   useEffect(() => {
     const disable = enableOverlays({
       history: {
-        subscribe: navigate => {
+        subscribe: () => {
           setNavigate(() => navigate);
           return () => setNavigate(undefined);
         },
-        update: update => {
+        update: (update) => {
           switch (update.type) {
             case "push":
               return routerRef.current.push(update.url);
@@ -42,7 +42,7 @@ export default function VisualEditing() {
       },
     });
     return () => disable();
-  }, []);
+  }, [navigate]);
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -58,7 +58,9 @@ export default function VisualEditing() {
   useLiveMode({ client: stegaClient });
   useEffect(() => {
     // If not an iframe or a Vercel Preview deployment, turn off Draft Mode
+    // eslint-disable-next-line no-restricted-globals
     if (process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview" && window === parent) {
+      // eslint-disable-next-line no-restricted-globals
       location.href = "/api/disable-draft";
     }
   }, []);

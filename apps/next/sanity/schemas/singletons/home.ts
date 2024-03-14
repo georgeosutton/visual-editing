@@ -1,5 +1,6 @@
 import { HomeIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+
 import { blocks } from "../constant";
 
 export default defineType({

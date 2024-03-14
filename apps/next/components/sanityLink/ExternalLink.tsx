@@ -1,5 +1,6 @@
-import { ExternalLinkProps } from "@/types";
 import React from "react";
+
+import { ExternalLinkProps } from "@/types";
 
 const ExternalLink = React.forwardRef<
   HTMLAnchorElement,

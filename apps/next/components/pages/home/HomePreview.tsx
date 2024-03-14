@@ -1,10 +1,12 @@
 "use client";
 
 import { type QueryResponseInitial } from "@sanity/react-loader";
+import React from "react";
 
 import { homePageQuery } from "@/sanity/lib/queries";
 import { useQuery } from "@/sanity/loader/useQuery";
 import { PagePayload } from "@/types";
+
 import Page from "../page/Page";
 
 type Props = {
