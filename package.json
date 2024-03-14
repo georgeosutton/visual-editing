@@ -1,26 +1,26 @@
 {
-    "name": "visual-editing",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-      "start": "func() { pnpm -F ${1:-next-app} run start; }; func",
-      "build": "pnpm turbo run build",
-      "serve": "func() { pnpm -F ${1:-next-app} run serve; }; func",
-      "lint": "pnpm turbo run lint:js lint:types --continue"
-    },
-    "devDependencies": {
-      "@propcom/editorconfig": "^1.1.0",
-      "@propcom/eslint-config": "^1.14.0",
-      "@propcom/typescript-config": "^1.10.0",
-      "@propcom/vscode-config": "^1.4.0",
-      "eslint": "^8.57.0",
-      "postcss": "^8.4.35",
-      "prettier": "^3.2.5",
-      "turbo": "^1.12.4",
-      "typescript": "^5.3.3"
-    },
-    "engines": {
-      "node": ">=21.1.0"
-    },
-    "packageManager": "pnpm@8.9.2"
-  }
+  "name": "visual-editing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "func() { pnpm -F ${1:-next-app} run start; }; func",
+    "build": "pnpm turbo run build",
+    "serve": "func() { pnpm -F ${1:-next-app} run serve; }; func",
+    "lint": "pnpm turbo run lint:js lint:types --continue"
+  },
+  "devDependencies": {
+    "@propcom/editorconfig": "^1.1.0",
+    "@propcom/eslint-config": "^1.14.0",
+    "@propcom/typescript-config": "^1.10.0",
+    "@propcom/vscode-config": "^1.4.0",
+    "eslint": "^8.57.0",
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "turbo": "^1.12.5",
+    "typescript": "^5.4.2"
+  },
+  "engines": {
+    "node": ">=21.1.0"
+  },
+  "packageManager": "pnpm@8.9.2"
+}
