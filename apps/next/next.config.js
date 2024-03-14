@@ -11,10 +11,23 @@ const nextConfig = {
   },
   reactStrictMode: true,
   output: process.env.APP_ENV !== "development" ? "standalone" : undefined,
-  mode: process.env.APP_ENV || "production",
   experimental: {
     taint: true,
     outputFileTracingRoot: path.join(__dirname, "../../"),
+  },
+  async redirects() {
+    return [
+      {
+        source: "/wp-admin/index.php",
+        permanent: true,
+        destination: "/studio",
+      },
+      {
+        source: "/wp-admin",
+        permanent: true,
+        destination: "/studio",
+      },
+    ];
   },
 };
 
