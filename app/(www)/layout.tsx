@@ -6,7 +6,9 @@ import { Suspense } from "react";
 import { Header } from "../../components/global/header";
 import { ftPolar, ivar } from "./fonts";
 
-const VisualEditing = dynamic(() => import("@/sanity/loader/VisualEditing"));
+const VisualEditing = dynamic(
+  () => import("@/sanity/loader/LiveVisualEditing"),
+);
 
 export const metadata = {
   metadataBase: new URL(
