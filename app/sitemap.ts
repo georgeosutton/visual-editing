@@ -1,5 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import { AllSlugsQueryResult } from "@/sanity/types";
+import { AllSlugsQueryResult } from "@/typegen/sanity.fragment-types";
 import { MetadataRoute } from "next";
 import { groq } from "next-sanity";
 

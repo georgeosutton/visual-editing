@@ -5,7 +5,7 @@ import { type QueryResponseInitial } from "@sanity/react-loader";
 import { homePageQuery } from "@/sanity/lib/queries";
 import { useQuery } from "@/sanity/loader/useQuery";
 import Page from "../page/Page";
-import { PageQueryResult } from "@/sanity/types";
+import { PageQueryResult } from "@/typegen/sanity.fragment-types";
 
 type Props = {
   initial: QueryResponseInitial<PageQueryResult>;

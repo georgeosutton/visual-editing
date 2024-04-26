@@ -5,7 +5,7 @@ import {
 } from "@sanity/react-loader";
 import * as queryStore from "@sanity/react-loader";
 import { settingsQuery } from "../lib/queries";
-import { SettingsQueryResult } from "../types";
+import { SettingsQueryResult } from "@/typegen/sanity.fragment-types";
 
 /**
  * Exports to be used in client-only or components that render both server and client

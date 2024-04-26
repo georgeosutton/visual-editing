@@ -12,7 +12,16 @@ const HomePagePreview = dynamic(
 
 export async function generateMetadata(): Promise<Metadata> {
   const { data: page } = await loadHomePage();
-  const { seo = {} } = page ?? {};
+  const seo = page?.seo;
+
+  if (!seo) {
+    return {
+      alternates: {
+        canonical: "/",
+      },
+    };
+  }
+
   const { title, description, image } = seo;
 
   return {
@@ -25,9 +34,9 @@ export async function generateMetadata(): Promise<Metadata> {
       images: image?.url
         ? {
             url: image?.url,
-            width: image?.width,
-            height: image?.height,
-            alt: image?.altText,
+            width: image?.width || undefined,
+            height: image?.height || undefined,
+            alt: image?.alt || undefined,
           }
         : undefined,
     },

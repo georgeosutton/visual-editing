@@ -3,7 +3,10 @@ import { client } from "@/sanity/lib/client";
 import * as queryStore from "@sanity/react-loader";
 import { token } from "@/sanity/lib/token";
 import { draftMode } from "next/headers";
-import { PageQueryResult, SettingsQueryResult } from "../types";
+import {
+  PageQueryResult,
+  SettingsQueryResult,
+} from "@/typegen/sanity.fragment-types";
 
 const serverClient = client.withConfig({
   token,
