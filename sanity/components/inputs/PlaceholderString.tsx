@@ -17,7 +17,7 @@ const PlaceholderStringInput = (props: Props) => {
   const doc = useFormValue([]) as SanityDocument;
 
   const proxyValue = path ? (get(doc, path) as string) : "";
-  console.log(proxyValue);
+
   return props.renderDefault({
     ...props,
     elementProps: { ...props.elementProps, placeholder: proxyValue },

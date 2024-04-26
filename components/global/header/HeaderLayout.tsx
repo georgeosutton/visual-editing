@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { MenuItem, SettingsPayload } from "@/types";
 import SanityLink from "../../sanityLink/SanityLink";
+import { SettingsQueryResult } from "@/sanity/types";
 
-interface HeaderProps {
-  data: SettingsPayload;
-}
+type HeaderProps = {
+  data: SettingsQueryResult;
+};
 export default function HeaderLayout(props: HeaderProps) {
   const { data } = props;
-  const menuItems = data?.menuItems || ([] as MenuItem[]);
+  const menuItems = data?.menuItems;
+
   return (
     <header>
       <div className="container mx-auto h-16 px-8 lg:h-24">

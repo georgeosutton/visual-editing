@@ -1,11 +1,11 @@
-import { groq } from "next-sanity";
-import { IMAGE } from "./image";
+import { IMAGE } from "@/sanity/lib/fragments/image";
 
-export const PAGE_HERO = groq`
+export const PAGE_HERO = `//groq
 text[]{
 ...
 },
  images[]{
     ${IMAGE}
- }
+ },
+ '_ts': 'PageHero'
 `;

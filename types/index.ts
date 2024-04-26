@@ -1,37 +1,15 @@
-import { PortableTextBlock, Image } from "sanity";
-
-export type PageHeroProps = {
-  images?: SanityImageProps[];
-  text?: PortableTextBlock[];
-  _type: "pageHero";
+export type InternalLinkProps = {
+  text: string | null;
+  slug: string | null;
+  _type: "internalLink";
   _key: string;
 };
 
-export type PageBlocks = PageHeroProps;
-
-export interface PagePayload {
-  title?: string;
-  slug?: { current?: string };
-  blocks?: PageBlocks[];
-  seo?: {
-    title?: string;
-    description?: string;
-    image?: SanityImageProps;
-  };
-}
-
-export type InternalLinkProps = {
-  text?: string;
-  slug?: string;
-  _type: "internalLink";
-  _key?: string;
-};
-
 export type ExternalLinkProps = {
-  text?: string;
-  url?: string;
-  newWindow?: boolean;
-  _key?: string;
+  text: string | null;
+  url: string | null;
+  newWindow: boolean | null;
+  _key: string;
   _type: "externalLink";
 };
 
@@ -49,8 +27,9 @@ type CropData = {
 };
 
 export interface SanityImageProps {
-  _key?: string;
-  id?: string;
+  baseUrl: string;
+  id?: string | null;
+  key: string;
   hotspot?: {
     x: number;
     y: number;
@@ -59,8 +38,13 @@ export interface SanityImageProps {
   preview?: string;
   title?: string;
   description?: string;
-  altText?: string;
+  alt?: string;
   height: number;
   url: string;
   width: number;
+}
+
+export interface SanityBlock {
+  _key: string;
+  _type: string;
 }

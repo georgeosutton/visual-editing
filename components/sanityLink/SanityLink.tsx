@@ -1,4 +1,4 @@
-import React, { ForwardRefExoticComponent, PropsWithRef } from "react";
+import React, { ForwardRefExoticComponent } from "react";
 import { ExternalLinkProps, InternalLinkProps } from "@/types";
 import ExternalLink from "./ExternalLink";
 import InternalLink from "./InternalLink";

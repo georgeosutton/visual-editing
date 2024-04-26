@@ -4,16 +4,16 @@ import { type QueryResponseInitial } from "@sanity/react-loader";
 
 import { homePageQuery } from "@/sanity/lib/queries";
 import { useQuery } from "@/sanity/loader/useQuery";
-import { PagePayload } from "@/types";
 import Page from "../page/Page";
+import { PageQueryResult } from "@/sanity/types";
 
 type Props = {
-  initial: QueryResponseInitial<PagePayload | null>;
+  initial: QueryResponseInitial<PageQueryResult>;
 };
 
 export default function HomePagePreview(props: Props) {
   const { initial } = props;
-  const { data } = useQuery<PagePayload | null>(homePageQuery, {}, { initial });
+  const { data } = useQuery<PageQueryResult>(homePageQuery, {}, { initial });
 
   if (!data) {
     return (

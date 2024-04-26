@@ -1,7 +1,6 @@
-import { groq } from "next-sanity";
-import { IMAGE } from "./image";
+import { IMAGE } from "@/sanity/lib/fragments/image";
 
-export const SEO = groq`
+export const SEO = `//groq
   "seo": {
     "description": seo.description,
     "image": seo.image {

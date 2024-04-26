@@ -1,6 +1,4 @@
-import { groq } from "next-sanity";
-
-export const IMAGE = groq`
+export const IMAGE = `//groq
 _key,
 "id": asset._ref,
 "preview": asset->metadata.lqip,
@@ -18,4 +16,5 @@ crop {
 'height': asset->metadata.dimensions.height,
 'url': asset->url,
 'width': asset->metadata.dimensions.width,
+'_ts':"SanityImageFragment"
 `;

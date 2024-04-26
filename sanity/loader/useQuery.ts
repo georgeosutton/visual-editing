@@ -1,4 +1,3 @@
-import { SettingsPayload } from "@/types";
 import {
   QueryResponseInitial,
   type QueryParams,
@@ -6,22 +5,23 @@ import {
 } from "@sanity/react-loader";
 import * as queryStore from "@sanity/react-loader";
 import { settingsQuery } from "../lib/queries";
+import { SettingsQueryResult } from "../types";
 
 /**
  * Exports to be used in client-only or components that render both server and client
  */
 export const useQuery = <
   QueryResponseResult = unknown,
-  QueryResponseError = unknown
+  QueryResponseError = unknown,
 >(
   query: string,
   params?: QueryParams,
-  options?: UseQueryOptionsDefinedInitial<QueryResponseResult>
+  options?: UseQueryOptionsDefinedInitial<QueryResponseResult>,
 ) => {
   const snapshot = queryStore.useQuery<QueryResponseResult, QueryResponseError>(
     query,
     params,
-    options
+    options,
   );
 
   // Always throw errors if there are any
@@ -32,6 +32,8 @@ export const useQuery = <
   return snapshot;
 };
 
-export function useSettings(initial: QueryResponseInitial<SettingsPayload>) {
-  return useQuery<SettingsPayload>(settingsQuery, {}, { initial });
+export function useSettings(
+  initial: QueryResponseInitial<SettingsQueryResult>,
+) {
+  return useQuery<SettingsQueryResult>(settingsQuery, {}, { initial });
 }

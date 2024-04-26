@@ -1,9 +1,9 @@
-import { PagePayload, SettingsPayload } from "@/types";
 import { homePageQuery, pageQuery, settingsQuery } from "../lib/queries";
 import { client } from "@/sanity/lib/client";
 import * as queryStore from "@sanity/react-loader";
 import { token } from "@/sanity/lib/token";
 import { draftMode } from "next/headers";
+import { PageQueryResult, SettingsQueryResult } from "../types";
 
 const serverClient = client.withConfig({
   token,
@@ -49,13 +49,13 @@ export const loadQuery = ((query, params = {}, options = {}) => {
 export function loadPage(slug: string[]) {
   const queryParams = { slug: `/${slug.join("/")}` };
 
-  return loadQuery<PagePayload | null>(pageQuery, queryParams, {
+  return loadQuery<PageQueryResult>(pageQuery, queryParams, {
     next: { tags: [`page:${queryParams.slug}`] },
   });
 }
 
 export function loadSettings() {
-  return loadQuery<SettingsPayload>(
+  return loadQuery<SettingsQueryResult>(
     settingsQuery,
     {},
     { next: { tags: ["settings", "home", "page"] } },
@@ -63,7 +63,7 @@ export function loadSettings() {
 }
 
 export function loadHomePage() {
-  return loadQuery<PagePayload | null>(
+  return loadQuery<PageQueryResult>(
     homePageQuery,
     {},
     { next: { tags: ["home"] } },

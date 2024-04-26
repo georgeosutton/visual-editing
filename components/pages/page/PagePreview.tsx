@@ -4,18 +4,18 @@ import { type QueryResponseInitial } from "@sanity/react-loader";
 
 import { pageQuery } from "@/sanity/lib/queries";
 import { useQuery } from "@/sanity/loader/useQuery";
-import { PagePayload } from "@/types";
 
 import Page from "./Page";
+import { PageQueryResult } from "@/typegen/sanity.fragment-types";
 
 type Props = {
   params: { slug: string };
-  initial: QueryResponseInitial<PagePayload | null>;
+  initial: QueryResponseInitial<PageQueryResult>;
 };
 
 export default function PagePreview(props: Props) {
   const { params, initial } = props;
-  const { data } = useQuery<PagePayload | null>(pageQuery, params, {
+  const { data } = useQuery<PageQueryResult>(pageQuery, params, {
     initial,
   });
 

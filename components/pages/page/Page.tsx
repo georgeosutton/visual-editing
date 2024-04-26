@@ -1,13 +1,13 @@
-import type { PagePayload } from "@/types";
+import type { SanityBlock } from "@/types";
 import PageBuilder from "../../PageBuilder";
+import { PageQueryResult } from "@/typegen/sanity.fragment-types";
 
 export interface PageProps {
-  data: PagePayload | null;
+  data: PageQueryResult;
 }
 
 export function Page({ data }: PageProps) {
-  // Default to an empty object to allow previews on non-existent documents
-  const { blocks } = data ?? {};
+  const blocks = data?.blocks as SanityBlock[];
 
   return blocks?.map((block) => {
     return <PageBuilder key={block._key} block={block} />;
