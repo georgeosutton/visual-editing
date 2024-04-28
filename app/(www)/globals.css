@@ -37,9 +37,3 @@
     @apply font-polar text-sm;
   }
 }
-
-@media (max-width: 768px) {
-  .container {
-    @apply px-4;
-  }
-}

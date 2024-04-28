@@ -13,8 +13,8 @@ const PageBuilder = (props: { block: SanityBlock }) => {
   const type = block?._type;
 
   if (typeof blocks[type] !== "undefined") {
-    const Block = blocks[type];
-    return <Block {...block} />;
+    const BlockComponent = blocks[type];
+    return <BlockComponent {...block} />;
   }
 
   return (
