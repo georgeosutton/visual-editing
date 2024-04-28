@@ -15,6 +15,7 @@ import placeholderString from "./schemas/objects/placeholderString";
 // Page Blocks
 import gallery from "./schemas/objects/pageBlocks/gallery";
 import pageHero from "./schemas/objects/pageBlocks/pageHero";
+import textMedia from "./schemas/objects/pageBlocks/textMedia";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -28,5 +29,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     seoHome,
     seoPage,
     placeholderString,
+    textMedia,
   ],
 };
