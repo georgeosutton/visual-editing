@@ -3,6 +3,8 @@ import {
   BlockListDefinition,
   BlockMarksDefinition,
   BlockStyleDefinition,
+  PortableTextBlock,
+  PortableTextChild,
   defineField,
 } from "sanity";
 
@@ -40,4 +42,26 @@ export const createBlockField = ({
       },
       ...of,
     ],
+    validation: (Rule) =>
+      Rule.custom((blocks) => {
+        const emptyBlocks = ((blocks as PortableTextBlock[]) || []).filter(
+          (block) =>
+            block._type === "block" &&
+            (block.children as PortableTextChild[]).every(
+              (span) =>
+                span._type === "span" && (span.text as string).trim() === "",
+            ),
+        );
+
+        const emptyPaths = emptyBlocks.map(
+          (block, index) => [{ _key: block._key }] || [index],
+        );
+
+        return emptyPaths.length === 0
+          ? true
+          : {
+              message: "Paragraph cannot be empty",
+              paths: emptyPaths,
+            };
+      }),
   });
