@@ -4,20 +4,17 @@ import { groq } from "next-sanity";
 import { INTERNAL_LINK } from "@/sanity/lib/fragments/internalLink";
 import { EXTERNAL_LINK } from "@/sanity/lib/fragments/externalLink";
 import { IMAGE } from "@/sanity/lib/fragments/image";
-
-const PAGE_HERO = `//groq
-_type,
-_key,
-text[],
-images[]{
-    ${IMAGE}
- },
- '_ts': 'PageHeroBlock'
-`;
+import { TEXT_MEDIA } from "@/sanity/lib/fragments/textMedia";
+import { PAGE_HERO } from "@/sanity/lib/fragments/pageHero";
 
 const BLOCKS = `//groq
+    _type,
+    _key,
     (_type == "pageHero")=>{
       ${PAGE_HERO}
+    },
+    (_type == "textMedia")=>{
+      ${TEXT_MEDIA}
     }
 `;
 

@@ -1,11 +1,11 @@
 import { ComponentType } from "react";
 import PageHero from "./blocks/PageHero";
 import { SanityBlock } from "@/types";
-import Gallery from "./blocks/Gallery";
+import TextMedia from "./blocks/TextMedia";
 
 const blocks: Record<string, ComponentType<any>> = {
   pageHero: PageHero,
-  gallery: Gallery,
+  textMedia: TextMedia,
 };
 
 const PageBuilder = (props: { block: SanityBlock }) => {

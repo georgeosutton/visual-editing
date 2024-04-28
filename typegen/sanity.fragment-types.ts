@@ -68,6 +68,39 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type TextMedia = {
+  _type: "textMedia";
+  content?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  } | {
+    text?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h1" | "h2" | "h3" | "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    _type: "textObject";
+    _key: string;
+  }>;
+};
+
 export type PlaceholderString = string;
 
 export type ExternalLink = {
@@ -79,19 +112,17 @@ export type ExternalLink = {
 
 export type InternalLink = {
   _type: "internalLink";
-  reference?:
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "page";
-      }
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "home";
-      };
+  reference?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "home";
+  };
   text?: string;
 };
 
@@ -147,14 +178,11 @@ export type Settings = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  menuItems?: Array<
-    | ({
-        _key: string;
-      } & InternalLink)
-    | ({
-        _key: string;
-      } & ExternalLink)
-  >;
+  menuItems?: Array<({
+    _key: string;
+  } & InternalLink) | ({
+    _key: string;
+  } & ExternalLink)>;
 };
 
 export type Home = {
@@ -164,14 +192,13 @@ export type Home = {
   _updatedAt: string;
   _rev: string;
   slug?: Slug;
-  blocks?: Array<
-    | ({
-        _key: string;
-      } & Gallery)
-    | ({
-        _key: string;
-      } & PageHero)
-  >;
+  blocks?: Array<({
+    _key: string;
+  } & Gallery) | ({
+    _key: string;
+  } & PageHero) | ({
+    _key: string;
+  } & TextMedia)>;
   seo?: SeoHome;
 };
 
@@ -200,14 +227,13 @@ export type Page = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  blocks?: Array<
-    | ({
-        _key: string;
-      } & Gallery)
-    | ({
-        _key: string;
-      } & PageHero)
-  >;
+  blocks?: Array<({
+    _key: string;
+  } & Gallery) | ({
+    _key: string;
+  } & PageHero) | ({
+    _key: string;
+  } & TextMedia)>;
   seo?: SeoPage;
 };
 
@@ -310,57 +336,49 @@ export type AllSlugsQueryResult = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
-export type PageQueryResult =
-  | {
-      blocks: null;
-      seo: {
-        description: null;
-        image: null;
-        title: null;
-      };
-    }
-  | {
-      blocks: null;
-      seo: {
-        description: null;
-        image: null;
-        title: null | string;
-      };
-    }
-  | {
-      blocks: Array<PageHeroBlock | {}> | null;
-      seo: {
-        description: string | null;
-        image: SanityImageFragment | null;
-        title: PlaceholderString | string | null;
-      };
-    }
-  | {
-      blocks: Array<PageHeroBlock | {}> | null;
-      seo: {
-        description: string | null;
-        image: SanityImageFragment | null;
-        title: string | null;
-      };
-    }
-  | null;
+export type PageQueryResult = {
+  blocks: null;
+  seo: {
+    description: null;
+    image: null;
+    title: null;
+  };
+} | {
+  blocks: null;
+  seo: {
+    description: null;
+    image: null;
+    title: null | string;
+  };
+} | {
+  blocks: Array<{} | TextMediaBlock | PageHeroBlock> | null;
+  seo: {
+    description: string | null;
+    image: SanityImageFragment | null;
+    title: PlaceholderString | string | null;
+  };
+} | {
+  blocks: Array<{} | TextMediaBlock | PageHeroBlock> | null;
+  seo: {
+    description: string | null;
+    image: SanityImageFragment | null;
+    title: string | null;
+  };
+} | null;
 // Variable: settingsQuery
 export type SettingsQueryResult = {
-  menuItems: Array<
-    | {
-        _key: string;
-        _type: "externalLink";
-        text: string | null;
-        url: string | null;
-        newWindow: boolean | null;
-      }
-    | {
-        _key: string;
-        _type: "internalLink";
-        text: string | null;
-        slug: string | null;
-      }
-  > | null;
+  menuItems: Array<{
+    _key: string;
+    _type: "externalLink";
+    text: string | null;
+    url: string | null;
+    newWindow: boolean | null;
+  } | {
+    _key: string;
+    _type: "internalLink";
+    text: string | null;
+    slug: string | null;
+  }> | null;
 } | null;
 // Variable: homePageQuery
 export type HomePageQueryResult = {
@@ -370,7 +388,7 @@ export type HomePageQueryResult = {
   _updatedAt: string;
   _rev: string;
   slug?: Slug;
-  blocks: Array<PageHeroBlock | {}> | null;
+  blocks: Array<{} | TextMediaBlock | PageHeroBlock> | null;
   seo: {
     description: string | null;
     image: SanityImageFragment | null;
@@ -378,47 +396,70 @@ export type HomePageQueryResult = {
   };
 } | null;
 
+
+
 export type SanityImageFragment = {
-  _key: string;
-  id: string | null;
-  preview: string | null;
-  hotspot: {
-    x: number | null;
-    y: number | null;
-  } | null;
-  crop: {
-    bottom: number | null;
-    left: number | null;
-    right: number | null;
-    top: number | null;
-  } | null;
-  alt: string | null;
-  tags: null;
-  description: string | null;
-  title: string | null;
-  height: number | null;
-  url: string | null;
-  width: number | null;
-  _ts: "SanityImageFragment";
-};
+      _key: string;
+      _type: "image";
+      id: string | null;
+      preview: string | null;
+      hotspot: {
+        x: number | null;
+        y: number | null;
+      } | null;
+      crop: {
+        bottom: number | null;
+        left: number | null;
+        right: number | null;
+        top: number | null;
+      } | null;
+      alt: string | null;
+      tags: null;
+      description: string | null;
+      title: string | null;
+      height: number | null;
+      url: string | null;
+      width: number | null;
+      _ts: "SanityImageFragment";
+    };
+
+
+export type TextMediaBlock = {
+    content: Array<SanityImageFragment | {
+      _type: "textObject";
+      _key: string;
+      text: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+      }> | null;
+    }> | null;
+    _ts: "TextMediaBlock";
+  };
+
 
 export type PageHeroBlock = {
-  _type: "pageHero";
-  _key: string;
-  text: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "h1" | "h2" | "normal";
-    listItem?: never;
-    markDefs?: null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }> | null;
-  images: Array<SanityImageFragment> | null;
-  _ts: "PageHeroBlock";
-};
+    text: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h1" | "h2" | "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+    }> | null;
+    images: Array<SanityImageFragment> | null;
+    _ts: "PageHeroBlock";
+  };

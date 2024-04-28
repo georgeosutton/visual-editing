@@ -68,6 +68,39 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type TextMedia = {
+  _type: "textMedia";
+  content?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  } | {
+    text?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h1" | "h2" | "h3" | "normal";
+      listItem?: never;
+      markDefs?: null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    _type: "textObject";
+    _key: string;
+  }>;
+};
+
 export type PlaceholderString = string;
 
 export type ExternalLink = {
@@ -163,7 +196,9 @@ export type Home = {
     _key: string;
   } & Gallery) | ({
     _key: string;
-  } & PageHero)>;
+  } & PageHero) | ({
+    _key: string;
+  } & TextMedia)>;
   seo?: SeoHome;
 };
 
@@ -196,7 +231,9 @@ export type Page = {
     _key: string;
   } & Gallery) | ({
     _key: string;
-  } & PageHero)>;
+  } & PageHero) | ({
+    _key: string;
+  } & TextMedia)>;
   seo?: SeoPage;
 };
 
@@ -300,7 +337,7 @@ export type AllSlugsQueryResult = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
-// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groq_type,_key,text[],images[]{    //groq_key,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, '_ts': 'PageHeroBlock'    }}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
+// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, '_ts': 'TextMediaBlock'    }}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
 export type PageQueryResult = {
   blocks: null;
   seo: {
@@ -316,9 +353,49 @@ export type PageQueryResult = {
     title: null | string;
   };
 } | {
-  blocks: Array<{
-    _type: "pageHero";
-    _key: string;
+  blocks: Array<{} | {
+    content: Array<{
+      _key: string;
+      _type: "image";
+      id: string | null;
+      preview: string | null;
+      hotspot: {
+        x: number | null;
+        y: number | null;
+      } | null;
+      crop: {
+        bottom: number | null;
+        left: number | null;
+        right: number | null;
+        top: number | null;
+      } | null;
+      alt: string | null;
+      tags: null;
+      description: string | null;
+      title: string | null;
+      height: number | null;
+      url: string | null;
+      width: number | null;
+      _ts: "SanityImageFragment";
+    } | {
+      _type: "textObject";
+      _key: string;
+      text: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+      }> | null;
+    }> | null;
+    _ts: "TextMediaBlock";
+  } | {
     text: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -331,10 +408,10 @@ export type PageQueryResult = {
       markDefs?: null;
       level?: number;
       _type: "block";
-      _key: string;
     }> | null;
     images: Array<{
       _key: string;
+      _type: "image";
       id: string | null;
       preview: string | null;
       hotspot: {
@@ -357,11 +434,12 @@ export type PageQueryResult = {
       _ts: "SanityImageFragment";
     }> | null;
     _ts: "PageHeroBlock";
-  } | {}> | null;
+  }> | null;
   seo: {
     description: string | null;
     image: {
       _key: null;
+      _type: "image";
       id: string | null;
       preview: string | null;
       hotspot: {
@@ -386,9 +464,49 @@ export type PageQueryResult = {
     title: PlaceholderString | string | null;
   };
 } | {
-  blocks: Array<{
-    _type: "pageHero";
-    _key: string;
+  blocks: Array<{} | {
+    content: Array<{
+      _key: string;
+      _type: "image";
+      id: string | null;
+      preview: string | null;
+      hotspot: {
+        x: number | null;
+        y: number | null;
+      } | null;
+      crop: {
+        bottom: number | null;
+        left: number | null;
+        right: number | null;
+        top: number | null;
+      } | null;
+      alt: string | null;
+      tags: null;
+      description: string | null;
+      title: string | null;
+      height: number | null;
+      url: string | null;
+      width: number | null;
+      _ts: "SanityImageFragment";
+    } | {
+      _type: "textObject";
+      _key: string;
+      text: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+      }> | null;
+    }> | null;
+    _ts: "TextMediaBlock";
+  } | {
     text: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -401,10 +519,10 @@ export type PageQueryResult = {
       markDefs?: null;
       level?: number;
       _type: "block";
-      _key: string;
     }> | null;
     images: Array<{
       _key: string;
+      _type: "image";
       id: string | null;
       preview: string | null;
       hotspot: {
@@ -427,11 +545,12 @@ export type PageQueryResult = {
       _ts: "SanityImageFragment";
     }> | null;
     _ts: "PageHeroBlock";
-  } | {}> | null;
+  }> | null;
   seo: {
     description: string | null;
     image: {
       _key: null;
+      _type: "image";
       id: string | null;
       preview: string | null;
       hotspot: {
@@ -473,7 +592,7 @@ export type SettingsQueryResult = {
   }> | null;
 } | null;
 // Variable: homePageQuery
-// Query:   *[_type == "home"][0]{..., blocks[]{//groq    (_type == "pageHero")=>{      //groq_type,_key,text[],images[]{    //groq_key,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, '_ts': 'PageHeroBlock'    }}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
+// Query:   *[_type == "home"][0]{..., blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, '_ts': 'TextMediaBlock'    }}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
 export type HomePageQueryResult = {
   _id: string;
   _type: "home";
@@ -481,9 +600,49 @@ export type HomePageQueryResult = {
   _updatedAt: string;
   _rev: string;
   slug?: Slug;
-  blocks: Array<{
-    _type: "pageHero";
-    _key: string;
+  blocks: Array<{} | {
+    content: Array<{
+      _key: string;
+      _type: "image";
+      id: string | null;
+      preview: string | null;
+      hotspot: {
+        x: number | null;
+        y: number | null;
+      } | null;
+      crop: {
+        bottom: number | null;
+        left: number | null;
+        right: number | null;
+        top: number | null;
+      } | null;
+      alt: string | null;
+      tags: null;
+      description: string | null;
+      title: string | null;
+      height: number | null;
+      url: string | null;
+      width: number | null;
+      _ts: "SanityImageFragment";
+    } | {
+      _type: "textObject";
+      _key: string;
+      text: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+      }> | null;
+    }> | null;
+    _ts: "TextMediaBlock";
+  } | {
     text: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -496,10 +655,10 @@ export type HomePageQueryResult = {
       markDefs?: null;
       level?: number;
       _type: "block";
-      _key: string;
     }> | null;
     images: Array<{
       _key: string;
+      _type: "image";
       id: string | null;
       preview: string | null;
       hotspot: {
@@ -522,11 +681,12 @@ export type HomePageQueryResult = {
       _ts: "SanityImageFragment";
     }> | null;
     _ts: "PageHeroBlock";
-  } | {}> | null;
+  }> | null;
   seo: {
     description: string | null;
     image: {
       _key: null;
+      _type: "image";
       id: string | null;
       preview: string | null;
       hotspot: {

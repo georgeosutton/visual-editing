@@ -1,5 +1,6 @@
 export const IMAGE = `//groq
 _key,
+_type,
 "id": asset._ref,
 "preview": asset->metadata.lqip,
 hotspot { x, y },

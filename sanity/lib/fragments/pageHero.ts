@@ -7,5 +7,5 @@ text[]{
  images[]{
     ${IMAGE}
  },
- '_ts': 'PageHero'
+ '_ts': 'PageHeroBlock'
 `;
