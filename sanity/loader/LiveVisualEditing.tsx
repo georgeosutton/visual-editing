@@ -6,18 +6,23 @@ import React, { useEffect, useState } from "react";
 
 import { client } from "@/sanity/lib/client";
 
+// Always enable stega in Live Mode
+const stegaClient = client.withConfig({ stega: true });
+
 export default function LiveVisualEditing() {
-  const [stegaClient, setStegaClient] = useState(
-    client.withConfig({ stega: true }),
-  );
+  const [showOverlays, setShowOverlays] = useState(true);
   useLiveMode({ client: stegaClient });
 
   useEffect(() => {
-    // If not an iframe or a Vercel Preview deployment, turn off Stega
+    // If not an iframe or a Vercel Preview deployment.
     if (process.env.NEXT_PUBLIC_VERCEL_ENV !== "preview" && window === parent) {
-      setStegaClient(client.withConfig({ stega: false }));
+      setShowOverlays(false);
     }
   }, []);
+
+  if (!showOverlays) {
+    return null;
+  }
 
   return <VisualEditing />;
 }
