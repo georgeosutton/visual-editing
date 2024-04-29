@@ -4,6 +4,7 @@ import { draftMode } from "next/headers";
 import Page from "@/components/pages/page/Page";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
+import { client } from "@/sanity/lib/client";
 
 const PagePreview = dynamic(
   () => import("@/components/pages/page/PagePreview"),
@@ -45,6 +46,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         : undefined,
     },
   };
+}
+
+export async function generateStaticParams() {
+  const allSlugsQuery = `//groq *[_type in ["page", "home"] && defined(slug.current)][].slug.current`;
+  const pages = await client.fetch<string[]>(allSlugsQuery);
+
+  const paths = pages.map((slug: string) => ({
+    slug: slug.split("/").filter((p) => p),
+  }));
+
+  return paths;
 }
 
 export default async function PageRoute({ params }: Props) {
