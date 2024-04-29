@@ -1,9 +1,9 @@
-import { ExternalLinkProps } from "@/types";
+import { LinkExternalType } from "@/typegen/sanity.fragment-types";
 import React from "react";
 
 const ExternalLink = React.forwardRef<
   HTMLAnchorElement,
-  ExternalLinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
+  LinkExternalType & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >(function LinkComponent(props, forwardedRef) {
   const { text, url, newWindow, ...rest } = props;
 
