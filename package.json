@@ -8,7 +8,7 @@
     "dev": "next dev",
     "prebuild": "bun run typegen",
     "build": "next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap --config next-sitemap.config.cjs",
     "start": "next start",
     "lint": "next lint && tsc --noEmit",
     "typegen": "bun run schema:extract && bun run typegen:generate",
