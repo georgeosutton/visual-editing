@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
     revalidateTag(body._type);
     if (body.slug) {
       revalidateTag(`${body._type}:${body.slug}`);
+      revalidateTag("sitemap");
     }
     return NextResponse.json({
       status: 200,

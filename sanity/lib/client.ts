@@ -1,4 +1,4 @@
-import { createClient } from "@sanity/client/stega";
+import { createClient } from "@sanity/client";
 
 import {
   apiVersion,
@@ -18,7 +18,7 @@ export const client = createClient({
   stega: {
     studioUrl,
     // logger: console,
-    filter: props => {
+    filter: (props) => {
       if (props.sourcePath.at(-1) === "title") {
         return true;
       }
