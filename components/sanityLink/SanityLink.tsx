@@ -1,9 +1,12 @@
 import React, { ForwardRefExoticComponent } from "react";
-import { ExternalLinkProps, InternalLinkProps } from "@/types";
 import ExternalLink from "./ExternalLink";
 import InternalLink from "./InternalLink";
+import {
+  LinkExternalType,
+  LinkInternalType,
+} from "@/typegen/sanity.fragment-types";
 
-type SanityLinkType = InternalLinkProps | ExternalLinkProps;
+type SanityLinkType = LinkInternalType | LinkExternalType;
 
 const links = {
   linkInternal: InternalLink,

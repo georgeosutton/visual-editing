@@ -9,7 +9,7 @@
     "prebuild": "bun run typegen",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint && tsc --noEmit",
     "typegen": "bun run schema:extract && bun run typegen:generate",
     "schema:extract": "sanity schema extract --path=./typegen/schema.json",
     "typegen:generate": "sanity typegen generate",
