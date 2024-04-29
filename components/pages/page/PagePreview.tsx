@@ -19,5 +19,5 @@ export default function PagePreview(props: Props) {
     initial,
   });
 
-  return <Page data={data!} />;
+  return <Page data={data} />;
 }
