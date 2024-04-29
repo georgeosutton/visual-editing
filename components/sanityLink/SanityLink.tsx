@@ -6,8 +6,8 @@ import InternalLink from "./InternalLink";
 type SanityLinkType = InternalLinkProps | ExternalLinkProps;
 
 const links = {
-  internalLink: InternalLink,
-  externalLink: ExternalLink,
+  linkInternal: InternalLink,
+  linkExternal: ExternalLink,
 };
 
 type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {

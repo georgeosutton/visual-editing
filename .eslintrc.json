@@ -2,7 +2,7 @@
   "root": true,
   "extends": [
     "plugin:tailwindcss/recommended",
-    "next",
+    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [],
@@ -15,7 +15,7 @@
       "config": "tailwind.config.cjs"
     }
   },
-  "ignorePatterns": ["typegen/"],
+  "ignorePatterns": ["typegen/", ".*.js", ".*.cjs", "*.*.cjs"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js"],

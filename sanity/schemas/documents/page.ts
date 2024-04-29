@@ -1,6 +1,6 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { blocks } from "../constant";
+import { BLOCK_TYPES } from "../constant";
 
 export default defineType({
   type: "document",
@@ -38,7 +38,7 @@ export default defineType({
         },
       },
       validation: (rule) =>
-        rule.required().custom((param: any) => {
+        rule.required().custom((param) => {
           if (param?.current) {
             if (!param.current.startsWith("/")) {
               return `Slug must begin with / click "Generate" to reset.`;
@@ -53,7 +53,7 @@ export default defineType({
       type: "array",
       title: "Page Blocks",
       validation: (Rule) => Rule.min(1).error("The page has no content."),
-      of: [...blocks],
+      of: BLOCK_TYPES,
       group: "editorial",
     },
     // SEO
@@ -68,13 +68,15 @@ export default defineType({
     select: {
       seoImage: "seo.image",
       title: "title",
+      slug: "slug",
     },
     prepare(selection) {
-      const { seoImage, title } = selection;
+      const { seoImage, title, slug } = selection;
 
       return {
-        media: seoImage,
         title,
+        subtitle: slug?.current,
+        media: seoImage,
       };
     },
   },

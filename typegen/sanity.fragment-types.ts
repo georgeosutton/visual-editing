@@ -103,15 +103,15 @@ export type TextMedia = {
 
 export type PlaceholderString = string;
 
-export type ExternalLink = {
-  _type: "externalLink";
+export type LinkExternal = {
+  _type: "linkExternal";
   text?: string;
   url?: string;
   newWindow?: boolean;
 };
 
-export type InternalLink = {
-  _type: "internalLink";
+export type LinkInternal = {
+  _type: "linkInternal";
   reference?: {
     _ref: string;
     _type: "reference";
@@ -180,9 +180,55 @@ export type Settings = {
   _rev: string;
   menuItems?: Array<({
     _key: string;
-  } & InternalLink) | ({
+  } & LinkInternal) | ({
     _key: string;
-  } & ExternalLink)>;
+  } & LinkExternal)>;
+  footerModules?: Array<{
+    text?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h3" | "normal";
+      listItem?: "bullet";
+      markDefs?: Array<({
+        _key: string;
+      } & AnnotationLinkInternal) | ({
+        _key: string;
+      } & AnnotationLinkExternal) | ({
+        _key: string;
+      } & AnnotationLinkEmail) | ({
+        _key: string;
+      } & AnnotationLinkTel)>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    _type: "textObject";
+    _key: string;
+  }>;
+};
+
+export type AnnotationLinkTel = {
+  _type: "annotationLinkTel";
+  tel?: string;
+};
+
+export type AnnotationLinkInternal = {
+  _type: "annotationLinkInternal";
+  reference?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "home";
+  };
 };
 
 export type Home = {
@@ -311,6 +357,17 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type AnnotationLinkExternal = {
+  _type: "annotationLinkExternal";
+  url?: string;
+  newWindow?: boolean;
+};
+
+export type AnnotationLinkEmail = {
+  _type: "annotationLinkEmail";
+  email?: string;
+};
+
 export type MediaTag = {
   _id: string;
   _type: "media.tag";
@@ -367,17 +424,24 @@ export type PageQueryResult = {
 } | null;
 // Variable: settingsQuery
 export type SettingsQueryResult = {
-  menuItems: Array<{
+  menuItems: Array<LinkExternalType | LinkInternalType> | null;
+  footerModules: Array<{
     _key: string;
-    _type: "externalLink";
-    text: string | null;
-    url: string | null;
-    newWindow: boolean | null;
-  } | {
-    _key: string;
-    _type: "internalLink";
-    text: string | null;
-    slug: string | null;
+    text: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h3" | "normal";
+      listItem?: "bullet";
+      markDefs: Array<LinkExternalType | LinkInternalType | {
+        _key: string;
+      }> | null;
+      level?: number;
+      _type: "block";
+    }> | null;
   }> | null;
 } | null;
 // Variable: homePageQuery
@@ -466,4 +530,23 @@ export type PageHeroBlock = {
     _type: "pageHero";
     _key: string;
     _ts: "PageHeroBlock";
+  };
+
+
+export type LinkExternalType = {
+    _key: string;
+    _type: "linkExternal";
+    text: string | null;
+    url: string | null;
+    newWindow: boolean | null;
+    _ts: "LinkExternalType";
+  };
+
+
+export type LinkInternalType = {
+    _key: string;
+    _type: "linkInternal";
+    text: string | null;
+    slug: string | null;
+    _ts: "LinkInternalType";
   };

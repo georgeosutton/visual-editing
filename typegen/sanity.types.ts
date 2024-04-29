@@ -103,15 +103,15 @@ export type TextMedia = {
 
 export type PlaceholderString = string;
 
-export type ExternalLink = {
-  _type: "externalLink";
+export type LinkExternal = {
+  _type: "linkExternal";
   text?: string;
   url?: string;
   newWindow?: boolean;
 };
 
-export type InternalLink = {
-  _type: "internalLink";
+export type LinkInternal = {
+  _type: "linkInternal";
   reference?: {
     _ref: string;
     _type: "reference";
@@ -180,9 +180,55 @@ export type Settings = {
   _rev: string;
   menuItems?: Array<({
     _key: string;
-  } & InternalLink) | ({
+  } & LinkInternal) | ({
     _key: string;
-  } & ExternalLink)>;
+  } & LinkExternal)>;
+  footerModules?: Array<{
+    text?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h3" | "normal";
+      listItem?: "bullet";
+      markDefs?: Array<({
+        _key: string;
+      } & AnnotationLinkInternal) | ({
+        _key: string;
+      } & AnnotationLinkExternal) | ({
+        _key: string;
+      } & AnnotationLinkEmail) | ({
+        _key: string;
+      } & AnnotationLinkTel)>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    _type: "textObject";
+    _key: string;
+  }>;
+};
+
+export type AnnotationLinkTel = {
+  _type: "annotationLinkTel";
+  tel?: string;
+};
+
+export type AnnotationLinkInternal = {
+  _type: "annotationLinkInternal";
+  reference?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "home";
+  };
 };
 
 export type Home = {
@@ -311,6 +357,17 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type AnnotationLinkExternal = {
+  _type: "annotationLinkExternal";
+  url?: string;
+  newWindow?: boolean;
+};
+
+export type AnnotationLinkEmail = {
+  _type: "annotationLinkEmail";
+  email?: string;
+};
+
 export type MediaTag = {
   _id: string;
   _type: "media.tag";
@@ -337,7 +394,7 @@ export type AllSlugsQueryResult = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
-// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },    }, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
+// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
 export type PageQueryResult = {
   blocks: null;
   seo: {
@@ -584,23 +641,56 @@ export type PageQueryResult = {
   };
 } | null;
 // Variable: settingsQuery
-// Query:   *[_type == "settings"][0]{    menuItems[]{      (_type == 'internalLink') => {//groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  }},      (_type == 'externalLink') => {//groq  _key,  _type,  text,  url,  newWindow,}    },  }
+// Query:   *[_type == "settings"][0]{    menuItems[]{      (_type == 'linkInternal') => {//groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },  "_ts": "LinkInternalType"},      (_type == 'linkExternal') => {//groq  _key,  _type,  text,  url,  newWindow,  "_ts": "LinkExternalType"}    },    footerModules[]{      _key,      text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,  "_ts": "LinkExternalType"	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },  "_ts": "LinkInternalType"	},  }      }    }  }
 export type SettingsQueryResult = {
   menuItems: Array<{
     _key: string;
-    _type: "externalLink";
+    _type: "linkExternal";
     text: string | null;
     url: string | null;
     newWindow: boolean | null;
+    _ts: "LinkExternalType";
   } | {
     _key: string;
-    _type: "internalLink";
+    _type: "linkInternal";
     text: string | null;
     slug: string | null;
+    _ts: "LinkInternalType";
+  }> | null;
+  footerModules: Array<{
+    _key: string;
+    text: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h3" | "normal";
+      listItem?: "bullet";
+      markDefs: Array<{
+        _key: string;
+        _type: "annotationLinkExternal";
+        text: null;
+        url: string | null;
+        newWindow: boolean | null;
+        _ts: "LinkExternalType";
+      } | {
+        _key: string;
+        _type: "annotationLinkInternal";
+        text: null;
+        slug: string | null;
+        _ts: "LinkInternalType";
+      } | {
+        _key: string;
+      }> | null;
+      level?: number;
+      _type: "block";
+    }> | null;
   }> | null;
 } | null;
 // Variable: homePageQuery
-// Query:   *[_type == "home"][0]{..., blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },    }, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
+// Query:   *[_type == "home"][0]{..., blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
 export type HomePageQueryResult = {
   _id: string;
   _type: "home";

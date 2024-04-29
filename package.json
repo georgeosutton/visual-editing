@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "bun run typegen",
     "dev": "next dev",
+    "prebuild": "bun run typegen",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

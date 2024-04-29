@@ -1,9 +1,8 @@
 import { defineArrayMember } from "sanity";
 
-export const links = [{ type: "page" }];
+export const PAGE_REFERENCES = [{ type: "page" }, { type: "home" }];
 
-export const blocks = [
-  defineArrayMember({ type: "gallery" }),
+export const BLOCK_TYPES = [
   defineArrayMember({ type: "pageHero" }),
   defineArrayMember({ type: "textMedia" }),
 ];

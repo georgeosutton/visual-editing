@@ -1,21 +1,24 @@
 import { defineType } from "sanity";
+import { PAGE_REFERENCES } from "../../constant";
+import { LinkIcon } from "@sanity/icons";
 
 export default defineType({
-  name: "internalLink",
+  name: "linkInternal",
   type: "object",
   title: "Internal link",
+  icon: LinkIcon,
   fields: [
     {
       name: "reference",
       type: "reference",
       title: "Page",
-      validation: Rule => Rule.required().error("Please select a page."),
-      to: [{ type: "page" }, { type: "home" }],
+      validation: (Rule) => Rule.required().error("Please select a page."),
+      to: PAGE_REFERENCES,
     },
     {
       name: "text",
       type: "string",
-      validation: Rule => Rule.required().error("Please add link text."),
+      validation: (Rule) => Rule.required().error("Please add link text."),
       title: "Link Text",
     },
   ],
