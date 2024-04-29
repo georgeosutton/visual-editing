@@ -1,7 +1,11 @@
 import PageHero from "./blocks/PageHero";
-import { SanityBlock } from "@/types";
 import TextMedia from "./blocks/TextMedia";
 import { ComponentType } from "react";
+
+export interface SanityBlock {
+  _key: string;
+  _type: keyof typeof blocks;
+}
 
 const blocks = {
   pageHero: PageHero,
