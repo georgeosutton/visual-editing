@@ -156,22 +156,6 @@ export type PageHero = {
   }>;
 };
 
-export type Gallery = {
-  _type: "gallery";
-  images?: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }>;
-};
-
 export type Settings = {
   _id: string;
   _type: "settings";
@@ -240,8 +224,6 @@ export type Home = {
   slug?: Slug;
   blocks?: Array<({
     _key: string;
-  } & Gallery) | ({
-    _key: string;
   } & PageHero) | ({
     _key: string;
   } & TextMedia)>;
@@ -274,8 +256,6 @@ export type Page = {
   title?: string;
   slug?: Slug;
   blocks?: Array<({
-    _key: string;
-  } & Gallery) | ({
     _key: string;
   } & PageHero) | ({
     _key: string;
@@ -384,13 +364,6 @@ export type Slug = {
 };
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
-// Source: app/sitemap.ts
-// Variable: allSlugsQuery
-export type AllSlugsQueryResult = Array<{
-  slug: string | null;
-  _updatedAt: string;
-}>;
-
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
 export type PageQueryResult = {
@@ -408,14 +381,14 @@ export type PageQueryResult = {
     title: null | string;
   };
 } | {
-  blocks: Array<{} | TextMediaBlock | PageHeroBlock> | null;
+  blocks: Array<TextMediaBlock | PageHeroBlock> | null;
   seo: {
     description: string | null;
     image: SanityImageFragment | null;
     title: PlaceholderString | string | null;
   };
 } | {
-  blocks: Array<{} | TextMediaBlock | PageHeroBlock> | null;
+  blocks: Array<TextMediaBlock | PageHeroBlock> | null;
   seo: {
     description: string | null;
     image: SanityImageFragment | null;
@@ -452,13 +425,20 @@ export type HomePageQueryResult = {
   _updatedAt: string;
   _rev: string;
   slug?: Slug;
-  blocks: Array<{} | TextMediaBlock | PageHeroBlock> | null;
+  blocks: Array<TextMediaBlock | PageHeroBlock> | null;
   seo: {
     description: string | null;
     image: SanityImageFragment | null;
     title: string | null;
   };
 } | null;
+
+// Source: app/(www)/sitemap.xml/route.ts
+// Variable: allSlugsQuery
+export type AllSlugsQueryResult = Array<{
+  slug: string | null;
+  _updatedAt: string;
+}>;
 
 
 

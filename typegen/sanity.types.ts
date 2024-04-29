@@ -156,22 +156,6 @@ export type PageHero = {
   }>;
 };
 
-export type Gallery = {
-  _type: "gallery";
-  images?: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }>;
-};
-
 export type Settings = {
   _id: string;
   _type: "settings";
@@ -240,8 +224,6 @@ export type Home = {
   slug?: Slug;
   blocks?: Array<({
     _key: string;
-  } & Gallery) | ({
-    _key: string;
   } & PageHero) | ({
     _key: string;
   } & TextMedia)>;
@@ -274,8 +256,6 @@ export type Page = {
   title?: string;
   slug?: Slug;
   blocks?: Array<({
-    _key: string;
-  } & Gallery) | ({
     _key: string;
   } & PageHero) | ({
     _key: string;
@@ -384,14 +364,6 @@ export type Slug = {
 };
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
-// Source: app/sitemap.ts
-// Variable: allSlugsQuery
-// Query: *[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}
-export type AllSlugsQueryResult = Array<{
-  slug: string | null;
-  _updatedAt: string;
-}>;
-
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
 // Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
@@ -410,7 +382,7 @@ export type PageQueryResult = {
     title: null | string;
   };
 } | {
-  blocks: Array<{} | {
+  blocks: Array<{
     content: Array<{
       _key: string;
       _type: "image";
@@ -525,7 +497,7 @@ export type PageQueryResult = {
     title: PlaceholderString | string | null;
   };
 } | {
-  blocks: Array<{} | {
+  blocks: Array<{
     content: Array<{
       _key: string;
       _type: "image";
@@ -698,7 +670,7 @@ export type HomePageQueryResult = {
   _updatedAt: string;
   _rev: string;
   slug?: Slug;
-  blocks: Array<{} | {
+  blocks: Array<{
     content: Array<{
       _key: string;
       _type: "image";
@@ -813,4 +785,12 @@ export type HomePageQueryResult = {
     title: string | null;
   };
 } | null;
+
+// Source: app/(www)/sitemap.xml/route.ts
+// Variable: allSlugsQuery
+// Query: *[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}
+export type AllSlugsQueryResult = Array<{
+  slug: string | null;
+  _updatedAt: string;
+}>;
 
