@@ -5,18 +5,18 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex font-normal rounded-full uppercase w-fit items-center justify-center transition-colors disabled:pointer-events-none border-2",
+  "inline-flex w-fit items-center justify-center rounded-full border-2 font-normal uppercase transition-colors disabled:pointer-events-none",
   {
     variants: {
       variant: {
         primary:
-          "hover:bg-primary border-primary hover:text-white text-primary",
+          "border-primary text-primary hover:bg-primary hover:text-white",
         secondary:
-          "hover:bg-secondary border-secondary hover:text-white text-secondary",
-        white: "hover:bg-white border-white text-white hover:text-primary",
+          "border-secondary text-secondary hover:bg-secondary hover:text-white",
+        white: "border-white text-white hover:bg-white hover:text-primary",
       },
       size: {
-        default: "min-h-11 py-2 px-8 text-sm tracking-wide",
+        default: "min-h-11 px-8 py-2 text-sm tracking-wide",
       },
     },
     defaultVariants: {

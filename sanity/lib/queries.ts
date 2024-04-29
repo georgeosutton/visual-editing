@@ -8,14 +8,12 @@ import { TEXT_MEDIA } from "@/sanity/lib/fragments/textMedia";
 import { PAGE_HERO } from "@/sanity/lib/fragments/pageHero";
 
 const BLOCKS = `//groq
-    _type,
-    _key,
     (_type == "pageHero")=>{
       ${PAGE_HERO}
     },
     (_type == "textMedia")=>{
       ${TEXT_MEDIA}
-    }
+    },
 `;
 
 const SEO = `//groq

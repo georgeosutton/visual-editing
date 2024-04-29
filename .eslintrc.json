@@ -1,7 +1,25 @@
 {
-  "extends": "next",
+  "root": true,
+  "extends": [
+    "plugin:tailwindcss/recommended",
+    "next",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "plugins": [],
   "rules": {
     "react-hooks/exhaustive-deps": "error"
-  }
+  },
+  "settings": {
+    "tailwindcss": {
+      "callees": ["cn", "cva"],
+      "config": "tailwind.config.cjs"
+    }
+  },
+  "ignorePatterns": ["typegen/"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js"],
+      "parser": "@typescript-eslint/parser"
+    }
+  ]
 }

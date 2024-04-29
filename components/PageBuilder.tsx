@@ -1,9 +1,9 @@
-import { ComponentType } from "react";
 import PageHero from "./blocks/PageHero";
 import { SanityBlock } from "@/types";
 import TextMedia from "./blocks/TextMedia";
+import { ComponentType } from "react";
 
-const blocks: Record<string, ComponentType<any>> = {
+const blocks = {
   pageHero: PageHero,
   textMedia: TextMedia,
 };
@@ -13,7 +13,7 @@ const PageBuilder = (props: { block: SanityBlock }) => {
   const type = block?._type;
 
   if (typeof blocks[type] !== "undefined") {
-    const BlockComponent = blocks[type];
+    const BlockComponent = blocks[type] as ComponentType<SanityBlock>;
     return <BlockComponent {...block} />;
   }
 

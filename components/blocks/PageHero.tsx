@@ -1,4 +1,4 @@
-import { baseUrl, validateImage } from "@/sanity/lib/image";
+import { validateImage } from "@/sanity/lib/image";
 import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { PageHeroBlock } from "@/typegen/sanity.fragment-types";
@@ -25,7 +25,7 @@ export default function PageHero(props: PageHeroBlock) {
           <PortableText value={text} components={components} />
         </div>
       )}
-      <div className="relative z-10 col-start-1 row-start-1 h-full w-full bg-darkGradientHorizonal md:bg-darkGradientVertical " />
+      <div className="relative z-10 col-start-1 row-start-1 size-full bg-darkGradientHorizonal md:bg-darkGradientVertical " />
       {images && (
         <div className="col-start-1 row-start-1 grid md:grid-cols-2">
           {images.map((imageData) => {

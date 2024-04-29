@@ -17,7 +17,7 @@ export default function TextMedia(props: TextMediaBlock) {
           }
 
           return (
-            <div key={item._key}>
+            <div key={key}>
               <SanityImage id={id} mode="cover" {...imageProps} />
             </div>
           );

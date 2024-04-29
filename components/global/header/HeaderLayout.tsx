@@ -17,7 +17,7 @@ export default function HeaderLayout(props: HeaderProps) {
           <Link
             aria-label="Sloaneclub Home"
             href="/"
-            className="mb-0.5 flex-shrink md:mb-1 "
+            className="mb-0.5 shrink md:mb-1 "
           >
             <Image
               src="/header-logo.svg"

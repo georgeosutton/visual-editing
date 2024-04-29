@@ -46,5 +46,5 @@ export interface SanityImageProps {
 
 export interface SanityBlock {
   _key: string;
-  _type: string;
+  _type: "pageHero" | "textMedia";
 }

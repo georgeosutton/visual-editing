@@ -13,5 +13,7 @@ content[]{
        },
     },
  },
+ _type,
+ _key,
  '_ts': 'TextMediaBlock'
 `;

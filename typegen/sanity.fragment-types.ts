@@ -442,6 +442,8 @@ export type TextMediaBlock = {
         _type: "block";
       }> | null;
     }> | null;
+    _type: "textMedia";
+    _key: string;
     _ts: "TextMediaBlock";
   };
 
@@ -461,5 +463,7 @@ export type PageHeroBlock = {
       _type: "block";
     }> | null;
     images: Array<SanityImageFragment> | null;
+    _type: "pageHero";
+    _key: string;
     _ts: "PageHeroBlock";
   };
