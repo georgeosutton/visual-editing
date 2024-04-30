@@ -1,5 +1,5 @@
 import { EarthGlobeIcon } from "@sanity/icons";
-import { defineField } from "sanity";
+import { BlockAnnotationProps, defineField } from "sanity";
 
 export default defineField({
   title: "External Link",
@@ -7,7 +7,7 @@ export default defineField({
   type: "object",
   icon: EarthGlobeIcon,
   components: {
-    annotation: (props) => (
+    annotation: (props: BlockAnnotationProps) => (
       <span>
         <EarthGlobeIcon
           style={{

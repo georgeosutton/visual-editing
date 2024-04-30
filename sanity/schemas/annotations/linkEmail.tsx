@@ -1,5 +1,5 @@
 import { EnvelopeIcon } from "@sanity/icons";
-import { defineField } from "sanity";
+import { BlockAnnotationProps, defineField } from "sanity";
 
 export default defineField({
   title: "Email link",
@@ -7,7 +7,7 @@ export default defineField({
   type: "object",
   icon: EnvelopeIcon,
   components: {
-    annotation: (props) => (
+    annotation: (props: BlockAnnotationProps) => (
       <span>
         <EnvelopeIcon
           style={{

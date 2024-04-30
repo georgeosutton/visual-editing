@@ -1,4 +1,4 @@
-import { homePageQuery, pageQuery, settingsQuery } from "../lib/queries";
+import { pageQuery, settingsQuery } from "../lib/queries";
 import { client } from "@/sanity/lib/client";
 import * as queryStore from "@sanity/react-loader";
 import { token } from "@/sanity/lib/token";
@@ -61,14 +61,6 @@ export function loadSettings() {
   return loadQuery<SettingsQueryResult>(
     settingsQuery,
     {},
-    { next: { tags: ["settings", "home", "page"] } },
-  );
-}
-
-export function loadHomePage() {
-  return loadQuery<PageQueryResult>(
-    homePageQuery,
-    {},
-    { next: { tags: ["home"] } },
+    { next: { tags: ["settings", "page"] } },
   );
 }

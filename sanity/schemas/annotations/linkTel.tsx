@@ -1,5 +1,5 @@
 import { AiOutlinePhone } from "react-icons/ai";
-import { defineField } from "sanity";
+import { BlockAnnotationProps, defineField } from "sanity";
 
 export default defineField({
   title: "Tel link",
@@ -7,7 +7,7 @@ export default defineField({
   type: "object",
   icon: AiOutlinePhone,
   components: {
-    annotation: (props) => (
+    annotation: (props: BlockAnnotationProps) => (
       <span>
         <AiOutlinePhone
           style={{

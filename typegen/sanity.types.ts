@@ -386,6 +386,330 @@ export type Slug = {
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 
+// Source: sanity/lib/queries.ts
+// Variable: pageQuery
+// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,"preview": asset->metadata.lqip,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
+export type PageQueryResult =
+  | {
+      blocks: null;
+      seo: {
+        description: null;
+        image: null;
+        title: null;
+      };
+    }
+  | {
+      blocks: null;
+      seo: {
+        description: null;
+        image: null;
+        title: null | string;
+      };
+    }
+  | {
+      blocks: Array<
+        | {
+            content: Array<
+              | {
+                  _key: string;
+                  _type: "image";
+                  id: string | null;
+                  preview: string | null;
+                  hotspot: {
+                    x: number | null;
+                    y: number | null;
+                  } | null;
+                  crop: {
+                    bottom: number | null;
+                    left: number | null;
+                    right: number | null;
+                    top: number | null;
+                  } | null;
+                  alt: string | null;
+                  tags: null;
+                  description: string | null;
+                  title: string | null;
+                  height: number | null;
+                  url: string | null;
+                  width: number | null;
+                  _ts: "SanityImageFragment";
+                }
+              | {
+                  _type: "textObject";
+                  _key: string;
+                  text: Array<{
+                    children?: Array<{
+                      marks?: Array<string>;
+                      text?: string;
+                      _type: "span";
+                      _key: string;
+                    }>;
+                    style?: "h1" | "h2" | "h3" | "normal";
+                    listItem?: never;
+                    markDefs?: null;
+                    level?: number;
+                    _type: "block";
+                  }> | null;
+                }
+            > | null;
+            _type: "textMedia";
+            _key: string;
+            _ts: "TextMediaBlock";
+          }
+        | {
+            text: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+            }> | null;
+            images: Array<{
+              _key: string;
+              _type: "image";
+              id: string | null;
+              preview: string | null;
+              hotspot: {
+                x: number | null;
+                y: number | null;
+              } | null;
+              crop: {
+                bottom: number | null;
+                left: number | null;
+                right: number | null;
+                top: number | null;
+              } | null;
+              alt: string | null;
+              tags: null;
+              description: string | null;
+              title: string | null;
+              height: number | null;
+              url: string | null;
+              width: number | null;
+              _ts: "SanityImageFragment";
+            }> | null;
+            _type: "pageHero";
+            _key: string;
+            _ts: "PageHeroBlock";
+          }
+      > | null;
+      seo: {
+        description: string | null;
+        image: {
+          _key: null;
+          _type: "image";
+          id: string | null;
+          preview: string | null;
+          hotspot: {
+            x: number | null;
+            y: number | null;
+          } | null;
+          crop: {
+            bottom: number | null;
+            left: number | null;
+            right: number | null;
+            top: number | null;
+          } | null;
+          alt: string | null;
+          tags: null;
+          description: string | null;
+          title: string | null;
+          height: number | null;
+          url: string | null;
+          width: number | null;
+          _ts: "SanityImageFragment";
+        } | null;
+        title: PlaceholderString | string | null;
+      };
+    }
+  | {
+      blocks: Array<
+        | {
+            content: Array<
+              | {
+                  _key: string;
+                  _type: "image";
+                  id: string | null;
+                  preview: string | null;
+                  hotspot: {
+                    x: number | null;
+                    y: number | null;
+                  } | null;
+                  crop: {
+                    bottom: number | null;
+                    left: number | null;
+                    right: number | null;
+                    top: number | null;
+                  } | null;
+                  alt: string | null;
+                  tags: null;
+                  description: string | null;
+                  title: string | null;
+                  height: number | null;
+                  url: string | null;
+                  width: number | null;
+                  _ts: "SanityImageFragment";
+                }
+              | {
+                  _type: "textObject";
+                  _key: string;
+                  text: Array<{
+                    children?: Array<{
+                      marks?: Array<string>;
+                      text?: string;
+                      _type: "span";
+                      _key: string;
+                    }>;
+                    style?: "h1" | "h2" | "h3" | "normal";
+                    listItem?: never;
+                    markDefs?: null;
+                    level?: number;
+                    _type: "block";
+                  }> | null;
+                }
+            > | null;
+            _type: "textMedia";
+            _key: string;
+            _ts: "TextMediaBlock";
+          }
+        | {
+            text: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+            }> | null;
+            images: Array<{
+              _key: string;
+              _type: "image";
+              id: string | null;
+              preview: string | null;
+              hotspot: {
+                x: number | null;
+                y: number | null;
+              } | null;
+              crop: {
+                bottom: number | null;
+                left: number | null;
+                right: number | null;
+                top: number | null;
+              } | null;
+              alt: string | null;
+              tags: null;
+              description: string | null;
+              title: string | null;
+              height: number | null;
+              url: string | null;
+              width: number | null;
+              _ts: "SanityImageFragment";
+            }> | null;
+            _type: "pageHero";
+            _key: string;
+            _ts: "PageHeroBlock";
+          }
+      > | null;
+      seo: {
+        description: string | null;
+        image: {
+          _key: null;
+          _type: "image";
+          id: string | null;
+          preview: string | null;
+          hotspot: {
+            x: number | null;
+            y: number | null;
+          } | null;
+          crop: {
+            bottom: number | null;
+            left: number | null;
+            right: number | null;
+            top: number | null;
+          } | null;
+          alt: string | null;
+          tags: null;
+          description: string | null;
+          title: string | null;
+          height: number | null;
+          url: string | null;
+          width: number | null;
+          _ts: "SanityImageFragment";
+        } | null;
+        title: string | null;
+      };
+    }
+  | null;
+
+// Variable: settingsQuery
+// Query:   *[_type == "settings"][0]{    menuItems[]{      (_type == 'linkInternal') => {//groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },  "_ts": "LinkInternalType"},      (_type == 'linkExternal') => {//groq  _key,  _type,  text,  url,  newWindow,  "_ts": "LinkExternalType"}    },    footerModules[]{      _key,      text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,  "_ts": "LinkExternalType"	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },  "_ts": "LinkInternalType"	},  }      }    }  }
+export type SettingsQueryResult = {
+  menuItems: Array<
+    | {
+        _key: string;
+        _type: "linkExternal";
+        text: string | null;
+        url: string | null;
+        newWindow: boolean | null;
+        _ts: "LinkExternalType";
+      }
+    | {
+        _key: string;
+        _type: "linkInternal";
+        text: string | null;
+        slug: string | null;
+        _ts: "LinkInternalType";
+      }
+  > | null;
+  footerModules: Array<{
+    _key: string;
+    text: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h3" | "normal";
+      listItem?: "bullet";
+      markDefs: Array<
+        | {
+            _key: string;
+            _type: "annotationLinkExternal";
+            text: null;
+            url: string | null;
+            newWindow: boolean | null;
+            _ts: "LinkExternalType";
+          }
+        | {
+            _key: string;
+            _type: "annotationLinkInternal";
+            text: null;
+            slug: string | null;
+            _ts: "LinkInternalType";
+          }
+        | {
+            _key: string;
+          }
+      > | null;
+      level?: number;
+      _type: "block";
+    }> | null;
+  }> | null;
+} | null;
+
+
 // Source: app/(www)/sitemap.xml/route.ts
 // Variable: allSlugsQuery
 // Query: *[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}

@@ -386,6 +386,80 @@ export type Slug = {
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 
+// Source: sanity/lib/queries.ts
+// Variable: pageQuery
+export type PageQueryResult =
+  | {
+      blocks: null;
+      seo: {
+        description: null;
+        image: null;
+        title: null;
+      };
+    }
+  | {
+      blocks: null;
+      seo: {
+        description: null;
+        image: null;
+        title: null | string;
+      };
+    }
+  | {
+      blocks: Array<
+        | TextMediaBlock
+        | PageHeroBlock
+      > | null;
+      seo: {
+        description: string | null;
+        image: SanityImageFragment | null;
+        title: PlaceholderString | string | null;
+      };
+    }
+  | {
+      blocks: Array<
+        | TextMediaBlock
+        | PageHeroBlock
+      > | null;
+      seo: {
+        description: string | null;
+        image: SanityImageFragment | null;
+        title: string | null;
+      };
+    }
+  | null;
+
+// Variable: settingsQuery
+export type SettingsQueryResult = {
+  menuItems: Array<
+    | LinkExternalType
+    | LinkInternalType
+  > | null;
+  footerModules: Array<{
+    _key: string;
+    text: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h3" | "normal";
+      listItem?: "bullet";
+      markDefs: Array<
+        | LinkExternalType
+        | LinkInternalType
+        | {
+            _key: string;
+          }
+      > | null;
+      level?: number;
+      _type: "block";
+    }> | null;
+  }> | null;
+} | null;
+
+
 // Source: app/(www)/sitemap.xml/route.ts
 // Variable: allSlugsQuery
 export type AllSlugsQueryResult = Array<{
@@ -394,3 +468,96 @@ export type AllSlugsQueryResult = Array<{
 }>;
 
 
+
+
+export type SanityImageFragment = {
+                  _key: string;
+                  _type: "image";
+                  id: string | null;
+                  preview: string | null;
+                  hotspot: {
+                    x: number | null;
+                    y: number | null;
+                  } | null;
+                  crop: {
+                    bottom: number | null;
+                    left: number | null;
+                    right: number | null;
+                    top: number | null;
+                  } | null;
+                  alt: string | null;
+                  tags: null;
+                  description: string | null;
+                  title: string | null;
+                  height: number | null;
+                  url: string | null;
+                  width: number | null;
+                  _ts: "SanityImageFragment";
+                };
+
+
+export type TextMediaBlock = {
+            content: Array<
+              | SanityImageFragment
+              | {
+                  _type: "textObject";
+                  _key: string;
+                  text: Array<{
+                    children?: Array<{
+                      marks?: Array<string>;
+                      text?: string;
+                      _type: "span";
+                      _key: string;
+                    }>;
+                    style?: "h1" | "h2" | "h3" | "normal";
+                    listItem?: never;
+                    markDefs?: null;
+                    level?: number;
+                    _type: "block";
+                  }> | null;
+                }
+            > | null;
+            _type: "textMedia";
+            _key: string;
+            _ts: "TextMediaBlock";
+          };
+
+
+export type PageHeroBlock = {
+            text: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+            }> | null;
+            images: Array<SanityImageFragment> | null;
+            _type: "pageHero";
+            _key: string;
+            _ts: "PageHeroBlock";
+          };
+
+
+export type LinkExternalType = {
+        _key: string;
+        _type: "linkExternal";
+        text: string | null;
+        url: string | null;
+        newWindow: boolean | null;
+        _ts: "LinkExternalType";
+      };
+
+
+export type LinkInternalType = {
+        _key: string;
+        _type: "linkInternal";
+        text: string | null;
+        slug: string | null;
+        _ts: "LinkInternalType";
+      };
