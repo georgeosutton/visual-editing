@@ -47,3 +47,6 @@ export const settingsQuery = groq`
 export const homePageQuery = groq`
   *[_type == "home"][0]{..., blocks[]{${BLOCKS}}, ${SEO}}
 `;
+
+export const allSlugsQuery = `//groq
+*[_type in ["page", "home"] && defined(slug.current)][].slug.current`;

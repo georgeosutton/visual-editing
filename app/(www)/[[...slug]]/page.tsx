@@ -5,6 +5,7 @@ import Page from "@/components/pages/page/Page";
 import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
+import { allSlugsQuery } from "@/sanity/lib/queries";
 
 const PagePreview = dynamic(
   () => import("@/components/pages/page/PagePreview"),
@@ -49,7 +50,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const allSlugsQuery = `//groq *[_type in ["page", "home"] && defined(slug.current)][].slug.current`;
   const pages = await client.fetch<string[]>(allSlugsQuery);
 
   const paths = pages.map((slug: string) => ({
