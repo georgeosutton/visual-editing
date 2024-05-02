@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import SanityLink from "../../sanityLink/SanityLink";
+
 import { SettingsQueryResult } from "@/typegen/sanity.fragment-types";
+
+import SanityLink from "../../sanityLink/SanityLink";
 
 type HeaderProps = {
   data: SettingsQueryResult;

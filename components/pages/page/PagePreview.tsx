@@ -4,9 +4,9 @@ import { type QueryResponseInitial } from "@sanity/react-loader";
 
 import { pageQuery } from "@/sanity/lib/queries";
 import { useQuery } from "@/sanity/loader/useQuery";
+import { PageQueryResult } from "@/typegen/sanity.fragment-types";
 
 import Page from "./Page";
-import { PageQueryResult } from "@/typegen/sanity.fragment-types";
 
 type Props = {
   params: { slug: string };

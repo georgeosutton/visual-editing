@@ -1,5 +1,6 @@
-import { LinkExternalType } from "@/typegen/sanity.fragment-types";
 import React from "react";
+
+import { LinkExternalType } from "@/typegen/sanity.fragment-types";
 
 const ExternalLink = React.forwardRef<
   HTMLAnchorElement,

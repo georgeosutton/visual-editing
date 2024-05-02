@@ -1,7 +1,8 @@
-import { client } from "@/sanity/lib/client";
-import { AllSlugsQueryResult } from "@/typegen/sanity.fragment-types";
 import { groq } from "next-sanity";
 import { getServerSideSitemap } from "next-sitemap";
+
+import { client } from "@/sanity/lib/client";
+import { AllSlugsQueryResult } from "@/typegen/sanity.fragment-types";
 
 const usingCdn = client.config().useCdn;
 

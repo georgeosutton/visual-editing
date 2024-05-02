@@ -1,6 +1,7 @@
+import { ComponentType } from "react";
+
 import PageHero from "./blocks/PageHero";
 import TextMedia from "./blocks/TextMedia";
-import { ComponentType } from "react";
 
 export interface SanityBlock {
   _key: string;

@@ -1,7 +1,9 @@
-import { validateImage } from "@/sanity/lib/image";
-import React from "react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
+import React from "react";
+
+import { validateImage } from "@/sanity/lib/image";
 import { PageHeroBlock } from "@/typegen/sanity.fragment-types";
+
 import SanityImage from "../SanityImage";
 
 const components: PortableTextComponents = {

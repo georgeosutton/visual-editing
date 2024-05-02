@@ -1,6 +1,7 @@
-import { LinkInternalType } from "@/typegen/sanity.fragment-types";
 import Link, { LinkProps } from "next/link";
 import React from "react";
+
+import { LinkInternalType } from "@/typegen/sanity.fragment-types";
 
 const InternalLink = React.forwardRef<
   HTMLAnchorElement,

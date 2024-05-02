@@ -3,9 +3,11 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
+
+import { Footer } from "@/components/global/footer";
+
 import { Header } from "../../components/global/header";
 import { ftPolar, ivar } from "./fonts";
-import { Footer } from "@/components/global/footer";
 
 const VisualEditing = dynamic(
   () => import("@/sanity/loader/LiveVisualEditing"),

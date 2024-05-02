@@ -1,10 +1,12 @@
-import { cn } from "@/lib/utils";
 import { PortableTextComponents, PortableTextProps } from "@portabletext/react";
 import { PortableText as PortableTextReact } from "@portabletext/react";
 import { useMemo } from "react";
+
+import { cn } from "@/lib/utils";
+
+import LinkEmailAnnotation from "./annotations/LinkEmail";
 import LinkExternalAnnotation from "./annotations/LinkExternal";
 import LinkInternalAnnotation from "./annotations/LinkInternal";
-import LinkEmailAnnotation from "./annotations/LinkEmail";
 import LinkTelAnnotation from "./annotations/LinkTel";
 
 type Props = {

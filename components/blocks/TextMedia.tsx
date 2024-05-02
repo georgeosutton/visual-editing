@@ -1,8 +1,10 @@
-import { TextMediaBlock } from "@/typegen/sanity.fragment-types";
 import { PortableText } from "@portabletext/react";
 import React from "react";
-import SanityImage from "../SanityImage";
+
 import { validateImage } from "@/sanity/lib/image";
+import { TextMediaBlock } from "@/typegen/sanity.fragment-types";
+
+import SanityImage from "../SanityImage";
 
 export default function TextMedia(props: TextMediaBlock) {
   const { content } = props;

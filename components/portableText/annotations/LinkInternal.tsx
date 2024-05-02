@@ -1,6 +1,7 @@
-import { cn } from "@/lib/utils";
 import type { PortableTextMarkComponentProps } from "@portabletext/react";
 import Link from "next/link";
+
+import { cn } from "@/lib/utils";
 
 type Props = PortableTextMarkComponentProps & {
   value?: PortableTextMarkComponentProps["value"] & {
