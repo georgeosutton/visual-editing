@@ -1,9 +1,10 @@
+import { PortableTextBlock } from "@portabletext/react";
+import { BlockContentIcon, ImageIcon } from "@sanity/icons";
 import { defineArrayMember, defineField } from "sanity";
+
+import { blockPreview } from "../blockPreview";
 import { createBlockField } from "../createBlockField";
 import { createPageBlock } from "../createPageBlock";
-import { BlockContentIcon, ImageIcon } from "@sanity/icons";
-import { blockPreview } from "../blockPreview";
-import { PortableTextBlock } from "@portabletext/react";
 
 export default createPageBlock({
   name: "textMedia",
@@ -34,6 +35,20 @@ export default createPageBlock({
                 { title: "H3", value: "h3" },
                 { title: "Normal", value: "normal" },
               ],
+              lists: [{ title: "Bullet", value: "bullet" }],
+              marks: {
+                decorators: [],
+                annotations: [
+                  {
+                    name: "annotationLinkInternal",
+                    type: "annotationLinkInternal",
+                  },
+                  {
+                    name: "annotationLinkExternal",
+                    type: "annotationLinkExternal",
+                  },
+                ],
+              },
             }),
           ],
         }),

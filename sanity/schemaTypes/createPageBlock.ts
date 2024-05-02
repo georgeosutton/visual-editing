@@ -1,6 +1,6 @@
 import { BlockElementIcon } from "@sanity/icons";
 import { ComponentType, ReactNode } from "react";
-import { FieldDefinition, defineType, PreviewConfig } from "sanity";
+import { defineType, FieldDefinition, PreviewConfig } from "sanity";
 
 export const createPageBlock = ({
   fields,

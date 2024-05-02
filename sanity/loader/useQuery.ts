@@ -1,11 +1,13 @@
 import {
-  QueryResponseInitial,
   type QueryParams,
+  QueryResponseInitial,
   type UseQueryOptionsDefinedInitial,
 } from "@sanity/react-loader";
 import * as queryStore from "@sanity/react-loader";
-import { settingsQuery } from "../lib/queries";
+
 import { SettingsQueryResult } from "@/typegen/sanity.fragment-types";
+
+import { settingsQuery } from "../lib/queries";
 
 /**
  * Exports to be used in client-only or components that render both server and client

@@ -3,8 +3,7 @@ import { SanityImageFragment } from "@/typegen/sanity.fragment-types";
 export const baseUrl = `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/production/`;
 
 export function validateImage(fragment: SanityImageFragment) {
-  const { _key, id, preview, hotspot, crop, alt, height, url, width } =
-    fragment;
+  const { _key, id, hotspot, crop, alt, height, url, width } = fragment;
 
   return {
     id: id ?? undefined,
@@ -18,7 +17,6 @@ export function validateImage(fragment: SanityImageFragment) {
           top: crop.top ?? 0,
         }
       : undefined,
-    preview: preview ?? undefined,
     alt: alt ?? undefined,
     height: height ?? 0,
     url: url ?? "",

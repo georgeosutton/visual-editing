@@ -1,12 +1,14 @@
-import { pageQuery, settingsQuery } from "../lib/queries";
-import { client } from "@/sanity/lib/client";
 import * as queryStore from "@sanity/react-loader";
-import { token } from "@/sanity/lib/token";
 import { draftMode } from "next/headers";
+
+import { client } from "@/sanity/lib/client";
+import { token } from "@/sanity/lib/token";
 import {
   PageQueryResult,
   SettingsQueryResult,
 } from "@/typegen/sanity.fragment-types";
+
+import { pageQuery, settingsQuery } from "../lib/queries";
 
 const serverClient = client.withConfig({
   token,

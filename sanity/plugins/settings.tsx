@@ -3,10 +3,10 @@
  */
 
 import {
-  type TemplateItem,
+  DocumentActionComponent,
   type DocumentDefinition,
   type NewDocumentOptionsContext,
-  DocumentActionComponent,
+  type TemplateItem,
 } from "sanity";
 import { StructureResolver } from "sanity/structure";
 

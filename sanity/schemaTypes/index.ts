@@ -13,21 +13,16 @@ const annotations = [
   annotationLinkTel,
 ];
 
-// Documents
 import page from "./documents/page";
-import home from "./singletons/home";
-import settings from "./singletons/settings";
-
-// Objects
-import linkInternal from "./links/linkInternal";
 import linkExternal from "./links/linkExternal";
-import seoHome from "./seo/home";
-import seoPage from "./seo/page";
-import placeholderString from "./placeholderString";
-
-// Page Blocks
+import linkInternal from "./links/linkInternal";
 import pageHero from "./pageBlocks/pageHero";
 import textMedia from "./pageBlocks/textMedia";
+import placeholderString from "./placeholderString";
+import seoHome from "./seo/home";
+import seoPage from "./seo/page";
+import home from "./singletons/home";
+import settings from "./singletons/settings";
 
 // Order matters for annotations
 export const schema: { types: SchemaTypeDefinition[] } = {

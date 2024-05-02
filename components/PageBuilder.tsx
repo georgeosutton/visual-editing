@@ -19,7 +19,11 @@ const PageBuilder = (props: { block: SanityBlock }) => {
 
   if (typeof blocks[type] !== "undefined") {
     const BlockComponent = blocks[type] as ComponentType<SanityBlock>;
-    return <BlockComponent {...block} />;
+    return (
+      <div className="pb-14 md:pb-20 lg:pb-28">
+        <BlockComponent {...block} />
+      </div>
+    );
   }
 
   return (

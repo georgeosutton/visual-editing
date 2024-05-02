@@ -92,8 +92,15 @@ export type TextMedia = {
             _key: string;
           }>;
           style?: "h1" | "h2" | "h3" | "normal";
-          listItem?: never;
-          markDefs?: null;
+          listItem?: "bullet";
+          markDefs?: Array<
+            | ({
+                _key: string;
+              } & AnnotationLinkInternal)
+            | ({
+                _key: string;
+              } & AnnotationLinkExternal)
+          >;
           level?: number;
           _type: "block";
           _key: string;
@@ -474,7 +481,6 @@ export type SanityImageFragment = {
                   _key: string;
                   _type: "image";
                   id: string | null;
-                  preview: string | null;
                   hotspot: {
                     x: number | null;
                     y: number | null;
@@ -510,8 +516,15 @@ export type TextMediaBlock = {
                       _key: string;
                     }>;
                     style?: "h1" | "h2" | "h3" | "normal";
-                    listItem?: never;
-                    markDefs?: null;
+                    listItem?: "bullet";
+                    markDefs?: Array<
+                      | ({
+                          _key: string;
+                        } & AnnotationLinkExternal)
+                      | ({
+                          _key: string;
+                        } & AnnotationLinkInternal)
+                    >;
                     level?: number;
                     _type: "block";
                   }> | null;

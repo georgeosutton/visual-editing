@@ -3,9 +3,9 @@ import {
   BlockListDefinition,
   BlockMarksDefinition,
   BlockStyleDefinition,
+  defineField,
   PortableTextBlock,
   PortableTextChild,
-  defineField,
 } from "sanity";
 
 export const createBlockField = ({

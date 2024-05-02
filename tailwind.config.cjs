@@ -106,6 +106,12 @@ module.exports = {
   plugins: [
     plugin(function ({ addComponents }) {
       addComponents({
+        "@media (max-width: 1024px)": {
+          ".container": {
+            paddingRight: "1.5rem",
+            paddingLeft: "1.5rem",
+          },
+        },
         "@media (max-width: 768px)": {
           ".container": {
             paddingRight: "1rem",

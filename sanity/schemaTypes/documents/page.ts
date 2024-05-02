@@ -1,5 +1,6 @@
 import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+
 import { BLOCK_TYPES } from "../constants";
 
 export default defineType({

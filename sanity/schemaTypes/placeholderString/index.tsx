@@ -1,5 +1,6 @@
-import PlaceholderStringInput from "./PlaceholderStringInput";
 import { defineType } from "sanity";
+
+import PlaceholderStringInput from "./PlaceholderStringInput";
 
 export default defineType({
   name: "placeholderString",
