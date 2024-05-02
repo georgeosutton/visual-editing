@@ -9,10 +9,11 @@ import { media } from "sanity-plugin-media";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
-import { schema } from "./sanity/schema";
+import { schema } from "./sanity/schemaTypes";
+
 import { pageStructure, singletonPlugin } from "./sanity/plugins/settings";
-import settings from "./sanity/schemas/singletons/settings";
-import home from "./sanity/schemas/singletons/home";
+import settings from "./sanity/schemaTypes/singletons/settings";
+import home from "./sanity/schemaTypes/singletons/home";
 import { apiVersion, dataset, projectId } from "./sanity/lib/api";
 import { locate } from "./sanity/plugins/locate";
 

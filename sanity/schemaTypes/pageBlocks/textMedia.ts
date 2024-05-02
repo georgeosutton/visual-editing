@@ -1,8 +1,8 @@
 import { defineArrayMember, defineField } from "sanity";
-import { createBlockField } from "../../createBlockField";
-import { createPageBlock } from "../../createPageBlock";
+import { createBlockField } from "../createBlockField";
+import { createPageBlock } from "../createPageBlock";
 import { BlockContentIcon, ImageIcon } from "@sanity/icons";
-import { blockPreview } from "../../blockPreview";
+import { blockPreview } from "../blockPreview";
 import { PortableTextBlock } from "@portabletext/react";
 
 export default createPageBlock({

@@ -1,7 +1,7 @@
 import { defineField, defineType, defineArrayMember } from "sanity";
 import { BsStars } from "react-icons/bs";
-import { createBlockField } from "../../createBlockField";
-import { blockPreview } from "../../blockPreview";
+import { createBlockField } from "../createBlockField";
+import { blockPreview } from "../blockPreview";
 
 export default defineType({
   name: "pageHero",

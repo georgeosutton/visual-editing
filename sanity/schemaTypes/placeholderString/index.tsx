@@ -1,4 +1,4 @@
-import PlaceholderStringInput from "@/sanity/components/inputs/PlaceholderString";
+import PlaceholderStringInput from "./PlaceholderStringInput";
 import { defineType } from "sanity";
 
 export default defineType({

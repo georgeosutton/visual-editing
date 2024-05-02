@@ -1,5 +1,5 @@
 import { defineType } from "sanity";
-import { PAGE_REFERENCES } from "../../constant";
+import { PAGE_REFERENCES } from "../constants";
 import { LinkIcon } from "@sanity/icons";
 
 export default defineType({
