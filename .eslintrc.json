@@ -24,5 +24,10 @@
     "project": true,
     "tsconfigRootDir": "__dirname"
   },
+  "prettier/prettier": [
+    {
+      "endOfLine": "auto"
+    }
+  ],
   "root": true
 }
