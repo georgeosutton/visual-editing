@@ -28,7 +28,7 @@ export default defineType({
       title: "reference.title",
       subtitle: "text",
     },
-    prepare({ title, subtitle }) {
+    prepare({ title, subtitle }: { title: string; subtitle: string }) {
       return {
         title: title ? title : subtitle,
         subtitle: title ? subtitle : "",

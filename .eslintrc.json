@@ -1,15 +1,16 @@
 {
-  "root": true,
   "extends": [
     "plugin:tailwindcss/recommended",
     "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:prettier/recommended"
   ],
-  "plugins": ["simple-import-sort"],
+  "plugins": ["simple-import-sort", "@typescript-eslint"],
   "rules": {
     "react-hooks/exhaustive-deps": "error",
     "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/no-unsafe-assignment": "error"
   },
   "settings": {
     "tailwindcss": {
@@ -17,11 +18,11 @@
       "config": "tailwind.config.cjs"
     }
   },
-  "ignorePatterns": ["typegen/", ".*.js", ".*.cjs", "*.*.cjs"],
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx", "*.js"],
-      "parser": "@typescript-eslint/parser"
-    }
-  ]
+  "ignorePatterns": ["typegen/", ".*.js", ".*.cjs"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": true,
+    "tsconfigRootDir": "__dirname"
+  },
+  "root": true
 }

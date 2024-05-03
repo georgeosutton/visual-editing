@@ -1,4 +1,5 @@
 import { HomeIcon } from "@sanity/icons";
+import { ReactNode } from "react";
 import { defineField, defineType } from "sanity";
 
 import { BLOCK_TYPES } from "../constants";
@@ -52,12 +53,10 @@ export default defineType({
     select: {
       seoImage: "seo.image",
     },
-    prepare(selection) {
-      const { seoImage } = selection;
-
+    prepare({ seoImage }: { seoImage: ReactNode }) {
       return {
-        media: seoImage,
         title: "Home",
+        media: seoImage,
       };
     },
   },

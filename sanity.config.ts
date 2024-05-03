@@ -3,19 +3,17 @@
  */
 
 import { visionTool } from "@sanity/vision";
+import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
+import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
 
-import { defineConfig } from "sanity";
-import { structureTool } from "sanity/structure";
-
-import { schema } from "./sanity/schemaTypes";
-
-import { pageStructure, singletonPlugin } from "./sanity/plugins/settings";
-import settings from "./sanity/schemaTypes/singletons/settings";
-import home from "./sanity/schemaTypes/singletons/home";
 import { apiVersion, dataset, projectId } from "./sanity/lib/api";
 import { locate } from "./sanity/plugins/locate";
+import { pageStructure, singletonPlugin } from "./sanity/plugins/settings";
+import { schema } from "./sanity/schemaTypes";
+import home from "./sanity/schemaTypes/singletons/home";
+import settings from "./sanity/schemaTypes/singletons/settings";
 
 export default defineConfig({
   title: "Visual Editing Demo",

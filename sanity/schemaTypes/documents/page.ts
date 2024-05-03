@@ -1,4 +1,5 @@
 import { DocumentIcon } from "@sanity/icons";
+import { ReactNode } from "react";
 import { defineField, defineType } from "sanity";
 
 import { BLOCK_TYPES } from "../constants";
@@ -71,9 +72,15 @@ export default defineType({
       title: "title",
       slug: "slug",
     },
-    prepare(selection) {
-      const { seoImage, title, slug } = selection;
-
+    prepare({
+      title,
+      seoImage,
+      slug,
+    }: {
+      title: string;
+      slug: { current: string };
+      seoImage: ReactNode;
+    }) {
       return {
         title,
         subtitle: slug?.current,

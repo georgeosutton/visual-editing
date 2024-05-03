@@ -1,14 +1,15 @@
 import { PortableTextBlock } from "@portabletext/react";
 import { BlockContentIcon, ImageIcon } from "@sanity/icons";
-import { defineArrayMember, defineField } from "sanity";
+import { ReactNode } from "react";
+import { defineArrayMember, defineField, defineType, Image } from "sanity";
 
 import { blockPreview } from "../blockPreview";
 import { createBlockField } from "../createBlockField";
-import { createPageBlock } from "../createPageBlock";
 
-export default createPageBlock({
+export default defineType({
   name: "textMedia",
   title: "Text Media",
+  type: "object",
   fields: [
     defineField({
       name: "content",
@@ -59,13 +60,22 @@ export default createPageBlock({
     select: {
       content: "content",
     },
-    prepare({ content = [] }) {
-      const textObject: { text: PortableTextBlock[] } = content.find(
-        (item: { _type: string }) => item._type == "textObject",
-      );
-      const image = content.find(
-        (item: { _type: string }) => item._type == "image",
-      );
+    prepare({
+      content,
+    }: {
+      content: (
+        | { text: PortableTextBlock[]; _type: "textObject" }
+        | ({ _type: "image" } & Image)
+      )[];
+    }) {
+      const textObject = content?.find(
+        (item) => item._type === "textObject",
+      ) as { text: PortableTextBlock[]; _type: "textObject" };
+
+      const image = content?.find((item) => item._type == "image") as
+        | ReactNode
+        | undefined;
+
       return {
         title: blockPreview(textObject?.text),
         subtitle: "Text Media",
@@ -74,3 +84,9 @@ export default createPageBlock({
     },
   },
 });
+
+const bar = { value: 123 };
+const foo = { value: 456 };
+const foobar = [foo, bar];
+
+console.log(foobar.find((obj) => obj.value === 123));

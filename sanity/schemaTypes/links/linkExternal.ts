@@ -31,7 +31,7 @@ export default defineType({
       title: "text",
       url: "url",
     },
-    prepare({ url, title }) {
+    prepare({ url, title }: { url: string; title: string }) {
       return {
         subtitle: url ? `→ ${url}` : "",
         title,

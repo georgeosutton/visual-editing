@@ -21,7 +21,7 @@ export const metadata = {
   ),
 };
 
-export default async function CatchAllRoute({
+export default function CatchAllRoute({
   children,
 }: {
   children: React.ReactNode;

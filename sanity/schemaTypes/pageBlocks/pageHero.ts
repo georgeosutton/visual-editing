@@ -1,3 +1,4 @@
+import { PortableTextBlock } from "@portabletext/react";
 import { BsStars } from "react-icons/bs";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
@@ -35,7 +36,8 @@ export default defineType({
     select: {
       text: "text",
     },
-    prepare({ text = [] }) {
+    prepare(value) {
+      const text = value?.text as PortableTextBlock[];
       return {
         title: blockPreview(text),
         subtitle: "Page Hero",
