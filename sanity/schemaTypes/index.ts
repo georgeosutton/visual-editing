@@ -1,5 +1,3 @@
-import { type SchemaTypeDefinition } from "sanity";
-
 // Rich text annotations used in the block content editor
 import annotationLinkEmail from "./annotations/linkEmail";
 import annotationLinkExternal from "./annotations/linkExternal";
@@ -25,18 +23,16 @@ import home from "./singletons/home";
 import settings from "./singletons/settings";
 
 // Order matters for annotations
-export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [
-    ...annotations,
-    page,
-    home,
-    settings,
-    pageHero,
-    linkInternal,
-    linkExternal,
-    seoHome,
-    seoPage,
-    placeholderString,
-    textMedia,
-  ],
-};
+export const schemaTypes = [
+  ...annotations,
+  page,
+  home,
+  settings,
+  pageHero,
+  linkInternal,
+  linkExternal,
+  seoHome,
+  seoPage,
+  placeholderString,
+  textMedia,
+];

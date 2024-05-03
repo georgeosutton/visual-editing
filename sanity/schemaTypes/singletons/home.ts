@@ -53,10 +53,10 @@ export default defineType({
     select: {
       seoImage: "seo.image",
     },
-    prepare({ seoImage }: { seoImage: ReactNode }) {
+    prepare({ seoImage }) {
       return {
         title: "Home",
-        media: seoImage,
+        media: seoImage as ReactNode,
       };
     },
   },

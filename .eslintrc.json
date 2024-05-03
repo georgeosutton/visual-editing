@@ -18,7 +18,7 @@
       "config": "tailwind.config.cjs"
     }
   },
-  "ignorePatterns": ["typegen/", ".*.js", ".*.cjs"],
+  "ignorePatterns": ["typegen/"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": true,

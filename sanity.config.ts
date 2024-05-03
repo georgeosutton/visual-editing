@@ -3,7 +3,7 @@
  */
 
 import { visionTool } from "@sanity/vision";
-import { defineConfig } from "sanity";
+import { defineConfig, SchemaTypeDefinition } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
@@ -11,7 +11,7 @@ import { media } from "sanity-plugin-media";
 import { apiVersion, dataset, projectId } from "./sanity/lib/api";
 import { locate } from "./sanity/plugins/locate";
 import { pageStructure, singletonPlugin } from "./sanity/plugins/settings";
-import { schema } from "./sanity/schemaTypes";
+import { schemaTypes } from "./sanity/schemaTypes";
 import home from "./sanity/schemaTypes/singletons/home";
 import settings from "./sanity/schemaTypes/singletons/settings";
 
@@ -20,7 +20,9 @@ export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
-  schema,
+  schema: {
+    types: schemaTypes as SchemaTypeDefinition[],
+  },
   plugins: [
     structureTool({ structure: pageStructure([home, settings]) }),
     presentationTool({
