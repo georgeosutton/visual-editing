@@ -10,7 +10,14 @@
     "react-hooks/exhaustive-deps": "error",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "@typescript-eslint/no-unsafe-assignment": "error"
+    "@typescript-eslint/no-unsafe-assignment": "error",
+    "@typescript-eslint/no-var-requires": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   },
   "settings": {
     "tailwindcss": {
@@ -24,10 +31,5 @@
     "project": true,
     "tsconfigRootDir": "__dirname"
   },
-  "prettier/prettier": [
-    {
-      "endOfLine": "auto"
-    }
-  ],
   "root": true
 }
