@@ -84,9 +84,3 @@ export default defineType({
     },
   },
 });
-
-const bar = { value: 123 };
-const foo = { value: 456 };
-const foobar = [foo, bar];
-
-console.log(foobar.find((obj) => obj.value === 123));
