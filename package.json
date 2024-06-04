@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "bun run typegen",
     "dev": "next dev",
     "prebuild": "bun run typegen",
     "build": "pnpm run prebuild && next build && pnpm run postbuild",
