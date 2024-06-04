@@ -31,9 +31,9 @@ export default function CatchAllRoute({
       <Suspense>
         <Header />
       </Suspense>
-      <Suspense>
-        <main>{children}</main>
-      </Suspense>
+      <main>
+        <Suspense>{children}</Suspense>
+      </main>
       <Suspense>
         <Footer />
       </Suspense>
