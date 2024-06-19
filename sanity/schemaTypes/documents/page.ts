@@ -50,14 +50,26 @@ export default defineType({
         }),
     }),
     // Page Blocks
-    {
+    defineField({
       name: "blocks",
       type: "array",
       title: "Page Blocks",
       validation: (Rule) => Rule.min(1).error("The page has no content."),
       of: BLOCK_TYPES,
       group: "editorial",
-    },
+      options: {
+        insertMenu: {
+          filter: true,
+          views: [
+            { name: "list" },
+            {
+              name: "grid",
+              previewImageUrl: (schemaTypeName) => `/${schemaTypeName}.png`,
+            },
+          ],
+        },
+      },
+    }),
     // SEO
     defineField({
       name: "seo",

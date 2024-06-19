@@ -1,6 +1,7 @@
 import { PortableTextBlock } from "@portabletext/react";
 import { BlockContentIcon, ImageIcon } from "@sanity/icons";
 import { ReactNode } from "react";
+import { GrTextWrap } from "react-icons/gr";
 import { defineArrayMember, defineField, defineType, Image } from "sanity";
 
 import { blockPreview } from "../blockPreview";
@@ -10,6 +11,7 @@ export default defineType({
   name: "textMedia",
   title: "Text Media",
   type: "object",
+  icon: GrTextWrap,
   fields: [
     defineField({
       name: "content",
