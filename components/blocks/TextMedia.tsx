@@ -64,7 +64,7 @@ export default function TextMedia(props: TextMediaBlock) {
           }
           return (
             <PortableText
-              className="flex flex-col justify-center"
+              className="flex flex-col justify-center text-center"
               block={block}
               list={list}
               key={item._key}
