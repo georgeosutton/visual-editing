@@ -37,14 +37,14 @@ export default function TextMedia(props: TextMediaBlock) {
     <div className="container grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
       {content?.map((item) => {
         if (item._type == "image") {
-          const { id, key, ...imageProps } = validateImage(item);
+          const { id, ...imageProps } = validateImage(item);
 
           if (!id) {
             return null;
           }
 
           return (
-            <div key={key}>
+            <div key={item._key}>
               <SanityImage
                 {...imageProps}
                 className="h-auto w-full"

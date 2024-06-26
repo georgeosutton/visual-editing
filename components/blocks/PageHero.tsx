@@ -31,7 +31,7 @@ export default function PageHero(props: PageHeroBlock) {
       {images && (
         <div className="col-start-1 row-start-1 grid md:grid-cols-2">
           {images.map((imageData) => {
-            const { id, key, ...imageProps } = validateImage(imageData);
+            const { id, ...imageProps } = validateImage(imageData);
 
             if (!id) {
               return null;
@@ -40,7 +40,7 @@ export default function PageHero(props: PageHeroBlock) {
             return (
               <SanityImage
                 id={id}
-                key={key}
+                key={imageData._key}
                 className="relative h-[40vh] w-full object-cover md:h-[70vh]"
                 sizes="(min-width: 768px) 50vw, 100vw"
                 mode="cover"
