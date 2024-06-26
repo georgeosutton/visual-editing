@@ -5,5 +5,4 @@ export const LINK_INTERNAL = `//groq
   ...reference-> {
     "slug": slug.current,
   },
-  "_ts": "LinkInternalType"
 `;

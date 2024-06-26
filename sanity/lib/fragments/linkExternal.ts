@@ -4,5 +4,4 @@ export const LINK_EXTERNAL = `//groq
   text,
   url,
   newWindow,
-  "_ts": "LinkExternalType"
 `;

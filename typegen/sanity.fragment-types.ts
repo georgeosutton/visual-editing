@@ -390,9 +390,35 @@ export type Slug = {
   current?: string;
   source?: string;
 };
+
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | TextMedia
+  | PlaceholderString
+  | LinkExternal
+  | LinkInternal
+  | PageHero
+  | Settings
+  | AnnotationLinkTel
+  | AnnotationLinkInternal
+  | Home
+  | SeoHome
+  | Page
+  | SeoPage
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | AnnotationLinkExternal
+  | AnnotationLinkEmail
+  | MediaTag
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-
-
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
 export type PageQueryResult =
@@ -435,12 +461,22 @@ export type PageQueryResult =
       };
     }
   | null;
-
 // Variable: settingsQuery
 export type SettingsQueryResult = {
   menuItems: Array<
-    | LinkExternalType
-    | LinkInternalType
+    | {
+        _key: string;
+        _type: "linkExternal";
+        text: string | null;
+        url: string | null;
+        newWindow: boolean | null;
+      }
+    | {
+        _key: string;
+        _type: "linkInternal";
+        text: string | null;
+        slug: string | null;
+      }
   > | null;
   footerModules: Array<{
     _key: string;
@@ -454,8 +490,19 @@ export type SettingsQueryResult = {
       style?: "h3" | "normal";
       listItem?: "bullet";
       markDefs: Array<
-        | LinkExternalType
-        | LinkInternalType
+        | {
+            _key: string;
+            _type: "annotationLinkExternal";
+            text: null;
+            url: string | null;
+            newWindow: boolean | null;
+          }
+        | {
+            _key: string;
+            _type: "annotationLinkInternal";
+            text: null;
+            slug: string | null;
+          }
         | {
             _key: string;
           }
@@ -465,16 +512,12 @@ export type SettingsQueryResult = {
     }> | null;
   }> | null;
 } | null;
-
-
 // Source: app/(www)/sitemap.xml/route.ts
 // Variable: allSlugsQuery
 export type AllSlugsQueryResult = Array<{
   slug: string | null;
   _updatedAt: string;
 }>;
-
-
 
 
 export type SanityImageFragment = {
@@ -517,14 +560,21 @@ export type TextMediaBlock = {
                     }>;
                     style?: "h1" | "h2" | "h3" | "normal";
                     listItem?: "bullet";
-                    markDefs?: Array<
-                      | ({
+                    markDefs: Array<
+                      | {
                           _key: string;
-                        } & AnnotationLinkExternal)
-                      | ({
+                          _type: "annotationLinkExternal";
+                          text: null;
+                          url: string | null;
+                          newWindow: boolean | null;
+                        }
+                      | {
                           _key: string;
-                        } & AnnotationLinkInternal)
-                    >;
+                          _type: "annotationLinkInternal";
+                          text: null;
+                          slug: string | null;
+                        }
+                    > | null;
                     level?: number;
                     _type: "block";
                   }> | null;
@@ -555,22 +605,3 @@ export type PageHeroBlock = {
             _key: string;
             _ts: "PageHeroBlock";
           };
-
-
-export type LinkExternalType = {
-        _key: string;
-        _type: "linkExternal";
-        text: string | null;
-        url: string | null;
-        newWindow: boolean | null;
-        _ts: "LinkExternalType";
-      };
-
-
-export type LinkInternalType = {
-        _key: string;
-        _type: "linkInternal";
-        text: string | null;
-        slug: string | null;
-        _ts: "LinkInternalType";
-      };

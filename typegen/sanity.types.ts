@@ -390,12 +390,38 @@ export type Slug = {
   current?: string;
   source?: string;
 };
+
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | TextMedia
+  | PlaceholderString
+  | LinkExternal
+  | LinkInternal
+  | PageHero
+  | Settings
+  | AnnotationLinkTel
+  | AnnotationLinkInternal
+  | Home
+  | SeoHome
+  | Page
+  | SeoPage
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | AnnotationLinkExternal
+  | AnnotationLinkEmail
+  | MediaTag
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-
-
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
-// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        ...,       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
+// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },	},  }       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
 export type PageQueryResult =
   | {
       blocks: null;
@@ -452,14 +478,21 @@ export type PageQueryResult =
                     }>;
                     style?: "h1" | "h2" | "h3" | "normal";
                     listItem?: "bullet";
-                    markDefs?: Array<
-                      | ({
+                    markDefs: Array<
+                      | {
                           _key: string;
-                        } & AnnotationLinkExternal)
-                      | ({
+                          _type: "annotationLinkExternal";
+                          text: null;
+                          url: string | null;
+                          newWindow: boolean | null;
+                        }
+                      | {
                           _key: string;
-                        } & AnnotationLinkInternal)
-                    >;
+                          _type: "annotationLinkInternal";
+                          text: null;
+                          slug: string | null;
+                        }
+                    > | null;
                     level?: number;
                     _type: "block";
                   }> | null;
@@ -578,14 +611,21 @@ export type PageQueryResult =
                     }>;
                     style?: "h1" | "h2" | "h3" | "normal";
                     listItem?: "bullet";
-                    markDefs?: Array<
-                      | ({
+                    markDefs: Array<
+                      | {
                           _key: string;
-                        } & AnnotationLinkExternal)
-                      | ({
+                          _type: "annotationLinkExternal";
+                          text: null;
+                          url: string | null;
+                          newWindow: boolean | null;
+                        }
+                      | {
                           _key: string;
-                        } & AnnotationLinkInternal)
-                    >;
+                          _type: "annotationLinkInternal";
+                          text: null;
+                          slug: string | null;
+                        }
+                    > | null;
                     level?: number;
                     _type: "block";
                   }> | null;
@@ -666,9 +706,8 @@ export type PageQueryResult =
       };
     }
   | null;
-
 // Variable: settingsQuery
-// Query:   *[_type == "settings"][0]{    menuItems[]{      (_type == 'linkInternal') => {//groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },  "_ts": "LinkInternalType"},      (_type == 'linkExternal') => {//groq  _key,  _type,  text,  url,  newWindow,  "_ts": "LinkExternalType"}    },    footerModules[]{      _key,      text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,  "_ts": "LinkExternalType"	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },  "_ts": "LinkInternalType"	},  }      }    }  }
+// Query:   *[_type == "settings"][0]{    menuItems[]{      (_type == 'linkInternal') => {//groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },},      (_type == 'linkExternal') => {//groq  _key,  _type,  text,  url,  newWindow,}    },    footerModules[]{      _key,      text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },	},  }      }    }  }
 export type SettingsQueryResult = {
   menuItems: Array<
     | {
@@ -677,14 +716,12 @@ export type SettingsQueryResult = {
         text: string | null;
         url: string | null;
         newWindow: boolean | null;
-        _ts: "LinkExternalType";
       }
     | {
         _key: string;
         _type: "linkInternal";
         text: string | null;
         slug: string | null;
-        _ts: "LinkInternalType";
       }
   > | null;
   footerModules: Array<{
@@ -705,14 +742,12 @@ export type SettingsQueryResult = {
             text: null;
             url: string | null;
             newWindow: boolean | null;
-            _ts: "LinkExternalType";
           }
         | {
             _key: string;
             _type: "annotationLinkInternal";
             text: null;
             slug: string | null;
-            _ts: "LinkInternalType";
           }
         | {
             _key: string;
@@ -723,8 +758,6 @@ export type SettingsQueryResult = {
     }> | null;
   }> | null;
 } | null;
-
-
 // Source: app/(www)/sitemap.xml/route.ts
 // Variable: allSlugsQuery
 // Query: *[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}
@@ -732,5 +765,3 @@ export type AllSlugsQueryResult = Array<{
   slug: string | null;
   _updatedAt: string;
 }>;
-
-
