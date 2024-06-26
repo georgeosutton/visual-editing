@@ -45,7 +45,7 @@ export default function PortableText({
       },
     };
     return (
-      <div className={cn("grid gap-y-6", className)}>
+      <div className={cn("flex flex-col gap-y-6", className)}>
         <PortableTextReact value={value} components={components} />
       </div>
     );
