@@ -3,9 +3,11 @@ import { ComponentType } from "react";
 import PageHero from "./blocks/PageHero";
 import TextMedia from "./blocks/TextMedia";
 
+export type BlockTypes = keyof typeof blocks;
+
 export interface SanityBlock {
   _key: string;
-  _type: keyof typeof blocks;
+  _type: BlockTypes;
 }
 
 const blocks = {
