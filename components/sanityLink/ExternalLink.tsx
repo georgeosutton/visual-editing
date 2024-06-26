@@ -1,12 +1,17 @@
 import React from "react";
 
-import { LinkExternalType } from "@/typegen/sanity.fragment-types";
+export type ExternalLinkProps = {
+  _type: "linkExternal";
+  text?: string | null;
+  url?: string | null;
+  newWindow?: boolean | null;
+};
 
 const ExternalLink = React.forwardRef<
   HTMLAnchorElement,
-  LinkExternalType & React.AnchorHTMLAttributes<HTMLAnchorElement>
+  ExternalLinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
 >(function LinkComponent(props, forwardedRef) {
-  const { text, url, newWindow, ...rest } = props;
+  const { text, url, newWindow, children, ...rest } = props;
 
   if (!url) {
     return <div>Missing URL</div>;
@@ -20,7 +25,7 @@ const ExternalLink = React.forwardRef<
       rel={newWindow ? "noopener noreferrer" : undefined}
       {...rest}
     >
-      {text}
+      {children ? children : text}
     </a>
   );
 });

@@ -1,15 +1,19 @@
 import Link, { LinkProps } from "next/link";
 import React from "react";
 
-import { LinkInternalType } from "@/typegen/sanity.fragment-types";
+export type InternalLinkProps = {
+  _type: "linkInternal";
+  text?: string | null;
+  slug?: string | null;
+};
 
 const InternalLink = React.forwardRef<
   HTMLAnchorElement,
-  LinkInternalType &
+  InternalLinkProps &
     Omit<LinkProps, "href"> &
     React.AnchorHTMLAttributes<HTMLAnchorElement>
 >(function LinkComponent(props, forwardedRef) {
-  const { text, slug, ...rest } = props;
+  const { text, slug, children, ...rest } = props;
 
   if (!slug) {
     return <div>Missing Page</div>;
@@ -17,7 +21,7 @@ const InternalLink = React.forwardRef<
 
   return (
     <Link ref={forwardedRef} href={slug} {...rest}>
-      {text}
+      {children ? children : text}
     </Link>
   );
 });
