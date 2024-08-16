@@ -440,8 +440,8 @@ export type PageQueryResult =
     }
   | {
       blocks: Array<
-        | TextMediaBlock
         | PageHeroBlock
+        | TextMediaBlock
       > | null;
       seo: {
         description: string | null;
@@ -451,8 +451,8 @@ export type PageQueryResult =
     }
   | {
       blocks: Array<
-        | TextMediaBlock
         | PageHeroBlock
+        | TextMediaBlock
       > | null;
       seo: {
         description: string | null;
@@ -477,6 +477,11 @@ export type SettingsQueryResult = {
         text: string | null;
         slug: string | null;
       }
+    | {
+        _key: string;
+        _type: "linkInternal";
+        text: string | null;
+      }
   > | null;
   footerModules: Array<{
     _key: string;
@@ -492,26 +497,66 @@ export type SettingsQueryResult = {
       markDefs: Array<
         | {
             _key: string;
+            _type: "annotationLinkEmail";
+            email?: string;
+          }
+        | {
+            _key: string;
             _type: "annotationLinkExternal";
-            text: null;
             url: string | null;
             newWindow: boolean | null;
+            text: null;
           }
         | {
             _key: string;
             _type: "annotationLinkInternal";
+            reference?:
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "home";
+                }
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "page";
+                };
             text: null;
             slug: string | null;
           }
         | {
             _key: string;
+            _type: "annotationLinkInternal";
+            reference?:
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "home";
+                }
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "page";
+                };
+            text: null;
+          }
+        | {
+            _key: string;
+            _type: "annotationLinkTel";
+            tel?: string;
           }
       > | null;
       level?: number;
       _type: "block";
+      _key: string;
     }> | null;
   }> | null;
 } | null;
+
 // Source: app/(www)/sitemap.xml/route.ts
 // Variable: allSlugsQuery
 export type AllSlugsQueryResult = Array<{
@@ -521,28 +566,50 @@ export type AllSlugsQueryResult = Array<{
 
 
 export type SanityImageFragment = {
-                  _key: string;
-                  _type: "image";
-                  id: string | null;
-                  hotspot: {
-                    x: number | null;
-                    y: number | null;
-                  } | null;
-                  crop: {
-                    bottom: number | null;
-                    left: number | null;
-                    right: number | null;
-                    top: number | null;
-                  } | null;
-                  alt: string | null;
-                  tags: null;
-                  description: string | null;
-                  title: string | null;
-                  height: number | null;
-                  url: string | null;
-                  width: number | null;
-                  _ts: "SanityImageFragment";
-                };
+              _key: string;
+              _type: "image";
+              id: string | null;
+              hotspot: {
+                x: number | null;
+                y: number | null;
+              } | null;
+              crop: {
+                bottom: number | null;
+                left: number | null;
+                right: number | null;
+                top: number | null;
+              } | null;
+              alt: string | null;
+              tags: null;
+              description: string | null;
+              title: string | null;
+              height: number | null;
+              url: string | null;
+              width: number | null;
+              _ts: "SanityImageFragment";
+            };
+
+
+export type PageHeroBlock = {
+            text: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            images: Array<SanityImageFragment> | null;
+            _type: "pageHero";
+            _key: string;
+            _ts: "PageHeroBlock";
+          };
 
 
 export type TextMediaBlock = {
@@ -564,44 +631,55 @@ export type TextMediaBlock = {
                       | {
                           _key: string;
                           _type: "annotationLinkExternal";
-                          text: null;
                           url: string | null;
                           newWindow: boolean | null;
+                          text: null;
                         }
                       | {
                           _key: string;
                           _type: "annotationLinkInternal";
+                          reference?:
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "home";
+                              }
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "page";
+                              };
                           text: null;
                           slug: string | null;
+                        }
+                      | {
+                          _key: string;
+                          _type: "annotationLinkInternal";
+                          reference?:
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "home";
+                              }
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "page";
+                              };
+                          text: null;
                         }
                     > | null;
                     level?: number;
                     _type: "block";
+                    _key: string;
                   }> | null;
                 }
             > | null;
             _type: "textMedia";
             _key: string;
             _ts: "TextMediaBlock";
-          };
-
-
-export type PageHeroBlock = {
-            text: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "h1" | "h2" | "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-            }> | null;
-            images: Array<SanityImageFragment> | null;
-            _type: "pageHero";
-            _key: string;
-            _ts: "PageHeroBlock";
           };

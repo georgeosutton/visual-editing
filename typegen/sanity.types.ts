@@ -442,6 +442,48 @@ export type PageQueryResult =
   | {
       blocks: Array<
         | {
+            text: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            images: Array<{
+              _key: string;
+              _type: "image";
+              id: string | null;
+              hotspot: {
+                x: number | null;
+                y: number | null;
+              } | null;
+              crop: {
+                bottom: number | null;
+                left: number | null;
+                right: number | null;
+                top: number | null;
+              } | null;
+              alt: string | null;
+              tags: null;
+              description: string | null;
+              title: string | null;
+              height: number | null;
+              url: string | null;
+              width: number | null;
+              _ts: "SanityImageFragment";
+            }> | null;
+            _type: "pageHero";
+            _key: string;
+            _ts: "PageHeroBlock";
+          }
+        | {
             content: Array<
               | {
                   _key: string;
@@ -482,66 +524,57 @@ export type PageQueryResult =
                       | {
                           _key: string;
                           _type: "annotationLinkExternal";
-                          text: null;
                           url: string | null;
                           newWindow: boolean | null;
+                          text: null;
                         }
                       | {
                           _key: string;
                           _type: "annotationLinkInternal";
+                          reference?:
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "home";
+                              }
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "page";
+                              };
                           text: null;
                           slug: string | null;
+                        }
+                      | {
+                          _key: string;
+                          _type: "annotationLinkInternal";
+                          reference?:
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "home";
+                              }
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "page";
+                              };
+                          text: null;
                         }
                     > | null;
                     level?: number;
                     _type: "block";
+                    _key: string;
                   }> | null;
                 }
             > | null;
             _type: "textMedia";
             _key: string;
             _ts: "TextMediaBlock";
-          }
-        | {
-            text: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "h1" | "h2" | "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-            }> | null;
-            images: Array<{
-              _key: string;
-              _type: "image";
-              id: string | null;
-              hotspot: {
-                x: number | null;
-                y: number | null;
-              } | null;
-              crop: {
-                bottom: number | null;
-                left: number | null;
-                right: number | null;
-                top: number | null;
-              } | null;
-              alt: string | null;
-              tags: null;
-              description: string | null;
-              title: string | null;
-              height: number | null;
-              url: string | null;
-              width: number | null;
-              _ts: "SanityImageFragment";
-            }> | null;
-            _type: "pageHero";
-            _key: string;
-            _ts: "PageHeroBlock";
           }
       > | null;
       seo: {
@@ -575,6 +608,48 @@ export type PageQueryResult =
   | {
       blocks: Array<
         | {
+            text: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            images: Array<{
+              _key: string;
+              _type: "image";
+              id: string | null;
+              hotspot: {
+                x: number | null;
+                y: number | null;
+              } | null;
+              crop: {
+                bottom: number | null;
+                left: number | null;
+                right: number | null;
+                top: number | null;
+              } | null;
+              alt: string | null;
+              tags: null;
+              description: string | null;
+              title: string | null;
+              height: number | null;
+              url: string | null;
+              width: number | null;
+              _ts: "SanityImageFragment";
+            }> | null;
+            _type: "pageHero";
+            _key: string;
+            _ts: "PageHeroBlock";
+          }
+        | {
             content: Array<
               | {
                   _key: string;
@@ -615,66 +690,57 @@ export type PageQueryResult =
                       | {
                           _key: string;
                           _type: "annotationLinkExternal";
-                          text: null;
                           url: string | null;
                           newWindow: boolean | null;
+                          text: null;
                         }
                       | {
                           _key: string;
                           _type: "annotationLinkInternal";
+                          reference?:
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "home";
+                              }
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "page";
+                              };
                           text: null;
                           slug: string | null;
+                        }
+                      | {
+                          _key: string;
+                          _type: "annotationLinkInternal";
+                          reference?:
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "home";
+                              }
+                            | {
+                                _ref: string;
+                                _type: "reference";
+                                _weak?: boolean;
+                                [internalGroqTypeReferenceTo]?: "page";
+                              };
+                          text: null;
                         }
                     > | null;
                     level?: number;
                     _type: "block";
+                    _key: string;
                   }> | null;
                 }
             > | null;
             _type: "textMedia";
             _key: string;
             _ts: "TextMediaBlock";
-          }
-        | {
-            text: Array<{
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?: "h1" | "h2" | "normal";
-              listItem?: never;
-              markDefs?: null;
-              level?: number;
-              _type: "block";
-            }> | null;
-            images: Array<{
-              _key: string;
-              _type: "image";
-              id: string | null;
-              hotspot: {
-                x: number | null;
-                y: number | null;
-              } | null;
-              crop: {
-                bottom: number | null;
-                left: number | null;
-                right: number | null;
-                top: number | null;
-              } | null;
-              alt: string | null;
-              tags: null;
-              description: string | null;
-              title: string | null;
-              height: number | null;
-              url: string | null;
-              width: number | null;
-              _ts: "SanityImageFragment";
-            }> | null;
-            _type: "pageHero";
-            _key: string;
-            _ts: "PageHeroBlock";
           }
       > | null;
       seo: {
@@ -707,7 +773,7 @@ export type PageQueryResult =
     }
   | null;
 // Variable: settingsQuery
-// Query:   *[_type == "settings"][0]{    menuItems[]{      (_type == 'linkInternal') => {//groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },},      (_type == 'linkExternal') => {//groq  _key,  _type,  text,  url,  newWindow,}    },    footerModules[]{      _key,      text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },	},  }      }    }  }
+// Query: *[_type == "settings"][0]{    menuItems[]{      (_type == 'linkInternal') => {//groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },},      (_type == 'linkExternal') => {//groq  _key,  _type,  text,  url,  newWindow,}    },    footerModules[]{      _key,      text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },	},  }      }    }  }
 export type SettingsQueryResult = {
   menuItems: Array<
     | {
@@ -722,6 +788,11 @@ export type SettingsQueryResult = {
         _type: "linkInternal";
         text: string | null;
         slug: string | null;
+      }
+    | {
+        _key: string;
+        _type: "linkInternal";
+        text: string | null;
       }
   > | null;
   footerModules: Array<{
@@ -738,26 +809,66 @@ export type SettingsQueryResult = {
       markDefs: Array<
         | {
             _key: string;
+            _type: "annotationLinkEmail";
+            email?: string;
+          }
+        | {
+            _key: string;
             _type: "annotationLinkExternal";
-            text: null;
             url: string | null;
             newWindow: boolean | null;
+            text: null;
           }
         | {
             _key: string;
             _type: "annotationLinkInternal";
+            reference?:
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "home";
+                }
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "page";
+                };
             text: null;
             slug: string | null;
           }
         | {
             _key: string;
+            _type: "annotationLinkInternal";
+            reference?:
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "home";
+                }
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "page";
+                };
+            text: null;
+          }
+        | {
+            _key: string;
+            _type: "annotationLinkTel";
+            tel?: string;
           }
       > | null;
       level?: number;
       _type: "block";
+      _key: string;
     }> | null;
   }> | null;
 } | null;
+
 // Source: app/(www)/sitemap.xml/route.ts
 // Variable: allSlugsQuery
 // Query: *[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}
