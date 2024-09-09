@@ -1,5 +1,5 @@
-import { LINK_EXTERNAL } from "@/sanity/lib/fragments/linkExternal";
-import { LINK_INTERNAL } from "@/sanity/lib/fragments/linkInternal";
+import { LINK_EXTERNAL } from "./linkExternal";
+import { LINK_INTERNAL } from "./linkInternal";
 
 export const MARK_DEFS = `//groq
 	...,

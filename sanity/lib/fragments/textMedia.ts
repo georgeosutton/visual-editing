@@ -1,5 +1,4 @@
-import { IMAGE } from "@/sanity/lib/fragments/image";
-
+import { IMAGE } from "./image";
 import { PORTABLE_TEXT } from "./portableText";
 
 export const TEXT_MEDIA = `//groq

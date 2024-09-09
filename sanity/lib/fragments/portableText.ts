@@ -1,4 +1,4 @@
-import { MARK_DEFS } from "@/sanity/lib/fragments/markDefs";
+import { MARK_DEFS } from "./markDefs";
 
 export const PORTABLE_TEXT = `//groq
   ...,

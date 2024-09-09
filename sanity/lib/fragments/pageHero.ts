@@ -1,4 +1,4 @@
-import { IMAGE } from "@/sanity/lib/fragments/image";
+import { IMAGE } from "./image";
 
 export const PAGE_HERO = `//groq
 text[]{
