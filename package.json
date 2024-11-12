@@ -1,68 +1,13 @@
 {
-  "name": "visual-editing",
-  "version": "0.1.0",
   "private": true,
-  "type": "module",
+  "name": "sanity-monorepo",
   "scripts": {
-    "dev": "next dev",
-    "prebuild": "bun run typegen",
-    "build": "pnpm run prebuild && next build && pnpm run postbuild",
-    "postbuild": "next-sitemap --config next-sitemap.config.cjs",
-    "start": "next start",
-    "lint": "tsc --noemit && next lint",
-    "typegen": "bun run schema:extract && bun run typegen:generate",
-    "schema:extract": "sanity schema extract --path=./typegen/schema.json",
-    "typegen:generate": "sanity typegen generate",
-    "posttypegen": "bun run ./scripts/fragment-typegen.ts"
-  },
-  "dependencies": {
-    "@portabletext/react": "^3.1.0",
-    "@radix-ui/react-slot": "^1.1.0",
-    "@sanity/client": "^6.22.2",
-    "@sanity/icons": "^2.11.8",
-    "@sanity/image-url": "^1.0.2",
-    "@sanity/preview-url-secret": "^1.6.21",
-    "@sanity/react-loader": "^1.10.10",
-    "@sanity/vision": "^3.61.0",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "lodash.get": "^4.4.2",
-    "next": "14.2.3",
-    "next-sanity": "^9.6.0",
-    "next-sitemap": "^4.2.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.3.0",
-    "rxjs": "^7.8.1",
-    "sanity": "^3.61.0",
-    "sanity-image": "^0.1.9",
-    "sanity-plugin-media": "^2.3.2",
-    "styled-components": "^6.1.13",
-    "tailwind-merge": "^2.5.4"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
-    "@types/lodash.get": "^4.4.9",
-    "@types/node": "^22.7.8",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "14.1.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-tailwindcss": "^3.17.5",
-    "postcss": "^8.4.47",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^3.4.14",
-    "typescript": "^5.6.3"
+    "turbo": "^2.2.3"
   },
-  "prettier": {
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ]
-  }
+  "packageManager": "pnpm@9.1.1"
 }
