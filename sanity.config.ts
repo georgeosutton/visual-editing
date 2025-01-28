@@ -29,11 +29,12 @@ export default defineConfig({
     presentationTool({
       resolve,
       previewUrl: {
-        draftMode: {
-          enable: "/api/draft",
+        previewMode: {
+          enable: '/api/draft-mode/enable',
         },
       },
     }),
+    // Con
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
