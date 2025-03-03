@@ -1,0 +1,18 @@
+services:
+  app:
+    extends:
+      file: .devcontainer/docker-compose.yml
+      service: app
+    working_dir: /workspace/${COMPOSE_PROJECT_NAME}
+    ports:
+      - 3000:3000
+    environment:
+      APP_ENV: development
+    command: "pnpm install"
+    networks:
+      - default
+
+volumes:
+  node_modules:
+  pnpm_store:
+    external: true
