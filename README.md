@@ -1,3 +1,5 @@
+# Sanity Visual Editing Demo
+
 ## Using Docker
 
 ### Prerequisites
