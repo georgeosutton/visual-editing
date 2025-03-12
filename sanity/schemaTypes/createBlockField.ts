@@ -53,9 +53,7 @@ export const createBlockField = ({
             ),
         );
 
-        const emptyPaths = emptyBlocks.map(
-          (block, index) => [{ _key: block._key }] || [index],
-        );
+        const emptyPaths = emptyBlocks.map((block) => [{ _key: block?._key }]);
 
         return emptyPaths.length === 0
           ? true
