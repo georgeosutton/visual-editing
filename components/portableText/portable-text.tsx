@@ -9,10 +9,10 @@ import { useMemo } from "react";
 
 import { cn } from "@/lib/utils";
 
-import LinkEmailAnnotation from "./annotations/LinkEmail";
-import LinkExternalAnnotation from "./annotations/LinkExternal";
-import LinkInternalAnnotation from "./annotations/LinkInternal";
-import LinkTelAnnotation from "./annotations/LinkTel";
+import LinkEmailAnnotation from "./annotations/link-email";
+import LinkExternalAnnotation from "./annotations/link-external";
+import LinkInternalAnnotation from "./annotations/link-internal";
+import LinkTelAnnotation from "./annotations/link-tel";
 
 type Props = {
   block?: Record<string, PortableTextBlockComponent>;

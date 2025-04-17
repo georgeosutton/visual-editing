@@ -1,7 +1,7 @@
 import { ComponentType } from "react";
 
-import PageHero from "./blocks/PageHero";
-import TextMedia from "./blocks/TextMedia";
+import PageHero from "./blocks/page-hero";
+import TextMedia from "./blocks/text-media";
 
 export type BlockTypes = keyof typeof blocks;
 

@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 
-import { Button } from "@/components/Button";
+import { Button } from "@/components/button-rename";
 
 export default function NotFound() {
   return (

@@ -7,8 +7,8 @@ import React from "react";
 import { validateImage } from "@/sanity/lib/image";
 import { TextMediaBlock } from "@/typegen/sanity.fragment-types";
 
-import PortableText from "../portableText/PortableText";
-import SanityImage from "../SanityImage";
+import PortableText from "../portableText/portable-text";
+import SanityImage from "../sanity-image";
 
 const block: Record<string, PortableTextBlockComponent> = {
   h1: ({ children }) => {

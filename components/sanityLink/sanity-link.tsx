@@ -1,7 +1,7 @@
 import React, { ForwardRefExoticComponent } from "react";
 
-import ExternalLink, { ExternalLinkProps } from "./ExternalLink";
-import InternalLink, { InternalLinkProps } from "./InternalLink";
+import ExternalLink, { ExternalLinkProps } from "./external-link";
+import InternalLink, { InternalLinkProps } from "./internal-link";
 
 export type SanityLinkType = InternalLinkProps | ExternalLinkProps;
 
