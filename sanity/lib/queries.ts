@@ -26,9 +26,9 @@ const SEO = `//groq
   }
 `;
 
-export const pageQuery = defineQuery(
-  `*[slug.current == $slug][0]{blocks[]{${BLOCKS}}, ${SEO}}`,
-);
+export const pageQuery = defineQuery(`
+*[slug.current == $slug][0]{blocks[]{${BLOCKS}}, ${SEO}}
+`);
 
 export const settingsQuery = defineQuery(`
   *[_type == "settings"][0]{
@@ -45,6 +45,6 @@ export const settingsQuery = defineQuery(`
   }
 `);
 
-export const allSlugsQuery = defineQuery(
-  `*[_type in ["page", "home"] && defined(slug.current)][].slug.current`,
-);
+export const allSlugsQuery = defineQuery(`
+*[_type in ["page", "home"] && defined(slug.current)][].slug.current
+`);
