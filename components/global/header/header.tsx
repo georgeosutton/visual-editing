@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { SettingsQueryResult } from "@/typegen/sanity.fragment-types";

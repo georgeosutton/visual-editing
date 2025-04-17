@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import Page from "@/components/pages/page/page-rename";
+import Page from "@/components/pages/page";
 import { sanityFetch } from "@/sanity/lib/live";
 import { allSlugsQuery, pageQuery } from "@/sanity/lib/queries";
 
