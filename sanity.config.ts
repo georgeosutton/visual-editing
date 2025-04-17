@@ -30,7 +30,7 @@ export default defineConfig({
       resolve,
       previewUrl: {
         previewMode: {
-          enable: '/api/draft-mode/enable',
+          enable: "/api/draft-mode/enable",
         },
       },
     }),

@@ -1,27 +1,18 @@
-import { groq } from "next-sanity";
+import { defineQuery } from "next-sanity";
 import { getServerSideSitemap } from "next-sitemap";
 
-import { client } from "@/sanity/lib/client";
-import { AllSlugsQueryResult } from "@/typegen/sanity.fragment-types";
-
-const usingCdn = client.config().useCdn;
+import { sanityFetch } from "@/sanity/lib/live";
 
 export async function GET() {
-  const allSlugsQuery = groq`*[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}`;
-
-  let revalidate: NextFetchRequestConfig["revalidate"] = 0;
-
-  if (!usingCdn) {
-    revalidate = false;
-  } else if (usingCdn) {
-    revalidate = 60;
-  }
-
-  const pages = await client.fetch<AllSlugsQueryResult>(
-    allSlugsQuery,
-    {},
-    { next: { revalidate, tags: ["sitemap"] } },
+  const allSlugsSitemapQuery = defineQuery(
+    `*[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}`,
   );
+
+  const { data: pages } = await sanityFetch({
+    query: allSlugsSitemapQuery,
+    stega: false,
+    perspective: "published",
+  });
 
   return getServerSideSitemap(
     pages.map((page) => {

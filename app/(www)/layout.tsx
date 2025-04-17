@@ -1,17 +1,15 @@
 import "./globals.css";
 
-import dynamic from "next/dynamic";
 import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity";
 import { Suspense } from "react";
 
 import { Footer } from "@/components/global/footer";
+import { SanityLive } from "@/sanity/lib/live";
 
 import { Header } from "../../components/global/header";
+import { handleError } from "./client-functions";
 import { ftPolar, ivar } from "./fonts";
-
-const VisualEditing = dynamic(
-  () => import("@/sanity/loader/LiveVisualEditing"),
-);
 
 export const metadata = {
   metadataBase: new URL(
@@ -37,7 +35,12 @@ export default function CatchAllRoute({
       <Suspense>
         <Footer />
       </Suspense>
-      {draftMode().isEnabled && <VisualEditing />}
+      <SanityLive onError={handleError} />
+      {draftMode().isEnabled && (
+        <>
+          <VisualEditing />
+        </>
+      )}
     </div>
   );
 }

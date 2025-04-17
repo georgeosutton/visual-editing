@@ -1,4 +1,5 @@
 import { groq } from "next-sanity";
+import { defineQuery } from "next-sanity";
 
 import { IMAGE } from "./fragments/image";
 import { LINK_EXTERNAL } from "./fragments/linkExternal";
@@ -26,7 +27,9 @@ const SEO = `//groq
   }
 `;
 
-export const pageQuery = groq`*[slug.current == $slug][0]{blocks[]{${BLOCKS}}, ${SEO}}`;
+export const pageQuery = defineQuery(
+  `*[slug.current == $slug][0]{blocks[]{${BLOCKS}}, ${SEO}}`,
+);
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
@@ -43,5 +46,6 @@ export const settingsQuery = groq`
   }
 `;
 
-export const allSlugsQuery = `//groq
-*[_type in ["page", "home"] && defined(slug.current)][].slug.current`;
+export const allSlugsQuery = defineQuery(
+  `*[_type in ["page", "home"] && defined(slug.current)][].slug.current`,
+);

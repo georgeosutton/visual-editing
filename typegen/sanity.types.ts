@@ -78,6 +78,7 @@ export type TextMedia = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -161,6 +162,7 @@ export type PageHero = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -266,6 +268,7 @@ export type SeoHome = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -302,6 +305,7 @@ export type SeoPage = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -419,6 +423,14 @@ export type AllSanitySchemaTypes =
   | MediaTag
   | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: app/(www)/sitemap.xml/route.ts
+// Variable: allSlugsSitemapQuery
+// Query: *[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}
+export type AllSlugsSitemapQueryResult = Array<{
+  slug: string | null;
+  _updatedAt: string;
+}>;
+
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
 // Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },	},  }       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
@@ -436,7 +448,7 @@ export type PageQueryResult =
       seo: {
         description: null;
         image: null;
-        title: null | string;
+        title: string | null;
       };
     }
   | {
@@ -868,21 +880,17 @@ export type SettingsQueryResult = {
     }> | null;
   }> | null;
 } | null;
-
-// Source: app/(www)/sitemap.xml/route.ts
 // Variable: allSlugsQuery
-// Query: *[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}
-export type AllSlugsQueryResult = Array<{
-  slug: string | null;
-  _updatedAt: string;
-}>;
+// Query: *[_type in ["page", "home"] && defined(slug.current)][].slug.current
+export type AllSlugsQueryResult = Array<string | null>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    '*[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}': AllSlugsSitemapQueryResult;
     '*[slug.current == $slug][0]{blocks[]{//groq\n    (_type == "pageHero")=>{\n      //groq\ntext[]{\n...\n},\n images[]{\n    //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n },\n _type,\n _key,\n \'_ts\': \'PageHeroBlock\'\n\n    },\n    (_type == "textMedia")=>{\n      //groq\ncontent[]{\n    (_type == "image")=>{\n        //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n    },\n    (_type == "textObject")=>{\n       _type,\n       _key,\n       text[]{\n        //groq\n  ...,\n  markDefs[] {\n    //groq\n\t...,\n\t(_type == \'annotationLinkExternal\') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  url,\n  newWindow,\n\n\t},\n\t(_type == \'annotationLinkInternal\') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  ...reference-> {\n    "slug": slug.current,\n  },\n\n\t},\n\n  }\n\n       },\n    },\n },\n _type,\n _key,\n \'_ts\': \'TextMediaBlock\'\n\n    },\n}, //groq\n  "seo": {\n    "description": seo.description,\n    "image": seo.image {\n      //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n    },\n    "title": coalesce(seo.title, title),\n  }\n}': PageQueryResult;
     "\n  *[_type == \"settings\"][0]{\n    menuItems[]{\n      (_type == 'linkInternal') => {//groq\n  _key,\n  _type,\n  text,\n  ...reference-> {\n    \"slug\": slug.current,\n  },\n},\n      (_type == 'linkExternal') => {//groq\n  _key,\n  _type,\n  text,\n  url,\n  newWindow,\n}\n    },\n    footerModules[]{\n      _key,\n      text[]{\n        //groq\n  ...,\n  markDefs[] {\n    //groq\n\t...,\n\t(_type == 'annotationLinkExternal') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  url,\n  newWindow,\n\n\t},\n\t(_type == 'annotationLinkInternal') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  ...reference-> {\n    \"slug\": slug.current,\n  },\n\n\t},\n\n  }\n\n      }\n    }\n  }\n": SettingsQueryResult;
-    '*[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}': AllSlugsQueryResult;
+    '*[_type in ["page", "home"] && defined(slug.current)][].slug.current': AllSlugsQueryResult;
   }
 }

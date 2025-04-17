@@ -1,24 +1,25 @@
 {
-    "name": "Next.js Dev Container",
-    "dockerComposeFile": ["./docker-compose.yml"],
-    "service": "app",
-    "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
-    "postCreateCommand": "pnpm install",
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-    "initializeCommand": "echo COMPOSE_PROJECT_NAME=${localWorkspaceFolderBasename} > .devcontainer/.env",
-    "remoteUser": "node",
-    "customizations": {
-      "vscode": {
-        "settings": {
-          "files.associations": {
-            "*.css": "tailwindcss"
-          }
-        },
-        "extensions": [
-          "dbaeumer.vscode-eslint",
-          "esbenp.prettier-vscode",
-          "bradlc.vscode-tailwindcss"
-        ]
-      }
+  "name": "Next.js Dev Container",
+  "dockerComposeFile": ["./docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "pnpm install && sudo chown -R node:node /workspace/${localWorkspaceFolderBasename} && sudo chmod -R g+w /workspace/${localWorkspaceFolderBasename}",
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "initializeCommand": "echo COMPOSE_PROJECT_NAME=${localWorkspaceFolderBasename} > .devcontainer/.env",
+  "remoteUser": "node",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "files.associations": {
+          "*.css": "tailwindcss"
+        }
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "sanity-io.vscode-sanity"
+      ]
     }
   }
+}
