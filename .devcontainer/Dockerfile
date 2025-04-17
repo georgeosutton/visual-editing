@@ -14,6 +14,7 @@ RUN corepack enable
 USER node
 
 RUN corepack prepare pnpm@10.4.1 --activate
+RUN npm install -g bun
 
 RUN mkdir -p ~/.pnpm-store && \
     printf "store-dir=/home/node/.pnpm-store\nside-effects-cache=false\n" >> ~/.npmrc
