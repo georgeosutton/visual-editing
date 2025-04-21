@@ -24,7 +24,7 @@ export const metadata = {
   ),
 };
 
-export default function CatchAllRoute({
+export default async function CatchAllRoute({
   children,
 }: {
   children: React.ReactNode;
@@ -41,7 +41,7 @@ export default function CatchAllRoute({
         <Footer />
       </Suspense>
       <SanityLive onError={handleError} />
-      {draftMode().isEnabled && (
+      {(await draftMode()).isEnabled && (
         <>
           <VisualEditing />
         </>

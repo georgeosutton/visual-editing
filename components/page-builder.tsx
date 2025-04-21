@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+import type { ComponentType } from "react";
 
 import PageHero from "./blocks/page-hero";
 import TextMedia from "./blocks/text-media";

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { SettingsQueryResult } from "@/typegen/sanity.fragment-types";
+import type { SettingsQueryResult } from "@/typegen/sanity.fragment-types";
 
 import SanityLink from "../../sanityLink/sanity-link";
 
@@ -24,7 +24,7 @@ export default function HeaderLayout(props: HeaderProps) {
                 <SanityLink
                   link={menuItem}
                   key={menuItem._key}
-                  className="whitespace-nowrap text-[1.3125rem] font-light text-primary md:text-[1.875rem]"
+                  className="whitespace-nowrap"
                 />
               );
             })}

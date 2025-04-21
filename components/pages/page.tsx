@@ -1,6 +1,7 @@
-import { PageQueryResult } from "@/typegen/sanity.fragment-types";
+import type { PageQueryResult } from "@/typegen/sanity.fragment-types";
 
-import PageBuilder, { SanityBlock } from "../page-builder";
+import type { SanityBlock } from "../page-builder";
+import PageBuilder from "../page-builder";
 
 export interface PageProps {
   data: PageQueryResult;

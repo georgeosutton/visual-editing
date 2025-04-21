@@ -1,5 +1,5 @@
 import PortableText from "@/components/portableText/portable-text";
-import { SettingsQueryResult } from "@/typegen/sanity.fragment-types";
+import type { SettingsQueryResult } from "@/typegen/sanity.fragment-types";
 
 interface FooterProps {
   data: SettingsQueryResult;

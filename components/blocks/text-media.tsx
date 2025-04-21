@@ -1,11 +1,11 @@
-import {
+import type {
   PortableTextBlockComponent,
   PortableTextListComponent,
 } from "@portabletext/react";
 import React from "react";
 
 import { validateImage } from "@/sanity/lib/image";
-import { TextMediaBlock } from "@/typegen/sanity.fragment-types";
+import type { TextMediaBlock } from "@/typegen/sanity.fragment-types";
 
 import PortableText from "../portableText/portable-text";
 import SanityImage from "../sanity-image";

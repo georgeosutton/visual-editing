@@ -1,7 +1,9 @@
 import React from "react";
 
-import { Button, ButtonProps } from "./button";
-import SanityLink, { SanityLinkType } from "./sanityLink/sanity-link";
+import type { ButtonProps } from "./button";
+import { Button } from "./button";
+import type { SanityLinkType } from "./sanityLink/sanity-link";
+import SanityLink from "./sanityLink/sanity-link";
 
 export default function CallToAction({
   link,

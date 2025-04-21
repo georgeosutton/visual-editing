@@ -1,4 +1,4 @@
-import { PortableTextMarkComponentProps } from "@portabletext/react";
+import type { PortableTextMarkComponentProps } from "@portabletext/react";
 
 import { cn } from "@/lib/utils";
 
