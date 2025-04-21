@@ -105,22 +105,6 @@ module.exports = {
   plugins: [
     plugin(function ({ addComponents }) {
       addComponents({
-        "@media (max-width: 1024px)": {
-          ".container": {
-            paddingRight: "1.5rem",
-            paddingLeft: "1.5rem",
-          },
-        },
-        "@media (max-width: 768px)": {
-          ".container": {
-            paddingRight: "1rem",
-            paddingLeft: "1rem",
-          },
-        },
-        ".ivar-light": {
-          fontWeight: "300",
-          fontFamily: ["var(--font-ivar)"],
-        },
         ".page-container": {
           display: "grid",
           minHeight: "100vh",
