@@ -1,5 +1,6 @@
 import "./globals.css";
 
+import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 import { Suspense } from "react";
@@ -9,7 +10,11 @@ import { SanityLive } from "@/sanity/lib/live";
 
 import { Header } from "../../components/global/header";
 import { handleError } from "./client-functions";
-import { ftPolar, ivar } from "./fonts";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata = {
   metadataBase: new URL(
@@ -25,7 +30,7 @@ export default function CatchAllRoute({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`${ivar.variable} ${ftPolar.variable} page-container`}>
+    <div className={`${inter.variable} page-container`}>
       <Suspense>
         <Header />
       </Suspense>

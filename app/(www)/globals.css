@@ -17,7 +17,7 @@
   h4,
   h5,
   h6 {
-    @apply ivar-light text-balance;
+    @apply font-inter text-balance;
   }
 
   p {
@@ -26,15 +26,15 @@
 
   a,
   p {
-    @apply font-polar;
+    @apply font-inter;
   }
 
   input,
   textarea {
-    @apply font-polar text-sm uppercase;
+    @apply font-inter text-sm uppercase;
   }
 
   select {
-    @apply font-polar text-sm;
+    @apply font-inter text-sm;
   }
 }

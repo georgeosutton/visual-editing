@@ -41,8 +41,7 @@ module.exports = {
         book: "350",
       },
       fontFamily: {
-        ivar: ["var(--font-ivar)"],
-        polar: ["var(--font-polar)"],
+        inter: ["var(--font-inter)"],
       },
       height: {
         13: "3.25rem",
