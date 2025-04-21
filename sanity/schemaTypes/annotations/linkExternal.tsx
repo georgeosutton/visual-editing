@@ -1,5 +1,5 @@
 import { EarthGlobeIcon } from "@sanity/icons";
-import { BlockAnnotationProps, defineField } from "sanity";
+import { type BlockAnnotationProps, defineField } from "sanity";
 
 export default defineField({
   title: "External Link",

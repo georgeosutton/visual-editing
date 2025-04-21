@@ -1,10 +1,10 @@
 import get from "lodash.get";
-import {
+import type {
   SanityDocument,
   StringInputProps,
   StringSchemaType,
-  useFormValue,
 } from "sanity";
+import { useFormValue } from "sanity";
 
 type Props = StringInputProps<
   StringSchemaType & { options?: { field?: string } }

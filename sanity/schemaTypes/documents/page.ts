@@ -1,5 +1,5 @@
 import { DocumentIcon } from "@sanity/icons";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { defineField, defineType } from "sanity";
 
 import { BLOCK_TYPES } from "../constants";

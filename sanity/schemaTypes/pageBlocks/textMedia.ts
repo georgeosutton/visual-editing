@@ -1,8 +1,9 @@
-import { PortableTextBlock } from "@portabletext/react";
+import type { PortableTextBlock } from "@portabletext/react";
 import { BlockContentIcon, ImageIcon } from "@sanity/icons";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { GrTextWrap } from "react-icons/gr";
-import { defineArrayMember, defineField, defineType, Image } from "sanity";
+import type { Image } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 import { blockPreview } from "../blockPreview";
 import { createBlockField } from "../createBlockField";

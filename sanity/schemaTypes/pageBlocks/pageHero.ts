@@ -1,4 +1,4 @@
-import { PortableTextBlock } from "@portabletext/react";
+import type { PortableTextBlock } from "@portabletext/react";
 import { BsStars } from "react-icons/bs";
 import { defineArrayMember, defineField, defineType } from "sanity";
 

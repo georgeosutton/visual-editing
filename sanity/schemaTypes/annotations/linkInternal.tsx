@@ -1,5 +1,5 @@
 import { LinkIcon } from "@sanity/icons";
-import { BlockAnnotationProps, defineField } from "sanity";
+import { type BlockAnnotationProps, defineField } from "sanity";
 
 import { PAGE_REFERENCES } from "../constants";
 

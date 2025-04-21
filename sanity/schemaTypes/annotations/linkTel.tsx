@@ -1,5 +1,5 @@
 import { AiOutlinePhone } from "react-icons/ai";
-import { BlockAnnotationProps, defineField } from "sanity";
+import { type BlockAnnotationProps, defineField } from "sanity";
 
 export default defineField({
   title: "Tel link",

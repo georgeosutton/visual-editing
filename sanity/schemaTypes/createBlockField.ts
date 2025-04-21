@@ -1,12 +1,12 @@
-import {
+import type {
   ArrayOfType,
   BlockListDefinition,
   BlockMarksDefinition,
   BlockStyleDefinition,
-  defineField,
   PortableTextBlock,
   PortableTextChild,
 } from "sanity";
+import { defineField } from "sanity";
 
 export const createBlockField = ({
   of = [],

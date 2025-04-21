@@ -1,4 +1,4 @@
-import { PortableTextBlock, toPlainText } from "@portabletext/react";
+import { type PortableTextBlock, toPlainText } from "@portabletext/react";
 
 export const blockPreview = (
   content?: PortableTextBlock[] | PortableTextBlock,

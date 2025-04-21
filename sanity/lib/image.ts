@@ -1,4 +1,4 @@
-import { SanityImageFragment } from "@/typegen/sanity.fragment-types";
+import type { SanityImageFragment } from "@/typegen/sanity.fragment-types";
 
 export const baseUrl = `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/production/`;
 
