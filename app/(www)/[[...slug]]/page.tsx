@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import Page from "@/components/pages/page";
@@ -6,11 +5,11 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { allSlugsQuery, pageQuery } from "@/sanity/lib/queries";
 
 type Props = {
-  params: { slug: string[] };
+  params: Promise<{ slug: string[] }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params?.slug || [];
+export async function generateMetadata({ params }: Props) {
+  const { slug = [] } = await params;
 
   const queryParams = { slug: `/${slug.join("/")}` };
   const { data: page } = await sanityFetch({
@@ -67,7 +66,7 @@ export async function generateStaticParams() {
 }
 
 export default async function PageRoute({ params }: Props) {
-  const slug = params?.slug || [];
+  const { slug = [] } = await params;
 
   const queryParams = { slug: `/${slug.join("/")}` };
   const { data } = await sanityFetch({ query: pageQuery, params: queryParams });
