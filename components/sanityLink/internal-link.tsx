@@ -8,12 +8,11 @@ export type InternalLinkProps = {
   slug?: string | null;
 };
 
-const InternalLink = React.forwardRef<
-  HTMLAnchorElement,
-  InternalLinkProps &
+const InternalLink = (
+  props: InternalLinkProps &
     Omit<LinkProps, "href"> &
-    React.AnchorHTMLAttributes<HTMLAnchorElement>
->(function LinkComponent(props, forwardedRef) {
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+) => {
   const { text, slug, children, ...rest } = props;
 
   if (!slug) {
@@ -21,10 +20,10 @@ const InternalLink = React.forwardRef<
   }
 
   return (
-    <Link ref={forwardedRef} href={slug} {...rest}>
+    <Link href={slug} {...rest}>
       {children ? children : text}
     </Link>
   );
-});
+};
 
 export default InternalLink;

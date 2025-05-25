@@ -34,45 +34,47 @@ const list: Record<string, PortableTextListComponent> = {
 export default function TextMedia(props: TextMediaBlock) {
   const { content } = props;
   return (
-    <div className="container grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
-      {content?.map((item) => {
-        if (item._type == "image") {
-          const { id, ...imageProps } = validateImage(item);
+    <div>
+      <div className="container mx-auto grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
+        {content?.map((item) => {
+          if (item._type == "image") {
+            const { id, ...imageProps } = validateImage(item);
 
-          if (!id) {
-            return null;
+            if (!id) {
+              return null;
+            }
+
+            return (
+              <div key={item._key}>
+                <SanityImage
+                  {...imageProps}
+                  className="h-auto w-full"
+                  width={1200}
+                  height={1200}
+                  id={id}
+                  mode="cover"
+                />
+              </div>
+            );
           }
 
-          return (
-            <div key={item._key}>
-              <SanityImage
-                {...imageProps}
-                className="h-auto w-full"
-                width={1200}
-                height={1200}
-                id={id}
-                mode="cover"
+          if (item._type == "textObject") {
+            const { text } = item;
+            if (!text) {
+              return null;
+            }
+            return (
+              <PortableText
+                className="flex flex-col justify-center text-center"
+                block={block}
+                list={list}
+                key={item._key}
+                value={text}
               />
-            </div>
-          );
-        }
-
-        if (item._type == "textObject") {
-          const { text } = item;
-          if (!text) {
-            return null;
+            );
           }
-          return (
-            <PortableText
-              className="flex flex-col justify-center text-center"
-              block={block}
-              list={list}
-              key={item._key}
-              value={text}
-            />
-          );
-        }
-      })}
+        })}
+      </div>
     </div>
   );
 }

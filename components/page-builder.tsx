@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 
+import { Cta } from "./blocks/cta";
 import PageHero from "./blocks/page-hero";
 import TextMedia from "./blocks/text-media";
 
@@ -13,6 +14,7 @@ export interface SanityBlock {
 const blocks = {
   pageHero: PageHero,
   textMedia: TextMedia,
+  ctaBlock: Cta,
 };
 
 const PageBuilder = (props: { block: SanityBlock }) => {

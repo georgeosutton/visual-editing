@@ -1,5 +1,6 @@
 import { defineQuery } from "next-sanity";
 
+import { CTA_BLOCK } from "./fragments/cta";
 import { IMAGE } from "./fragments/image";
 import { LINK_EXTERNAL } from "./fragments/linkExternal";
 import { LINK_INTERNAL } from "./fragments/linkInternal";
@@ -13,6 +14,9 @@ const BLOCKS = `//groq
     },
     (_type == "textMedia")=>{
       ${TEXT_MEDIA}
+    },
+    (_type == "ctaBlock")=>{
+      ${CTA_BLOCK}
     },
 `;
 

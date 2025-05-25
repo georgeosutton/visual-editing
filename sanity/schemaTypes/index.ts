@@ -3,6 +3,7 @@ import annotationLinkEmail from "./annotations/linkEmail";
 import annotationLinkExternal from "./annotations/linkExternal";
 import annotationLinkInternal from "./annotations/linkInternal";
 import annotationLinkTel from "./annotations/linkTel";
+import { links } from "./common";
 
 const annotations = [
   annotationLinkEmail,
@@ -12,8 +13,11 @@ const annotations = [
 ];
 
 import page from "./documents/page";
+import link from "./link";
+import linkObject from "./linkObject";
 import linkExternal from "./links/linkExternal";
 import linkInternal from "./links/linkInternal";
+import cta from "./pageBlocks/cta";
 import pageHero from "./pageBlocks/pageHero";
 import textMedia from "./pageBlocks/textMedia";
 import placeholderString from "./placeholderString";
@@ -35,4 +39,8 @@ export const schemaTypes = [
   seoPage,
   placeholderString,
   textMedia,
+  link,
+  links,
+  cta,
+  linkObject,
 ];

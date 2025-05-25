@@ -7,10 +7,9 @@ export type ExternalLinkProps = {
   newWindow?: boolean | null;
 };
 
-const ExternalLink = React.forwardRef<
-  HTMLAnchorElement,
-  ExternalLinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>
->(function LinkComponent(props, forwardedRef) {
+const ExternalLink = (
+  props: ExternalLinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>,
+) => {
   const { text, url, newWindow, children, ...rest } = props;
 
   if (!url) {
@@ -19,7 +18,6 @@ const ExternalLink = React.forwardRef<
 
   return (
     <a
-      ref={forwardedRef}
       href={url}
       target={newWindow ? "_blank" : undefined}
       rel={newWindow ? "noopener noreferrer" : undefined}
@@ -28,6 +26,6 @@ const ExternalLink = React.forwardRef<
       {children ? children : text}
     </a>
   );
-});
+};
 
 export default ExternalLink;

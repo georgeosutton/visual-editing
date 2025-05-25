@@ -68,6 +68,56 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type LinkObject = {
+  _type: "linkObject";
+  link?: Array<
+    | ({
+        _key: string;
+      } & LinkInternal)
+    | ({
+        _key: string;
+      } & LinkExternal)
+  >;
+};
+
+export type CtaBlock = {
+  _type: "ctaBlock";
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "h2" | "h3" | "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  ctas?: Array<
+    {
+      _key: string;
+    } & LinkObject
+  >;
+};
+
+export type Links = Array<
+  {
+    _key: string;
+  } & LinkObject
+>;
+
+export type Link = Array<
+  | ({
+      _key: string;
+    } & LinkInternal)
+  | ({
+      _key: string;
+    } & LinkExternal)
+>;
+
 export type TextMedia = {
   _type: "textMedia";
   content?: Array<
@@ -253,6 +303,9 @@ export type Home = {
     | ({
         _key: string;
       } & TextMedia)
+    | ({
+        _key: string;
+      } & CtaBlock)
   >;
   seo?: SeoHome;
 };
@@ -290,6 +343,9 @@ export type Page = {
     | ({
         _key: string;
       } & TextMedia)
+    | ({
+        _key: string;
+      } & CtaBlock)
   >;
   seo?: SeoPage;
 };
@@ -401,6 +457,10 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | LinkObject
+  | CtaBlock
+  | Links
+  | Link
   | TextMedia
   | PlaceholderString
   | LinkExternal
@@ -433,7 +493,7 @@ export type AllSlugsSitemapQueryResult = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: pageQuery
-// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },	},  }       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
+// Query: *[slug.current == $slug][0]{blocks[]{//groq    (_type == "pageHero")=>{      //groqtext[]{...}, images[]{    //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment" }, _type, _key, '_ts': 'PageHeroBlock'    },    (_type == "textMedia")=>{      //groqcontent[]{    (_type == "image")=>{        //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    (_type == "textObject")=>{       _type,       _key,       text[]{        //groq  ...,  markDefs[] {    //groq	...,	(_type == 'annotationLinkExternal') => {	  //groq  _key,  _type,  text,  url,  newWindow,	},	(_type == 'annotationLinkInternal') => {	  //groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },	},  }       },    }, }, _type, _key, '_ts': 'TextMediaBlock'    },    (_type == "ctaBlock")=>{      //groqtext[]{...},ctas[]{  (_type == 'linkObject') => {_key, link[]{//groq   (_type == 'linkInternal') => {//groq  _key,  _type,  text,  ...reference-> {    "slug": slug.current,  },},   (_type == 'linkExternal') => {//groq  _key,  _type,  text,  url,  newWindow,}}},}, _type, _key, '_ts': 'CtaBlock'    },}, //groq  "seo": {    "description": seo.description,    "image": seo.image {      //groq_key,_type,"id": asset._ref,hotspot { x, y },crop {  bottom,  left,  right,  top,},"alt":asset->altText,"tags": asset->opt.media.tags[]->name.current,"description": asset->description,"title": asset->title,'height': asset->metadata.dimensions.height,'url': asset->url,'width': asset->metadata.dimensions.width,'_ts':"SanityImageFragment"    },    "title": coalesce(seo.title, title),  }}
 export type PageQueryResult =
   | {
       blocks: null;
@@ -453,6 +513,48 @@ export type PageQueryResult =
     }
   | {
       blocks: Array<
+        | {
+            text: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h2" | "h3" | "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            ctas: Array<{
+              _key: string;
+              link: Array<
+                | {
+                    _key: string;
+                    _type: "linkExternal";
+                    text: string | null;
+                    url: string | null;
+                    newWindow: boolean | null;
+                  }
+                | {
+                    _key: string;
+                    _type: "linkInternal";
+                    text: string | null;
+                    slug: string | null;
+                  }
+                | {
+                    _key: string;
+                    _type: "linkInternal";
+                    text: string | null;
+                  }
+              > | null;
+            }> | null;
+            _type: "ctaBlock";
+            _key: string;
+            _ts: "CtaBlock";
+          }
         | {
             text: Array<{
               children?: Array<{
@@ -619,6 +721,48 @@ export type PageQueryResult =
     }
   | {
       blocks: Array<
+        | {
+            text: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h2" | "h3" | "normal";
+              listItem?: never;
+              markDefs?: null;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+            ctas: Array<{
+              _key: string;
+              link: Array<
+                | {
+                    _key: string;
+                    _type: "linkExternal";
+                    text: string | null;
+                    url: string | null;
+                    newWindow: boolean | null;
+                  }
+                | {
+                    _key: string;
+                    _type: "linkInternal";
+                    text: string | null;
+                    slug: string | null;
+                  }
+                | {
+                    _key: string;
+                    _type: "linkInternal";
+                    text: string | null;
+                  }
+              > | null;
+            }> | null;
+            _type: "ctaBlock";
+            _key: string;
+            _ts: "CtaBlock";
+          }
         | {
             text: Array<{
               children?: Array<{
@@ -889,7 +1033,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type in ["page", "home"] && defined(slug.current)][]{"slug":slug.current, _updatedAt}': AllSlugsSitemapQueryResult;
-    '\n*[slug.current == $slug][0]{blocks[]{//groq\n    (_type == "pageHero")=>{\n      //groq\ntext[]{\n...\n},\n images[]{\n    //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n },\n _type,\n _key,\n \'_ts\': \'PageHeroBlock\'\n\n    },\n    (_type == "textMedia")=>{\n      //groq\ncontent[]{\n    (_type == "image")=>{\n        //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n    },\n    (_type == "textObject")=>{\n       _type,\n       _key,\n       text[]{\n        //groq\n  ...,\n  markDefs[] {\n    //groq\n\t...,\n\t(_type == \'annotationLinkExternal\') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  url,\n  newWindow,\n\n\t},\n\t(_type == \'annotationLinkInternal\') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  ...reference-> {\n    "slug": slug.current,\n  },\n\n\t},\n\n  }\n\n       },\n    },\n },\n _type,\n _key,\n \'_ts\': \'TextMediaBlock\'\n\n    },\n}, //groq\n  "seo": {\n    "description": seo.description,\n    "image": seo.image {\n      //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n    },\n    "title": coalesce(seo.title, title),\n  }\n}\n': PageQueryResult;
+    '\n*[slug.current == $slug][0]{blocks[]{//groq\n    (_type == "pageHero")=>{\n      //groq\ntext[]{\n...\n},\n images[]{\n    //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n },\n _type,\n _key,\n \'_ts\': \'PageHeroBlock\'\n\n    },\n    (_type == "textMedia")=>{\n      //groq\ncontent[]{\n    (_type == "image")=>{\n        //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n    },\n    (_type == "textObject")=>{\n       _type,\n       _key,\n       text[]{\n        //groq\n  ...,\n  markDefs[] {\n    //groq\n\t...,\n\t(_type == \'annotationLinkExternal\') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  url,\n  newWindow,\n\n\t},\n\t(_type == \'annotationLinkInternal\') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  ...reference-> {\n    "slug": slug.current,\n  },\n\n\t},\n\n  }\n\n       },\n    },\n },\n _type,\n _key,\n \'_ts\': \'TextMediaBlock\'\n\n    },\n    (_type == "ctaBlock")=>{\n      //groq\ntext[]{\n...\n},\nctas[]{\n  (_type == \'linkObject\') => {_key, link[]{//groq\n   (_type == \'linkInternal\') => {//groq\n  _key,\n  _type,\n  text,\n  ...reference-> {\n    "slug": slug.current,\n  },\n},\n   (_type == \'linkExternal\') => {//groq\n  _key,\n  _type,\n  text,\n  url,\n  newWindow,\n}\n}},\n},\n _type,\n _key,\n \'_ts\': \'CtaBlock\'\n\n    },\n}, //groq\n  "seo": {\n    "description": seo.description,\n    "image": seo.image {\n      //groq\n_key,\n_type,\n"id": asset._ref,\nhotspot { x, y },\ncrop {\n  bottom,\n  left,\n  right,\n  top,\n},\n"alt":asset->altText,\n"tags": asset->opt.media.tags[]->name.current,\n"description": asset->description,\n"title": asset->title,\n\'height\': asset->metadata.dimensions.height,\n\'url\': asset->url,\n\'width\': asset->metadata.dimensions.width,\n\'_ts\':"SanityImageFragment"\n\n    },\n    "title": coalesce(seo.title, title),\n  }\n}\n': PageQueryResult;
     "\n  *[_type == \"settings\"][0]{\n    menuItems[]{\n      (_type == 'linkInternal') => {//groq\n  _key,\n  _type,\n  text,\n  ...reference-> {\n    \"slug\": slug.current,\n  },\n},\n      (_type == 'linkExternal') => {//groq\n  _key,\n  _type,\n  text,\n  url,\n  newWindow,\n}\n    },\n    footerModules[]{\n      _key,\n      text[]{\n        //groq\n  ...,\n  markDefs[] {\n    //groq\n\t...,\n\t(_type == 'annotationLinkExternal') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  url,\n  newWindow,\n\n\t},\n\t(_type == 'annotationLinkInternal') => {\n\t  //groq\n  _key,\n  _type,\n  text,\n  ...reference-> {\n    \"slug\": slug.current,\n  },\n\n\t},\n\n  }\n\n      }\n    }\n  }\n": SettingsQueryResult;
     '\n*[_type in ["page", "home"] && defined(slug.current)][].slug.current\n': AllSlugsQueryResult;
   }
