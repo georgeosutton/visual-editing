@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
     "typegen": "bun run schema:extract && bun run typegen:generate",
     "schema:extract": "sanity schema extract --path=./typegen/schema.json",
     "typegen:generate": "sanity typegen generate",
@@ -73,6 +74,10 @@
   "prettier": {
     "plugins": [
       "prettier-plugin-tailwindcss"
+    ],
+    "tailwindFunctions": [
+      "cn",
+      "cva"
     ]
   }
 }
