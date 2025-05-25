@@ -9,7 +9,7 @@
     "build": "pnpm run prebuild && next build && pnpm run postbuild",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",
     "start": "next start",
-    "lint": "tsc --noemit && next lint",
+    "lint": "eslint .",
     "typegen": "bun run schema:extract && bun run typegen:generate",
     "schema:extract": "sanity schema extract --path=./typegen/schema.json",
     "typegen:generate": "sanity typegen generate",

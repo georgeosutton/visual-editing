@@ -27,9 +27,12 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.js",
-    "**/*.cjs",
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "typegen/sanity.types.ts"]
+  "exclude": [
+    "node_modules",
+    "typegen/sanity.types.ts",
+    "sanity.fragment-types.ts"
+  ]
 }

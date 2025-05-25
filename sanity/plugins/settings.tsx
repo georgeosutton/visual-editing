@@ -2,13 +2,13 @@
  * This plugin contains all the logic for setting up the singletons
  */
 
+import type { DocumentActionComponent } from "sanity";
 import {
-  DocumentActionComponent,
   type DocumentDefinition,
   type NewDocumentOptionsContext,
   type TemplateItem,
 } from "sanity";
-import { StructureResolver } from "sanity/structure";
+import type { StructureResolver } from "sanity/structure";
 
 export const singletonPlugin = (types: string[]) => {
   return {

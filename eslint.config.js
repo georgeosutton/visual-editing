@@ -26,6 +26,14 @@ export default [
     },
   },
   {
+    files: ["next-sitemap.config.cjs"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
+  {
     plugins: {
       "@next/next": pluginNext,
       prettier: eslintPluginPrettier,

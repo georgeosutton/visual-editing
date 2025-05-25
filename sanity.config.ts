@@ -3,7 +3,8 @@
  */
 
 import { visionTool } from "@sanity/vision";
-import { defineConfig, SchemaTypeDefinition } from "sanity";
+import type { SchemaTypeDefinition } from "sanity";
+import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
